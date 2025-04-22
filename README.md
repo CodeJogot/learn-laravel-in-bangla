@@ -4,49 +4,49 @@
 
 After completing the 30-chapters module, jump in the [Projects Section](#).
 
-|                                  **Chapter No.**                                   |                                     **Topics**                                     | **Video Explanation** |
-| :--------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: | :-------------------: |
-|                    [00](#chapter-00-how-the-course-is-designed)                    |        [How The Course is Designed](#chapter-00-how-the-course-is-designed)        |       Watch Now       |
-|                  [01](#chapter-01-introduction-to-laravel)                  |    [Introduction to Laravel](#chapter-01-introduction-to-laravel)    |       Watch Now       |
-|                [02](#chapter-2-laravel-installation--environment-setup)                 | [Laravel Installation & Environment Setup](#chapter-2-laravel-installation--environment-setup) |       Watch Now       |
-|                           [03](#chapter-3-laravel-folder-structure--mvc-pattern-explained)                            |                            [Laravel Folder Structure & MVC Pattern Explained](#chapter-3-laravel-folder-structure--mvc-pattern-explained)                             |       Watch Now       |
-|                           [04](#chapter-4-routing-in-laravel-web--api)                            |                            [Routing in Laravel Web & API](#chapter-4-routing-in-laravel-web--api)                             |       Watch Now       |
-|                           [05](#chapter-5-laravel-controllers--structure-usage-and-best-practices)                            |                            [Laravel Controllers — Structure, Usage, and Best Practices](#chapter-5-laravel-controllers--structure-usage-and-best-practices)                             |     [Watch Now]()     |
-|                             [06](#chapter-6-blade-templating-engine-in-laravel)                             |                              [Blade Templating Engine in Laravel](#chapter-6-blade-templating-engine-in-laravel)                              |     [Watch Now]()     |
-|                          [07](#chapter-7-laravel-models--eloquent-orm-explained)                           |                           [Laravel Models & Eloquent ORM Explained](#chapter-7-laravel-models--eloquent-orm-explained)                            |     [Watch Now]()     |
-|                       [08](#chapter-8-database-migration--seeding-in-laravel)                        |                        [Database Migration & Seeding in Laravel](#chapter-8-database-migration--seeding-in-laravel)                         |     [Watch Now]()     |
-|                          [09](#chapter-09-php-operators)                           |                           [](#chapter-09-php-operators)                            |     [Watch Now]()     |
-|                            [10](#chapter-10-php-loops)                             |                             [](#chapter-10-php-loops)                              |     [Watch Now]()     |
-|                          [11](#chapter-11-php-functions)                           |                           [](#chapter-11-php-functions)                            |     [Watch Now]()     |
-|                            [12](#chapter-12-php-arrays)                            |                             [](#chapter-12-php-arrays)                             |     [Watch Now]()     |
-|                [13](#chapter-13-php-array-create-access-add-remove)                |                 [](#chapter-13-php-array-create-access-add-remove)                 |     [Watch Now]()     |
-|            [14](#chapter-14-php-array-functions-a-comprehensive-guide)             |             [](#chapter-14-php-array-functions-a-comprehensive-guide)              |     [Watch Now]()     |
-|               [15](#chapter-15-php-global-variables---superglobals)                |                [](#chapter-15-php-global-variables---superglobals)                 |     [Watch Now]()     |
-|                  [16](#chapter-16-php-regular-expressions-regex)                   |                   [](#chapter-16-php-regular-expressions-regex)                    |     [Watch Now]()     |
-|                        [17](#chapter-17-php-form-handling)                         |                         [](#chapter-17-php-form-handling)                          |     [Watch Now]()     |
-|                       [18](#chapter-18-php-form-validation)                        |                        [](#chapter-18-php-form-validation)                         |     [Watch Now]()     |
-|               [19](#chapter-19-php-form-required-fields-validation)                |                [](#chapter-19-php-form-required-fields-validation)                 |     [Watch Now]()     |
-|               [20](#chapter-20-php-forms---validate-e-mail-and-url)                |                [](#chapter-20-php-forms---validate-e-mail-and-url)                 |     [Watch Now]()     |
-|                        [21](#chapter-21-php-date-and-time)                         |                         [](#chapter-21-php-date-and-time)                          |     [Watch Now]()     |
-|                      [22](#chapter-22-php-include-vs-require)                      |                       [](#chapter-22-php-include-vs-require)                       |     [Watch Now]()     |
-|                        [23](#chapter-23-php-file-handling)                         |                         [](#chapter-23-php-file-handling)                          |     [Watch Now]()     |
-|                         [24](#chapter-24-php-file-upload)                          |                          [](#chapter-24-php-file-upload)                           |     [Watch Now]()     |
-|                           [25](#chapter-25-php-cookies)                            |                            [](#chapter-25-php-cookies)                             |     [Watch Now]()     |
-|                           [26](#chapter-26-php-sessions)                           |                            [](#chapter-26-php-sessions)                            |     [Watch Now]()     |
-|                           [27](#chapter-27-php-filters)                            |                            [](#chapter-27-php-filters)                             |     [Watch Now]()     |
-|                      [28](#chapter-28-php-callback-functions)                      |                       [](#chapter-28-php-callback-functions)                       |     [Watch Now]()     |
-|                           [29](#chapter-29-php-and-json)                           |                            [](#chapter-29-php-and-json)                            |     [Watch Now]()     |
-|                          [30](#chapter-30-php-exceptions)                          |                           [](#chapter-30-php-exceptions)                           |     [Watch Now]()     |
-|               [31](#chapter-31-php-oop-object-oriented-programming)                |                [](#chapter-31-php-oop-object-oriented-programming)                 |     [Watch Now]()     |
-|                     [32](#chapter-32-php-oop-access-modifiers)                     |                      [](#chapter-32-php-oop-access-modifiers)                      |     [Watch Now]()     |
-|                       [33](#chapter-33-php-oop-inheritance)                        |                        [](#chapter-33-php-oop-inheritance)                         |     [Watch Now]()     |
-|                     [34](#chapter-34-php-oop-abstract-classes)                     |                      [](#chapter-34-php-oop-abstract-classes)                      |     [Watch Now]()     |
-|        [35](#chapter-35-php-oop-interfaces-with-a-corporate-teamwork-story)        |         [](#chapter-35-php-oop-interfaces-with-a-corporate-teamwork-story)         |     [Watch Now]()     |
-|        [36](#chapter-36-php-oop-traits-with-a-story-of-superskills-academy)        |                                        []()                                        |     [Watch Now]()     |
-|                                       [37]()                                       |                                        []()                                        |     [Watch Now]()     |
-|                                       [38]()                                       |                                        []()                                        |         []()          |
-|                                        []()                                        |                                        []()                                        |     [Watch Now]()     |
-| [40](#chapter-40-introduction-to-php-mysql-database-with-the-story-of-foodies-hub) |                                        []()                                        |     [Watch Now]()     |
+|                                  **Chapter No.**                                   |                                                            **Topics**                                                            | **Video Explanation** |
+| :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :-------------------: |
+|                    [00](#chapter-00-how-the-course-is-designed)                    |                               [How The Course is Designed](#chapter-00-how-the-course-is-designed)                               |       Watch Now       |
+|                     [01](#chapter-01-introduction-to-laravel)                      |                                  [Introduction to Laravel](#chapter-01-introduction-to-laravel)                                  |       Watch Now       |
+|              [02](#chapter-2-laravel-installation--environment-setup)              |                  [Laravel Installation & Environment Setup](#chapter-2-laravel-installation--environment-setup)                  |       Watch Now       |
+|          [03](#chapter-3-laravel-folder-structure--mvc-pattern-explained)          |          [Laravel Folder Structure & MVC Pattern Explained](#chapter-3-laravel-folder-structure--mvc-pattern-explained)          |       Watch Now       |
+|                    [04](#chapter-4-routing-in-laravel-web--api)                    |                              [Routing in Laravel Web & API](#chapter-4-routing-in-laravel-web--api)                              |       Watch Now       |
+|      [05](#chapter-5-laravel-controllers--structure-usage-and-best-practices)      | [Laravel Controllers — Structure, Usage, and Best Practices](#chapter-5-laravel-controllers--structure-usage-and-best-practices) |     [Watch Now]()     |
+|                [06](#chapter-6-blade-templating-engine-in-laravel)                 |                       [Blade Templating Engine in Laravel](#chapter-6-blade-templating-engine-in-laravel)                        |     [Watch Now]()     |
+|              [07](#chapter-7-laravel-models--eloquent-orm-explained)               |                   [Laravel Models & Eloquent ORM Explained](#chapter-7-laravel-models--eloquent-orm-explained)                   |     [Watch Now]()     |
+|              [08](#chapter-8-database-migration--seeding-in-laravel)               |                   [Database Migration & Seeding in Laravel](#chapter-8-database-migration--seeding-in-laravel)                   |     [Watch Now]()     |
+|                          [09](#chapter-09-php-operators)                           |                                                  [](#chapter-09-php-operators)                                                   |     [Watch Now]()     |
+|                            [10](#chapter-10-php-loops)                             |                                                    [](#chapter-10-php-loops)                                                     |     [Watch Now]()     |
+|                          [11](#chapter-11-php-functions)                           |                                                  [](#chapter-11-php-functions)                                                   |     [Watch Now]()     |
+|                            [12](#chapter-12-php-arrays)                            |                                                    [](#chapter-12-php-arrays)                                                    |     [Watch Now]()     |
+|                [13](#chapter-13-php-array-create-access-add-remove)                |                                        [](#chapter-13-php-array-create-access-add-remove)                                        |     [Watch Now]()     |
+|            [14](#chapter-14-php-array-functions-a-comprehensive-guide)             |                                    [](#chapter-14-php-array-functions-a-comprehensive-guide)                                     |     [Watch Now]()     |
+|               [15](#chapter-15-php-global-variables---superglobals)                |                                       [](#chapter-15-php-global-variables---superglobals)                                        |     [Watch Now]()     |
+|                  [16](#chapter-16-php-regular-expressions-regex)                   |                                          [](#chapter-16-php-regular-expressions-regex)                                           |     [Watch Now]()     |
+|                        [17](#chapter-17-php-form-handling)                         |                                                [](#chapter-17-php-form-handling)                                                 |     [Watch Now]()     |
+|                       [18](#chapter-18-php-form-validation)                        |                                               [](#chapter-18-php-form-validation)                                                |     [Watch Now]()     |
+|               [19](#chapter-19-php-form-required-fields-validation)                |                                       [](#chapter-19-php-form-required-fields-validation)                                        |     [Watch Now]()     |
+|               [20](#chapter-20-php-forms---validate-e-mail-and-url)                |                                       [](#chapter-20-php-forms---validate-e-mail-and-url)                                        |     [Watch Now]()     |
+|                        [21](#chapter-21-php-date-and-time)                         |                                                [](#chapter-21-php-date-and-time)                                                 |     [Watch Now]()     |
+|                      [22](#chapter-22-php-include-vs-require)                      |                                              [](#chapter-22-php-include-vs-require)                                              |     [Watch Now]()     |
+|                        [23](#chapter-23-php-file-handling)                         |                                                [](#chapter-23-php-file-handling)                                                 |     [Watch Now]()     |
+|                         [24](#chapter-24-php-file-upload)                          |                                                 [](#chapter-24-php-file-upload)                                                  |     [Watch Now]()     |
+|                           [25](#chapter-25-php-cookies)                            |                                                   [](#chapter-25-php-cookies)                                                    |     [Watch Now]()     |
+|                           [26](#chapter-26-php-sessions)                           |                                                   [](#chapter-26-php-sessions)                                                   |     [Watch Now]()     |
+|                           [27](#chapter-27-php-filters)                            |                                                   [](#chapter-27-php-filters)                                                    |     [Watch Now]()     |
+|                      [28](#chapter-28-php-callback-functions)                      |                                              [](#chapter-28-php-callback-functions)                                              |     [Watch Now]()     |
+|                           [29](#chapter-29-php-and-json)                           |                                                   [](#chapter-29-php-and-json)                                                   |     [Watch Now]()     |
+|                          [30](#chapter-30-php-exceptions)                          |                                                  [](#chapter-30-php-exceptions)                                                  |     [Watch Now]()     |
+|               [31](#chapter-31-php-oop-object-oriented-programming)                |                                       [](#chapter-31-php-oop-object-oriented-programming)                                        |     [Watch Now]()     |
+|                     [32](#chapter-32-php-oop-access-modifiers)                     |                                             [](#chapter-32-php-oop-access-modifiers)                                             |     [Watch Now]()     |
+|                       [33](#chapter-33-php-oop-inheritance)                        |                                               [](#chapter-33-php-oop-inheritance)                                                |     [Watch Now]()     |
+|                     [34](#chapter-34-php-oop-abstract-classes)                     |                                             [](#chapter-34-php-oop-abstract-classes)                                             |     [Watch Now]()     |
+|        [35](#chapter-35-php-oop-interfaces-with-a-corporate-teamwork-story)        |                                [](#chapter-35-php-oop-interfaces-with-a-corporate-teamwork-story)                                |     [Watch Now]()     |
+|        [36](#chapter-36-php-oop-traits-with-a-story-of-superskills-academy)        |                                                               []()                                                               |     [Watch Now]()     |
+|                                       [37]()                                       |                                                               []()                                                               |     [Watch Now]()     |
+|                                       [38]()                                       |                                                               []()                                                               |         []()          |
+|                                        []()                                        |                                                               []()                                                               |     [Watch Now]()     |
+| [40](#chapter-40-introduction-to-php-mysql-database-with-the-story-of-foodies-hub) |                                                               []()                                                               |     [Watch Now]()     |
 
 # 5 Laravel Projects
 
@@ -111,15 +111,15 @@ Laravel এর প্রধান উদ্দেশ্য হচ্ছে:
 
 Laravel এমন একটি framework যা traditional PHP development এর বেশ কিছু সমস্যা সমাধান করে। নিচে Laravel ব্যবহার করার কিছু গুরুত্বপূর্ণ কারণ তুলে ধরা হলো:
 
-| সুবিধা | ব্যাখ্যা |
-|--------|----------|
-| ✅ Structured Approach | Laravel MVC (Model-View-Controller) architecture ব্যবহার করে, যার ফলে বড় Application গুলো maintain করা সহজ হয় |
-| 🔐 Built-in Authentication & Authorization | Laravel দিয়ে সহজেই Login/Registration system implement করা যায়, সাথে User Role Management |
-| ⚙️ Clean Routing System | Route define করার জন্য Laravel একটি expressive এবং powerful API দেয় |
-| 🧱 ORM (Eloquent) | Database operations করার জন্য Laravel একটি elegant ORM system দেয় যাকে Eloquent বলা হয় |
-| 🔄 Migration System | Database schema version control এর জন্য migration system খুবই গুরুত্বপূর্ণ |
-| ⚒️ Artisan CLI | Laravel এর command-line interface Artisan দিয়ে developer দের productivity বাড়ানো যায় |
-| 🧪 Testing Support | Built-in testing tools support করে TDD (Test Driven Development) |
+| সুবিধা                                     | ব্যাখ্যা                                                                                                      |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| ✅ Structured Approach                     | Laravel MVC (Model-View-Controller) architecture ব্যবহার করে, যার ফলে বড় Application গুলো maintain করা সহজ হয় |
+| 🔐 Built-in Authentication & Authorization | Laravel দিয়ে সহজেই Login/Registration system implement করা যায়, সাথে User Role Management                     |
+| ⚙️ Clean Routing System                    | Route define করার জন্য Laravel একটি expressive এবং powerful API দেয়                                           |
+| 🧱 ORM (Eloquent)                          | Database operations করার জন্য Laravel একটি elegant ORM system দেয় যাকে Eloquent বলা হয়                        |
+| 🔄 Migration System                        | Database schema version control এর জন্য migration system খুবই গুরুত্বপূর্ণ                                    |
+| ⚒️ Artisan CLI                             | Laravel এর command-line interface Artisan দিয়ে developer দের productivity বাড়ানো যায়                          |
+| 🧪 Testing Support                         | Built-in testing tools support করে TDD (Test Driven Development)                                              |
 
 ---
 
@@ -150,10 +150,10 @@ Laravel পুরোপুরি **MVC Pattern** ফলো করে। এত�
 
 ### 🔍 MVC Breakdown:
 
-| Component | Responsibility |
-|-----------|----------------|
-| **Model** | Database এর সাথে যোগাযোগ ও ডেটার ব্যাবস্থাপনা |
-| **View** | User Interface বা HTML present করে |
+| Component      | Responsibility                                                        |
+| -------------- | --------------------------------------------------------------------- |
+| **Model**      | Database এর সাথে যোগাযোগ ও ডেটার ব্যাবস্থাপনা                         |
+| **View**       | User Interface বা HTML present করে                                    |
 | **Controller** | Request handle করে, logic পরিচালনা করে এবং Model/View এর সাথে কাজ করে |
 
 এই architecture ব্যবহারের ফলে:
@@ -166,31 +166,36 @@ Laravel পুরোপুরি **MVC Pattern** ফলো করে। এত�
 
 ## 5️⃣ Key Features of Laravel
 
-### 1. **Routing System**  
+### 1. **Routing System**
+
 Laravel এর routing system অনেক expressive:
 
 ```php
 Route::get('/about', [PageController::class, 'about']);
 ```
 
-### 2. **Blade Templating Engine**  
+### 2. **Blade Templating Engine**
+
 Laravel এর নিজস্ব templating engine "Blade" যা PHP code কে খুব clean করে তোলে:
 
 ```blade
 <h1>Hello, {{ $name }}</h1>
 ```
 
-### 3. **Eloquent ORM**  
+### 3. **Eloquent ORM**
+
 Eloquent দিয়ে database এ query execute করা অনেক readable এবং intuitive:
 
 ```php
 $users = User::where('active', 1)->get();
 ```
 
-### 4. **Authentication & Authorization**  
+### 4. **Authentication & Authorization**
+
 Laravel Breeze, Jetstream, Fortify এর মাধ্যমে authentication system খুব দ্রুত implement করা যায়।
 
-### 5. **Artisan Command Line Tool**  
+### 5. **Artisan Command Line Tool**
+
 নিচের মতো command দিয়েই অনেক কাজ করা যায়:
 
 ```bash
@@ -199,10 +204,12 @@ php artisan migrate
 php artisan route:list
 ```
 
-### 6. **Queue System**  
+### 6. **Queue System**
+
 Background Job handle করার জন্য Laravel এ built-in queue management রয়েছে।
 
-### 7. **Middleware**  
+### 7. **Middleware**
+
 Request গুলোকে filter বা modify করার জন্য Laravel এ middleware ব্যবহার করা হয়:
 
 ```php
@@ -216,6 +223,7 @@ Route::group(['middleware' => ['auth']], function () {
 ## 6️⃣ Real-Life Examples
 
 ### 🔵 Example 1: E-Commerce Platform
+
 Laravel দিয়ে একটি সম্পূর্ণ E-commerce Application তৈরি করা যায় যেখানে থাকবে:
 
 - Product Management
@@ -224,6 +232,7 @@ Laravel দিয়ে একটি সম্পূর্ণ E-commerce Applicatio
 - Payment Gateway Integration
 
 ### 🔵 Example 2: SaaS Dashboard System
+
 Multi-tenant SaaS application তৈরি করা Laravel এর সাথে খুবই সুবিধাজনক:
 
 - Subscription Management
@@ -267,13 +276,13 @@ Multi-tenant SaaS application তৈরি করা Laravel এর সাথে
 
 Laravel 10 বা তার পরের ভার্সন ব্যবহার করতে চাইলে আপনার মেশিনে নিচের সফটওয়্যার গুলো থাকা দরকার:
 
-| Software       | Required Version |
-|----------------|------------------|
-| **PHP**        | 8.1 বা তার বেশি |
-| **Composer**   | Latest |
-| **MySQL**      | 5.7 বা তার বেশি |
-| **Node.js & NPM** | (Optional) for frontend assets |
-| **XAMPP / Laravel Valet / Laravel Sail** | Local server |
+| Software                                 | Required Version               |
+| ---------------------------------------- | ------------------------------ |
+| **PHP**                                  | 8.1 বা তার বেশি                |
+| **Composer**                             | Latest                         |
+| **MySQL**                                | 5.7 বা তার বেশি                |
+| **Node.js & NPM**                        | (Optional) for frontend assets |
+| **XAMPP / Laravel Valet / Laravel Sail** | Local server                   |
 
 > 💡 Laravel এর জন্য `Composer` অবশ্যই লাগবে, কারণ Laravel projects এর dependency গুলো composer এর মাধ্যমে manage হয়।
 
@@ -346,16 +355,16 @@ http://localhost:8000
 
 Laravel install করার পর আপনি এইরকম ফোল্ডার গুলো দেখতে পাবেন:
 
-| Folder          | Description |
-|------------------|-------------|
-| **app/**         | Core application logic (Model, Services, etc.) |
-| **routes/**      | All route files live here (`web.php`, `api.php`) |
-| **resources/**   | Blade views, assets (CSS, JS), etc. |
-| **public/**      | Entry point of the app (`index.php`) |
-| **database/**    | Migrations, seeders, factories |
-| **config/**      | All config files |
-| **.env**         | Environment-specific configuration |
-| **artisan**      | Laravel CLI command file |
+| Folder         | Description                                      |
+| -------------- | ------------------------------------------------ |
+| **app/**       | Core application logic (Model, Services, etc.)   |
+| **routes/**    | All route files live here (`web.php`, `api.php`) |
+| **resources/** | Blade views, assets (CSS, JS), etc.              |
+| **public/**    | Entry point of the app (`index.php`)             |
+| **database/**  | Migrations, seeders, factories                   |
+| **config/**    | All config files                                 |
+| **.env**       | Environment-specific configuration               |
+| **artisan**    | Laravel CLI command file                         |
 
 ---
 
@@ -411,8 +420,6 @@ cd example-app
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
-
-
 # Chapter 3: Laravel Folder Structure & MVC Pattern Explained
 
 ## 📚 Table of Contents
@@ -452,7 +459,8 @@ project-name/
 
 ## 2️⃣ Detailed Explanation of Each Folder
 
-### 🔹 `app/`  
+### 🔹 `app/`
+
 Laravel এর business logic বা core functionality এখানে থাকে। এর মধ্যে সাধারণত নিচের directories থাকে:
 
 - `Models/` – Eloquent Models
@@ -464,7 +472,8 @@ Laravel এর business logic বা core functionality এখানে থা�
 
 ---
 
-### 🔹 `routes/`  
+### 🔹 `routes/`
+
 এই ফোল্ডারে Laravel এর Route ফাইল গুলো থাকে:
 
 - `web.php` → Web routes (browser-based interaction)
@@ -476,7 +485,8 @@ Laravel এর business logic বা core functionality এখানে থা�
 
 ---
 
-### 🔹 `resources/`  
+### 🔹 `resources/`
+
 User Interface সম্পর্কিত সব কিছু এখানে থাকে:
 
 - `views/` → Blade templates
@@ -485,7 +495,8 @@ User Interface সম্পর্কিত সব কিছু এখানে �
 
 ---
 
-### 🔹 `public/`  
+### 🔹 `public/`
+
 এখানে থাকে publicly accessible ফাইল যেমন:
 
 - `index.php` → Laravel এর entry-point (Request এই ফাইল দিয়ে শুরু হয়)
@@ -495,12 +506,14 @@ User Interface সম্পর্কিত সব কিছু এখানে �
 
 ---
 
-### 🔹 `config/`  
+### 🔹 `config/`
+
 সকল configuration ফাইল এখানে থাকে (যেমন `app.php`, `database.php`, `mail.php`) যা `.env` ফাইলের সাথে মিলে কাজ করে।
 
 ---
 
-### 🔹 `database/`  
+### 🔹 `database/`
+
 Laravel এর Database সম্পর্কিত সকল কিছু এখানে থাকে:
 
 - `migrations/` → Database schema definition
@@ -509,12 +522,14 @@ Laravel এর Database সম্পর্কিত সকল কিছু এ�
 
 ---
 
-### 🔹 `storage/`  
+### 🔹 `storage/`
+
 File uploads, cache, compiled views, logs — সব কিছু এখানে রাখা হয়।
 
 ---
 
-### 🔹 `.env`  
+### 🔹 `.env`
+
 Environment-specific config যেমন database credentials, app name, URL ইত্যাদি এখানে define করা হয়।
 
 ```env
@@ -525,7 +540,8 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-> `.env` ফাইল পরিবর্তন করলে আপনাকে cache clear করতে হতে পারে:  
+> `.env` ফাইল পরিবর্তন করলে আপনাকে cache clear করতে হতে পারে:
+
 ```bash
 php artisan config:clear
 ```
@@ -534,22 +550,25 @@ php artisan config:clear
 
 ## 3️⃣ What is MVC Pattern?
 
-**MVC** (Model–View–Controller) একটি design pattern যা Laravel follow করে।
+**MVC** এর পূর্ণরূপ হলো:  
+🔹 **Model - View - Controller**
 
-| Layer | Responsibility | Laravel Directory |
-|-------|----------------|-------------------|
-| **Model** | Data representation and DB interaction | `app/Models/` |
-| **View** | User Interface rendering | `resources/views/` |
-| **Controller** | Request handling, logic processing | `app/Http/Controllers/` |
+Laravel এই তিনটি Layer ব্যবহার করে Application Structure তৈরি করে। এতে করে Code Management clean ও Maintainable থাকে।
+
+| Layer          | Description (Bangla & English)                                                             |
+| -------------- | ------------------------------------------------------------------------------------------ |
+| **Model**      | Database এর সাথে কাজ করে। Data create, update, delete, retrieve সব কাজ Model করে।          |
+| **View**       | User Interface – যেটা User দেখতে পায়। HTML, Blade File, CSS ইত্যাদি এখানে থাকে।            |
+| **Controller** | Model আর View এর মাঝে Mediator এর কাজ করে। User এর request নেয়, Process করে, Response দেয়। |
 
 ---
 
 ## 4️⃣ How MVC Works in Laravel (Flow Explanation)
 
-1. ব্রাউজার থেকে User একটি URL হিট করে →  
-2. Laravel `routes/web.php` থেকে নির্ধারণ করে কোন Controller কে কল করতে হবে  
-3. Controller Model কে ব্যবহার করে database থেকে ডেটা আনে  
-4. Controller সেই ডেটা View এ পাঠায়  
+1. ব্রাউজার থেকে User একটি URL হিট করে →
+2. Laravel `routes/web.php` থেকে নির্ধারণ করে কোন Controller কে কল করতে হবে
+3. Controller Model কে ব্যবহার করে database থেকে ডেটা আনে
+4. Controller সেই ডেটা View এ পাঠায়
 5. View সেই ডেটা HTML আকারে ইউজারকে দেখায়
 
 এভাবেই পুরো Request lifecycle চলে।
@@ -702,12 +721,9 @@ Route::get('/tasks', [TaskController::class, 'index']);
 - API Routes
 - Middleware সহ Routing
 
-
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
-
-
 
 # Chapter 4: Routing in Laravel (Web & API)
 
@@ -871,11 +887,11 @@ Route::get('/products', [Api\ProductController::class, 'index']);
 
 **Difference from Web Routes:**
 
-| Feature          | Web Routes                | API Routes              |
-|------------------|---------------------------|--------------------------|
-| Response Format  | HTML (View)               | JSON                    |
-| Middleware       | web                       | api                     |
-| URL Prefix       | None                      | `/api` automatically    |
+| Feature         | Web Routes  | API Routes           |
+| --------------- | ----------- | -------------------- |
+| Response Format | HTML (View) | JSON                 |
+| Middleware      | web         | api                  |
+| URL Prefix      | None        | `/api` automatically |
 
 ### 🧪 Example API Response:
 
@@ -900,24 +916,24 @@ php artisan route:list
 
 **Output:**
 
-| Method | URI            | Name         | Action                          |
-|--------|----------------|--------------|---------------------------------|
-| GET    | /dashboard     | dashboard    | DashboardController@index       |
-| GET    | /api/products  |              | Api\ProductController@index     |
+| Method | URI           | Name      | Action                      |
+| ------ | ------------- | --------- | --------------------------- |
+| GET    | /dashboard    | dashboard | DashboardController@index   |
+| GET    | /api/products |           | Api\ProductController@index |
 
 ---
 
 ## 🧪 Summary of Route Methods:
 
-| Method     | Description                     |
-|------------|---------------------------------|
-| `Route::get()`     | Read/View Page             |
-| `Route::post()`    | Submit Form / Create Data |
-| `Route::put()`     | Update Full Resource      |
-| `Route::patch()`   | Update Partial Resource   |
-| `Route::delete()`  | Delete Resource           |
-| `Route::match()`   | Accepts Multiple Methods  |
-| `Route::any()`     | Accepts All Methods       |
+| Method            | Description               |
+| ----------------- | ------------------------- |
+| `Route::get()`    | Read/View Page            |
+| `Route::post()`   | Submit Form / Create Data |
+| `Route::put()`    | Update Full Resource      |
+| `Route::patch()`  | Update Partial Resource   |
+| `Route::delete()` | Delete Resource           |
+| `Route::match()`  | Accepts Multiple Methods  |
+| `Route::any()`    | Accepts All Methods       |
 
 ---
 
@@ -932,12 +948,9 @@ php artisan route:list
 - Controller এর মাধ্যমে route কে cleaner করা
 - Best practices for maintaining controllers
 
-
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
-
-
 
 # Chapter 5: Laravel Controllers — Structure, Usage, and Best Practices
 
@@ -1051,15 +1064,15 @@ php artisan make:controller ProductController --resource
 
 #### এটা নিচের মত কিছু default method তৈরি করে:
 
-| Method       | URL                  | Purpose         |
-|--------------|----------------------|-----------------|
-| `index()`    | GET `/products`       | Show all items  |
-| `create()`   | GET `/products/create`| Show create form|
-| `store()`    | POST `/products`      | Save new item   |
-| `show()`     | GET `/products/{id}`  | Show single item|
-| `edit()`     | GET `/products/{id}/edit` | Edit form |
-| `update()`   | PUT `/products/{id}`  | Update item     |
-| `destroy()`  | DELETE `/products/{id}`| Delete item     |
+| Method      | URL                       | Purpose          |
+| ----------- | ------------------------- | ---------------- |
+| `index()`   | GET `/products`           | Show all items   |
+| `create()`  | GET `/products/create`    | Show create form |
+| `store()`   | POST `/products`          | Save new item    |
+| `show()`    | GET `/products/{id}`      | Show single item |
+| `edit()`    | GET `/products/{id}/edit` | Edit form        |
+| `update()`  | PUT `/products/{id}`      | Update item      |
+| `destroy()` | DELETE `/products/{id}`   | Delete item      |
 
 ---
 
@@ -1079,13 +1092,13 @@ php artisan route:list
 
 ## 6️⃣ Controller Best Practices
 
-| Practice | Explanation |
-|----------|-------------|
-| 🧹 Keep Controller Slim | Business Logic Controller-এ না রেখে Service বা Model Layer এ রাখুন |
+| Practice                       | Explanation                                                              |
+| ------------------------------ | ------------------------------------------------------------------------ |
+| 🧹 Keep Controller Slim        | Business Logic Controller-এ না রেখে Service বা Model Layer এ রাখুন       |
 | 🧼 Use Form Request Validation | Validation গুলো Controller থেকে বের করে আলাদা Form Request Class এ রাখুন |
-| 📦 Group Similar Logic | একই ধরনের Routes গুলো এক Controller-এ রাখুন |
-| 🧭 Use Resource Controllers | CRUD এর জন্য resource controller ব্যবহার করুন |
-| 🔄 Reuse Logic | একই ধরনের logic বারবার না লিখে helper বা service তৈরি করে use করুন |
+| 📦 Group Similar Logic         | একই ধরনের Routes গুলো এক Controller-এ রাখুন                              |
+| 🧭 Use Resource Controllers    | CRUD এর জন্য resource controller ব্যবহার করুন                            |
+| 🔄 Reuse Logic                 | একই ধরনের logic বারবার না লিখে helper বা service তৈরি করে use করুন       |
 
 ---
 
@@ -1179,12 +1192,9 @@ Route::get('/products', [ProductController::class, 'index']);
 - Control Structures in Blade
 - Blade এর ভিতরে loop ও conditionals
 
-
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
-
-
 
 # Chapter 6: Blade Templating Engine in Laravel
 
@@ -1217,6 +1227,7 @@ Route::get('/products', [ProductController::class, 'index']);
 ## 2️⃣ Creating and Rendering Blade Views
 
 ### ✅ View File বানানো:
+
 Blade ফাইল গুলো `resources/views/` ডিরেক্টরির মধ্যে `.blade.php` extension সহ তৈরি করতে হয়।
 
 **Example:**
@@ -1243,12 +1254,12 @@ public function about()
 
 ## 3️⃣ Blade Syntax Overview
 
-| Task                 | Blade Syntax                | Explanation |
-|----------------------|-----------------------------|-------------|
-| Variable Display     | `{{ $name }}`               | Output encode করে |
-| Raw Output           | `{!! $html !!}`             | HTML encode করে না |
-| If Condition         | `@if`, `@elseif`, `@else`, `@endif` | |
-| Loop                 | `@foreach`, `@for`, `@while`, `@endforeach` | |
+| Task             | Blade Syntax                                | Explanation        |
+| ---------------- | ------------------------------------------- | ------------------ |
+| Variable Display | `{{ $name }}`                               | Output encode করে  |
+| Raw Output       | `{!! $html !!}`                             | HTML encode করে না |
+| If Condition     | `@if`, `@elseif`, `@else`, `@endif`         |                    |
+| Loop             | `@foreach`, `@for`, `@while`, `@endforeach` |                    |
 
 ### ✅ Example:
 
@@ -1494,13 +1505,9 @@ HTML এ render হয় না।
 - Relationships: one-to-many, many-to-many
 - Query scopes, accessor, mutator
 
-
-
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
-
-
 
 # Chapter 7: Laravel Models & Eloquent ORM Explained
 
@@ -1512,9 +1519,9 @@ HTML এ render হয় না।
 4. [Basic CRUD with Eloquent](#basic-crud-with-eloquent)
 5. [Mass Assignment & $fillable](#mass-assignment--fillable)
 6. [Eloquent Relationships](#eloquent-relationships)
-    - [One to One](#one-to-one)
-    - [One to Many](#one-to-many)
-    - [Many to Many](#many-to-many)
+   - [One to One](#one-to-one)
+   - [One to Many](#one-to-many)
+   - [Many to Many](#many-to-many)
 7. [Query Scopes, Accessors & Mutators](#query-scopes-accessors--mutators)
 8. [Next Chapter Preview](#next-chapter-preview)
 
@@ -1770,10 +1777,10 @@ public function setNameAttribute($value)
 
 ## ✅ Real-Life Example: Product Management System
 
-1. **Model**: `Product` represents `products` table  
-2. **Migration**: creates fields `name`, `price`  
-3. **Controller**: fetches all products  
-4. **View**: displays product list  
+1. **Model**: `Product` represents `products` table
+2. **Migration**: creates fields `name`, `price`
+3. **Controller**: fetches all products
+4. **View**: displays product list
 5. **Eloquent**: handles all DB interaction
 
 এই structure ব্যবহার করে আপনি যে কোনো Laravel App এর DB layer efficiently handle করতে পারবেন।
@@ -1791,12 +1798,9 @@ public function setNameAttribute($value)
 - Rollback, refresh, এবং reset করার কৌশল
 - Factory এবং Faker দিয়ে fake data generate
 
-
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
-
-
 
 # Chapter 8: Database Migration & Seeding in Laravel
 
@@ -1816,7 +1820,7 @@ public function setNameAttribute($value)
 
 ## 1️⃣ What is a Migration in Laravel?
 
-Laravel এর Migration system হলো একটি **version control system for your database schema**.  
+Laravel এর Migration system হলো একটি **version control system for your database schema**.
 
 এটি code এর মাধ্যমে table তৈরি, modify বা delete করার ব্যবস্থা করে — যাতে database design manually না করে, source control এর মাধ্যমে manage করা যায়।
 
@@ -1860,12 +1864,12 @@ public function up()
 
 ## 3️⃣ Common Migration Commands
 
-| Command                              | Description                                 |
-|--------------------------------------|---------------------------------------------|
-| `php artisan migrate`                | সকল pending migration run করে               |
-| `php artisan migrate:rollback`       | শেষ batch এর migration revert করে           |
-| `php artisan migrate:refresh`        | সব migration rollback করে আবার run করে     |
-| `php artisan migrate:fresh`          | সম্পূর্ণ DB drop করে আবার recreate করে     |
+| Command                        | Description                            |
+| ------------------------------ | -------------------------------------- |
+| `php artisan migrate`          | সকল pending migration run করে          |
+| `php artisan migrate:rollback` | শেষ batch এর migration revert করে      |
+| `php artisan migrate:refresh`  | সব migration rollback করে আবার run করে |
+| `php artisan migrate:fresh`    | সম্পূর্ণ DB drop করে আবার recreate করে |
 
 ---
 
@@ -1990,11 +1994,11 @@ Product::factory()->count(50)->create();
 
 ## 8️⃣ Resetting, Refreshing & Rolling Back
 
-| Command                          | Use Case                          |
-|----------------------------------|-----------------------------------|
-| `migrate:rollback`              | সর্বশেষ batch undo করতে          |
-| `migrate:refresh`               | সব migration undo করে আবার চালাতে|
-| `migrate:fresh --seed`          | সব table drop করে আবার তৈরি করে seed চালাতে|
+| Command                | Use Case                                    |
+| ---------------------- | ------------------------------------------- |
+| `migrate:rollback`     | সর্বশেষ batch undo করতে                     |
+| `migrate:refresh`      | সব migration undo করে আবার চালাতে           |
+| `migrate:fresh --seed` | সব table drop করে আবার তৈরি করে seed চালাতে |
 
 ---
 
@@ -2010,8 +2014,8 @@ php artisan migrate:fresh --seed
 
 ## 🧪 Real-Life Example: Seeding a Learning Platform
 
-1. `UsersTableSeeder` → 50টি fake user create করে  
-2. `CoursesTableSeeder` → 20টি course insert করে  
+1. `UsersTableSeeder` → 50টি fake user create করে
+2. `CoursesTableSeeder` → 20টি course insert করে
 3. `EnrollmentsSeeder` → user গুলোর মাঝে course enroll করে
 
 > এমনভাবে Seeder গুলো create করলে আপনি Full system এর demo data পেয়ে যাবেন instant ডেভেলপমেন্ট বা testing এর জন্য।
@@ -2029,8 +2033,6 @@ php artisan migrate:fresh --seed
 - Error message display
 - Custom validation rules
 - Form Request class ব্যবহার
-
-
 
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
