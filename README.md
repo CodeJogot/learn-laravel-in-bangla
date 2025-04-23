@@ -561,7 +561,7 @@ Laravel এই তিনটি Layer ব্যবহার করে Application
 | **View**       | User Interface – যেটা User দেখতে পায়। HTML, Blade File, CSS ইত্যাদি এখানে থাকে।            |
 | **Controller** | Model আর View এর মাঝে Mediator এর কাজ করে। User এর request নেয়, Process করে, Response দেয়। |
 
----
+![MVC Pattern](./images/mvc.jpg)
 
 ## 4️⃣ How MVC Works in Laravel (Flow Explanation)
 
