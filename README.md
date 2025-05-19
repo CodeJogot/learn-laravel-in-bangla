@@ -15,12 +15,12 @@ After completing the 30-chapters module, jump in the [Projects Section](#).
 |                [06](#chapter-6-blade-templating-engine-in-laravel)                 |                       [Blade Templating Engine in Laravel](#chapter-6-blade-templating-engine-in-laravel)                        |     [Watch Now]()     |
 |              [07](#chapter-7-laravel-models--eloquent-orm-explained)               |                   [Laravel Models & Eloquent ORM Explained](#chapter-7-laravel-models--eloquent-orm-explained)                   |     [Watch Now]()     |
 |              [08](#chapter-8-database-migration--seeding-in-laravel)               |                   [Database Migration & Seeding in Laravel](#chapter-8-database-migration--seeding-in-laravel)                   |     [Watch Now]()     |
-|                          [09](#chapter-09-php-operators)                           |                                                  [](#chapter-09-php-operators)                                                   |     [Watch Now]()     |
-|                            [10](#chapter-10-php-loops)                             |                                                    [](#chapter-10-php-loops)                                                     |     [Watch Now]()     |
-|                          [11](#chapter-11-php-functions)                           |                                                  [](#chapter-11-php-functions)                                                   |     [Watch Now]()     |
-|                            [12](#chapter-12-php-arrays)                            |                                                    [](#chapter-12-php-arrays)                                                    |     [Watch Now]()     |
-|                [13](#chapter-13-php-array-create-access-add-remove)                |                                        [](#chapter-13-php-array-create-access-add-remove)                                        |     [Watch Now]()     |
-|            [14](#chapter-14-php-array-functions-a-comprehensive-guide)             |                                    [](#chapter-14-php-array-functions-a-comprehensive-guide)                                     |     [Watch Now]()     |
+|                          [09](#chapter-9-laravel-authentication)                           |                                                  [Laravel Authentication](#chapter-9-laravel-authentication)                                                   |     [Watch Now]()     |
+|                            [10](#chapter-10-laravel-breeze)                             |                                                    [Laravel Breeze](#chapter-10-laravel-breeze)                                                     |     [Watch Now]()     |
+|                          [11](#chapter-11-middleware)                           |                                                  [Middleware](#chapter-11-middleware)                                                   |     [Watch Now]()     |
+|                            [12](#chapter-12-laravel-role-based-authentication-with-breeze)                            |                                                    [Laravel Role Based Authentication with Breeze](#chapter-12-laravel-role-based-authentication-with-breeze)                                                    |     [Watch Now]()     |
+|                [13]()                |                                        []()                                        |     [Watch Now]()     |
+|            [14]()             |                                    [](#chapter-14-php-array-functions-a-comprehensive-guide)                                     |     [Watch Now]()     |
 |               [15](#chapter-15-php-global-variables---superglobals)                |                                       [](#chapter-15-php-global-variables---superglobals)                                        |     [Watch Now]()     |
 |                  [16](#chapter-16-php-regular-expressions-regex)                   |                                          [](#chapter-16-php-regular-expressions-regex)                                           |     [Watch Now]()     |
 |                        [17](#chapter-17-php-form-handling)                         |                                                [](#chapter-17-php-form-handling)                                                 |     [Watch Now]()     |
@@ -2038,8 +2038,716 @@ php artisan migrate:fresh --seed
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
-# Chapter 9:
+
+# Chapter 9: Laravel Authentication
+
+## 📚 Table of Contents
+
+1. [What is Authentication?](#what-is-authentication)
+2. [Laravel Authentication System Overview](#laravel-authentication-system-overview)
+3. [Laravel Breeze (Simple Auth)](#laravel-breeze-simple-auth)
+4. [Laravel Jetstream (Advanced Auth)](#laravel-jetstream-advanced-auth)
+5. [Authentication Flow in Laravel](#authentication-flow-in-laravel)
+6. [How to Implement Authentication (Step by Step)](#how-to-implement-authentication-step-by-step)
+7. [Protecting Routes with Middleware](#protecting-routes-with-middleware)
+8. [Logout System in Laravel](#logout-system-in-laravel)
+9. [Best Practices](#best-practices)
+10. [Real-Life Examples](#real-life-examples)
+
+---
+
+## 1. What is Authentication? 🔐
+
+**Authentication** হচ্ছে এমন একটি প্রক্রিয়া যেখানে ইউজার তাদের পরিচয় (username, email, password) প্রদান করে এবং সিস্টেম যাচাই করে যে সে সত্যিকারের বৈধ ব্যবহারকারী কিনা।
+
+---
+
+## 2. Laravel Authentication System Overview 🧭
+
+Laravel-এ Authentication সিস্টেমের জন্য কয়েকটি প্রস্তুতকৃত Starter Kit রয়েছে:
+
+* **Laravel Breeze** – সহজ এবং Minimal
+* **Laravel Jetstream** – Feature-rich (2FA, API token, profile management)
+* **Laravel Fortify** – Backend-Only authentication system
+* **Laravel UI** – Bootstrap/jQuery ভিত্তিক UI authentication scaffolding (old but useful)
+
+---
+
+## 3. Laravel Breeze (Simple Auth) 🏃‍♂️
+
+### Laravel Breeze হলো:
+
+একটি সরল, minimalist authentication scaffolding যা Tailwind CSS দিয়ে ডিজাইন করা।
+
+✅ Features:
+
+* Register
+* Login
+* Logout
+* Forgot Password
+* Email Verification (optional)
+
+✅ Install করতে:
+
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+```
+
+---
+
+## 4. Laravel Jetstream (Advanced Auth) 🚀
+
+Jetstream ব্যবহার করলে আপনি পাবেন:
+
+* Two Factor Authentication (2FA)
+* API Token Support (Sanctum এর মাধ্যমে)
+* Profile Photo Upload
+* Team Management (Optional)
+
+✅ Install করতে:
+
+```bash
+composer require laravel/jetstream
+php artisan jetstream:install livewire
+npm install && npm run dev
+php artisan migrate
+```
+
+---
+
+## 5. Authentication Flow in Laravel 🔄
+
+Laravel-এর authentication flow সাধারণত নিচের মত:
+
+```
+User ➡️ Login Form ➡️ Auth::attempt() ➡️ Session Generate ➡️ Protected Routes
+```
+
+### উদাহরণ:
+
+```php
+if (Auth::attempt(['email' => $email, 'password' => $password])) {
+    return redirect()->intended('dashboard');
+}
+```
+
+---
+
+## 6. How to Implement Authentication (Step by Step) 🛠
+
+✅ Step 1: Laravel Project Create
+
+```bash
+laravel new authApp
+cd authApp
+```
+
+✅ Step 2: Install Laravel Breeze
+
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+```
+
+✅ Step 3: Run the Project
+
+```bash
+php artisan serve
+```
+
+✅ Step 4: Visit `/register` or `/login` Route
+
+---
+
+## 7. Protecting Routes with Middleware 🛡
+
+Laravel-এ Authenticated user ছাড়া কোনো route-এ অ্যাক্সেস না দিতে চাইলে `auth` middleware ব্যবহার করুন।
+
+```php
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
+```
+
+অথবা Controller এ:
+
+```php
+public function __construct()
+{
+    $this->middleware('auth');
+}
+```
+
+---
+
+## 8. Logout System in Laravel 🔓
+
+Laravel-এ Logout করতে নিচের মতো কোড ব্যবহার করা হয়:
+
+```php
+use Illuminate\Support\Facades\Auth;
+
+public function logout(Request $request)
+{
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/');
+}
+```
+
+---
+
+## 9. Best Practices 💡
+
+✅ Password hashing সবসময় Laravel এর `bcrypt()` বা default hashing system দিয়ে করুন।
+✅ Always validate inputs
+✅ Use email verification
+✅ Use middleware for route protection
+✅ Use rate limiting for login attempts
+
+---
+
+## 10. Real-Life Examples 🧪
+
+### ✅ Example 1: Student Dashboard System
+
+* একজন student `/dashboard` পেতে হলে আগে login করতে হবে।
+* `Route::get('/dashboard', ...)->middleware('auth:student')`
+
+### ✅ Example 2: Admin Panel Access
+
+* শুধু Admin role যুক্ত user গুলো `/admin` পাবে।
+
+```php
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index']);
+});
+```
+
+Middleware:
+
+```php
+public function handle($request, Closure $next)
+{
+    if (auth()->user()->role !== 'admin') {
+        return redirect('/');
+    }
+    return $next($request);
+}
+```
+
+
+
+# Chapter 10: Laravel Breeze
+
+Laravel Breeze ✨ হলো Laravel-এর একটি **minimal, simple এবং clean authentication scaffolding system**। এটি নতুন প্রজেক্টের জন্য **Login, Registration, Forgot Password, Email Verification, এবং Dashboard** সহ মৌলিক authentication feature গুলো খুব সহজে তৈরি করে দেয়।
+
+---
+
+## 📑 Table of Contents
+
+1. [What is Laravel Breeze?](#what-is-laravel-breeze)
+2. [Why Use Breeze?](#why-use-breeze)
+3. [Installation Steps](#installation-steps)
+4. [File & Folder Structure](#file--folder-structure)
+5. [Authentication Features](#authentication-features)
+6. [Customization Possibilities](#customization-possibilities)
+7. [Real Life Use Case Examples](#real-life-use-case-examples)
+
+---
+
+## 1. What is Laravel Breeze?
+
+Laravel Breeze হলো একটি সহজ **starter kit** যা Laravel-এর built-in authentication system ব্যবহার করে মৌলিক auth feature গুলো তৈরি করে। এটি Blade templating engine এবং Laravel routes ব্যবহার করে তৈরি করা হয়েছে।
+
+🔹 এটি beginner-friendly
+🔹 Laravel UI ও Laravel Jetstream এর তুলনায় অনেক হালকা ও customize-friendly
+
+---
+
+## 2. Why Use Breeze?
+
+🔸 নতুন প্রজেক্টে authentication শুরু করার জন্য
+🔸 কমপ্লেক্স feature ছাড়াই একটা ready-made auth system পেতে
+🔸 Blade ভিত্তিক front-end ব্যবহার করতে
+🔸 Tailwind CSS ব্যবহার করা হয়েছে, যা modern UI development এর জন্য perfect
+🔸 Easily customizable and extendable
+
+---
+
+## 3. Installation Steps
+
+### ✅ Step-by-step Installation:
+
+#### Step 1: Laravel Install করা না থাকলে
+
+```bash
+composer create-project laravel/laravel myproject
+```
+
+#### Step 2: Breeze Install
+
+```bash
+cd myproject
+composer require laravel/breeze --dev
+```
+
+#### Step 3: Breeze Scaffold Install
+
+```bash
+php artisan breeze:install
+```
+
+#### Step 4: NPM Install এবং Assets Compile
+
+```bash
+npm install
+npm run dev
+```
+
+#### Step 5: Database Migration
+
+```bash
+php artisan migrate
+```
+
+এবার `http://localhost:8000/register` অথবা `login` এ গিয়ে দেখতে পাবেন built-in authentication system 🎉
+
+---
+
+## 4. File & Folder Structure
+
+Breeze ইনস্টল করলে Laravel এর মধ্যে নিচের কিছু নতুন ফোল্ডার ও ফাইল যুক্ত হয়:
+
+```
+resources/views/auth/      // Login, Register, Forgot Password এর Blade ফাইল
+routes/web.php             // Route গুলো এখানে define করা
+app/Http/Controllers/Auth/ // Authentication Controller গুলো
+resources/css/             // TailwindCSS Style ফাইল
+```
+
+---
+
+## 5. Authentication Features
+
+Breeze আপনাকে দেয়:
+
+* ✅ Login
+* ✅ Registration
+* ✅ Password Reset
+* ✅ Email Verification (addable)
+* ✅ Logout
+* ✅ Basic Dashboard
+
+এগুলো সব কিছু Laravel-এর default authentication system এর উপর ভিত্তি করে তৈরি।
+
+---
+
+## 6. Customization Possibilities
+
+🔧 আপনি চাইলে নিচের দিকগুলো সহজে পরিবর্তন করতে পারবেন:
+
+* Blade ফাইল পরিবর্তন করে আপনার নিজের UI বানানো
+* Tailwind CSS ব্যবহার করে নিজের ডিজাইন অ্যাড করা
+* Routes/web.php তে route পরিবর্তন
+* Controller গুলোতে custom logic যোগ করা
+* Middleware দিয়ে User Role-based access control
+
 
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
+
+# Chapter 11: Middleware
+
+**🛡️ Middleware কি? (Laravel Middleware Explained in Bangla + English)**
+
+---
+
+## 📘 Table of Contents
+
+1. [What is Middleware?](#what-is-middleware)
+2. [Why Middleware is Needed](#why-middleware-is-needed)
+3. [Common Use Cases](#common-use-cases)
+4. [How Middleware Works](#how-middleware-works)
+5. [Creating a Custom Middleware](#creating-a-custom-middleware)
+6. [Registering Middleware](#registering-middleware)
+7. [Real-Life Examples](#real-life-examples)
+
+---
+
+## 1. What is Middleware? 🧐
+
+**Middleware** হলো Laravel Application-এর ভিতরে থাকা এমন একধরনের Filter বা Layer 🧱 যা HTTP Request বা Response এর মাঝখানে কাজ করে।
+
+> সহজ কথায়, Middleware হচ্ছে একটি Gatekeeper 🔐 — যা চেক করে আপনি কোনো Page Access করতে পারবেন কিনা।
+
+---
+
+## 2. Why Middleware is Needed? 🤔
+
+Middleware ব্যাবহার করার কারণগুলো:
+
+* ✅ যেকোনো Route বা Page access করার আগে Checking করা যায়
+* ✅ Unauthorized User কে Block করা যায়
+* ✅ Request এর Header, Token, Role ইত্যাদি যাচাই করা যায়
+* ✅ Logging, Maintenance Mode ইত্যাদি কাজ Middleware দিয়ে Control করা যায়
+
+---
+
+## 3. Common Use Cases 📌
+
+| Middleware Name  | কাজ                                                           |
+| ---------------- | ------------------------------------------------------------- |
+| `auth`           | Logged-in না হলে Dashboard বা Secure Page Access করতে দেবে না |
+| `guest`          | Already Logged-in থাকলে Login/Register Page এ যেতে দেবে না    |
+| `verified`       | Email Verified না হলে Access বন্ধ রাখবে                       |
+| `throttle`       | Rate Limiting — একি IP থেকে বেশি Request করলে Block           |
+| `admin` (Custom) | User Admin কিনা তা যাচাই করে Access দিবে                      |
+
+---
+
+## 4. How Middleware Works 🛠️
+
+Middleware একটি Request আসলে প্রথমে সেই Middleware Check করে।
+
+**Flowchart:**
+
+```
+Incoming Request
+      ↓
+  Middleware Layer (auth, guest, etc.)
+      ↓
+  Controller or Route
+      ↓
+  Response
+```
+
+উদাহরণ:
+
+```php
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
+```
+
+এখানে `auth` Middleware চেক করবে — ইউজার লগইন করা আছে কিনা।
+
+---
+
+## 5. Creating a Custom Middleware ✍️
+
+### Step 1: Create Middleware
+
+```bash
+php artisan make:middleware CheckAdmin
+```
+
+### Step 2: Edit Middleware Logic
+
+```php
+// app/Http/Middleware/CheckAdmin.php
+
+public function handle($request, Closure $next)
+{
+    if (auth()->user() && auth()->user()->is_admin) {
+        return $next($request);
+    }
+
+    return redirect('/not-allowed');
+}
+```
+
+---
+
+## 6. Registering Middleware 🗂️
+
+### 👉 Globally Register:
+
+`app/Http/Kernel.php` ফাইলের `$routeMiddleware` এ যুক্ত করুন:
+
+```php
+'admin' => \App\Http\Middleware\CheckAdmin::class,
+```
+
+### 👉 Use in Routes:
+
+```php
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+})->middleware('admin');
+```
+
+---
+
+## 7. Real-Life Examples 💡
+
+### ✅ Example 1: Student vs Teacher Panel Access
+
+Student যদি `/teacher-dashboard` এ যেতে চায়, তাহলে Middleware Redirect করে দেয় `/dashboard` এ।
+
+### ✅ Example 2: Maintenance Mode Middleware
+
+আপনার সাইটে যদি Maintenance চলছে, তাহলে সব Request Middleware ব্লক করে একটা Maintenance Page দেখাবে।
+
+---
+
+## 🎯 Summary
+
+| বিষয়          | ব্যাখ্যা                                                     |
+| ------------- | ------------------------------------------------------------ |
+| Middleware কি | Request-Response এর মাঝখানে Filter                           |
+| কাজ           | Access Control, Logging, Rate Limiting, Redirection          |
+| বানানোর নিয়ম  | `make:middleware` দিয়ে তৈরি করে Logic লিখে Kernel-এ Register |
+| ব্যবহার       | Route-এর সাথে `->middleware('name')` দিয়ে ব্যবহার            |
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter 12: Laravel Role-Based Authentication with Breeze
+
+আমরা একটি **Student vs Teacher Panel Access Laravel Project** তৈরি করবো, যেখানে:
+
+* ✅ Student এবং Teacher দুই ধরণের User থাকবে
+* ✅ Login System থাকবে
+* ✅ Role অনুযায়ী আলাদা Dashboard থাকবে (Student Dashboard & Teacher Dashboard)
+* ✅ Logout Functionality থাকবে
+* ✅ Middleware ব্যবহার করে Unauthorized Access রোধ করা হবে
+
+---
+
+## 📘 Table of Contents
+
+1. [Project Setup](#project-setup)
+2. [User Table এ Role যুক্ত করা](#user-table-এ-role-যুক্ত-কর)
+3. [Authentication Setup (Laravel Breeze)](#authentication-setup)
+4. [Middleware তৈরি ও ব্যবহার](#middleware-তৈরি-ও-ব্যবহার)
+5. [Routes Setup](#routes-setup)
+6. [Views ও Dashboard Page](#views-ও-dashboard-page)
+7. [Testing the Project](#testing-the-project)
+
+---
+
+## 1. 🏗 Project Setup
+
+```bash
+laravel new role-based-access
+cd role-based-access
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+```
+
+---
+
+## 2. 🧩 User Table এ Role যুক্ত করা
+
+### 🔹 Add Role Column
+
+```bash
+php artisan make:migration add_role_to_users_table --table=users
+```
+
+**Migration File এ যুক্ত করুন:**
+
+```php
+public function up()
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->string('role')->default('student'); // 'student' or 'teacher'
+    });
+}
+
+public function down()
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->dropColumn('role');
+    });
+}
+```
+
+```bash
+php artisan migrate
+```
+
+---
+
+## 3. 🔐 Authentication Setup (Laravel Breeze)
+
+### 🔹 Registration Form এ Role Field যুক্ত করা
+
+`resources/views/auth/register.blade.php` ফাইলে নিচের মতো যুক্ত করুন:
+
+```blade
+<!-- Role -->
+<div>
+    <label for="role">Register As</label>
+    <select name="role" id="role" required class="mt-1 block w-full">
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+    </select>
+</div>
+```
+
+### 🔹 Controller Logic পরিবর্তন করুন
+
+`app/Actions/Fortify/CreateNewUser.php` ফাইলে নিচের মতো Role যুক্ত করুন:
+
+```php
+return User::create([
+    'name' => $input['name'],
+    'email' => $input['email'],
+    'role' => $input['role'], // 👈 added
+    'password' => Hash::make($input['password']),
+]);
+```
+
+---
+
+## 4. 🛡 Middleware তৈরি ও ব্যবহার
+
+### 🔹 Custom Middleware বানান
+
+```bash
+php artisan make:middleware RoleMiddleware
+```
+
+**Edit `app/Http/Middleware/RoleMiddleware.php`:**
+
+```php
+public function handle($request, Closure $next, ...$roles)
+{
+    if (!auth()->check()) {
+        return redirect('/login');
+    }
+
+    if (!in_array(auth()->user()->role, $roles)) {
+        return abort(403, 'Unauthorized');
+    }
+
+    return $next($request);
+}
+```
+
+### 🔹 Register Middleware
+
+`app/Http/Kernel.php` ফাইলে যুক্ত করুন:
+
+```php
+'role' => \App\Http\Middleware\RoleMiddleware::class,
+```
+
+---
+
+## 5. 🛣 Routes Setup
+
+**`routes/web.php` ফাইলে যুক্ত করুন:**
+
+```php
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+// common logout route
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+// student dashboard
+Route::get('/student/dashboard', function () {
+    return view('student.dashboard');
+})->middleware(['auth', 'role:student']);
+
+// teacher dashboard
+Route::get('/teacher/dashboard', function () {
+    return view('teacher.dashboard');
+})->middleware(['auth', 'role:teacher']);
+```
+
+---
+
+## 6. 🖼️ Views ও Dashboard Page
+
+### 🔹 Create Views:
+
+#### 📁 `resources/views/student/dashboard.blade.php`
+
+```blade
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl">Student Dashboard</h2>
+    </x-slot>
+
+    <div class="p-6">
+        <p>Welcome, {{ auth()->user()->name }} (Student)</p>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="text-red-500 mt-4">Logout</button>
+        </form>
+    </div>
+</x-app-layout>
+```
+
+#### 📁 `resources/views/teacher/dashboard.blade.php`
+
+```blade
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl">Teacher Dashboard</h2>
+    </x-slot>
+
+    <div class="p-6">
+        <p>Welcome, {{ auth()->user()->name }} (Teacher)</p>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="text-red-500 mt-4">Logout</button>
+        </form>
+    </div>
+</x-app-layout>
+```
+
+---
+
+## 7. ✅ Testing the Project
+
+1. Visit: `http://localhost:8000/register`
+2. একজন Student হিসাবে Register করুন → `role=student`
+3. আবার একজন Teacher হিসাবে Register করুন → `role=teacher`
+4. Login করে `/student/dashboard` অথবা `/teacher/dashboard` Access করুন
+
+---
+
+## ✅ Summary
+
+| Feature              | Done |
+| -------------------- | ---- |
+| Login/Register       | ✅    |
+| Role field যুক্ত     | ✅    |
+| Middleware for role  | ✅    |
+| Role-based Dashboard | ✅    |
+| Logout               | ✅    |
+
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter 13: 
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
