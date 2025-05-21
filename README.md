@@ -2751,3 +2751,294 @@ Route::get('/teacher/dashboard', function () {
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
+
+# 10 Laravel Projects for Beginners
+
+|                                  **Project No.**                                   |                                                            **Project Name**                                                            | **Video Explanation** |
+| :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :-------------------: |
+|                    [00]()                    |                               []()                               |       Watch Now       |
+|                     [01](#project-01-laravel-crud-operation)                      |                                  [Laravel CRUD Operation](#project-01-laravel-crud-operation)                                  |       Watch Now       |
+|              [02](#project-02-student-teacher-role-based-auth)              |                  [Student Teacher Role Based Auth](#project-02-student-teacher-role-based-auth)                  |       Watch Now       |
+|          [03](#chapter-3-laravel-folder-structure--mvc-pattern-explained)          |          [](#chapter-3-laravel-folder-structure--mvc-pattern-explained)          |       Watch Now       |
+|                    [04](#chapter-4-routing-in-laravel-web--api)                    |                              [](#chapter-4-routing-in-laravel-web--api)                              |       Watch Now       |
+|      [05](#chapter-5-laravel-controllers--structure-usage-and-best-practices)      | [](#chapter-5-laravel-controllers--structure-usage-and-best-practices) |     [Watch Now]()     |
+|                [06](#chapter-6-blade-templating-engine-in-laravel)                 |                       [](#chapter-6-blade-templating-engine-in-laravel)                        |     [Watch Now]()     |
+|              [07](#chapter-7-laravel-models--eloquent-orm-explained)               |                   [](#chapter-7-laravel-models--eloquent-orm-explained)                   |     [Watch Now]()     |
+|              [08](#chapter-8-database-migration--seeding-in-laravel)               |                   [](#chapter-8-database-migration--seeding-in-laravel)                   |     [Watch Now]()     |
+|                          [09](#chapter-9-laravel-authentication)                           |                                                  [](#chapter-9-laravel-authentication)                                                   |     [Watch Now]()     |
+|                            [10](#chapter-10-laravel-breeze)                             |                                                    [](#chapter-10-laravel-breeze)                                                     |     [Watch Now]()     |
+
+
+# Project 01: Laravel CRUD Operation
+
+
+
+<div align="right">
+    <b><a href="#10-laravel-projects-for-beginners">⬆️ Go to Top</a></b>
+</div>
+
+# Project 02: Student Teacher Role Based Auth
+
+## ✅ Step 1: Laravel Project Setup
+
+```bash
+composer create-project laravel/laravel role-based-auth
+cd role-based-auth
+```
+
+---
+
+## ✅ Step 2: Install Laravel Breeze
+
+```bash
+composer require laravel/breeze --dev
+php artisan breeze:install
+npm install && npm run dev
+php artisan migrate
+```
+
+> এখন আপনি Login/Register UI পাবেন `/login` এবং `/register` এ।
+
+---
+
+## ✅ Step 3: Add `role` Column to Users Table
+
+Migration File এডিট করুন:
+
+```bash
+php artisan make:migration add_role_column_to_users_table --table=users
+```
+
+**database/migrations/xxxx_xx_xx_add_role_column_to_users_table.php**
+
+```php
+public function up()
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->string('role')->default('student'); // student, teacher
+    });
+}
+```
+
+তারপর:
+
+```bash
+php artisan migrate
+```
+
+---
+
+## ✅ Step 4: Update Register Form with Role Selection
+
+### ✅ A. Edit Blade View
+
+**resources/views/auth/register.blade.php**
+
+নিচের কোডটি ফর্মে যোগ করুন:
+
+```html
+<div>
+    <x-input-label for="role" :value="__('Role')" />
+    <select id="role" name="role" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+    </select>
+    <x-input-error :messages="$errors->get('role')" class="mt-2" />
+</div>
+```
+
+### ✅ B. Update Register Request Validation
+
+**app/Http/Controllers/Auth/RegisteredUserController.php**
+
+```php
+use Illuminate\Validation\Rules;
+
+public function store(Request $request)
+{
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        'role' => ['required', 'in:student,teacher'],
+    ]);
+
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'role' => $request->role,
+    ]);
+
+    event(new Registered($user));
+
+    Auth::login($user);
+
+    return redirect(RouteServiceProvider::HOME);
+}
+```
+
+---
+
+## ✅ Step 5: Redirect Based on Role
+
+**app/Providers/RouteServiceProvider.php**
+
+```php
+public const HOME = '/dashboard';
+```
+
+এখন ডাশবোর্ডের জন্য Route & Controller তৈরি করুন।
+
+---
+
+## ✅ Step 6: Create Dashboard Routes & Views
+
+**routes/web.php**
+
+```php
+use App\Http\Controllers\DashboardController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+```
+
+**Create Controller:**
+
+```bash
+php artisan make:controller DashboardController
+```
+
+**app/Http/Controllers/DashboardController.php**
+
+```php
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        if (auth()->user()->role === 'teacher') {
+            return view('dashboard.teacher');
+        } else {
+            return view('dashboard.student');
+        }
+    }
+}
+```
+
+---
+
+## ✅ Step 7: Create Role-Based Views
+
+**resources/views/dashboard/student.blade.php**
+```blade
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Student Dashboard</h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">Welcome Student!</div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+```
+
+**resources/views/dashboard/teacher.blade.php**
+```blade
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Teacher Dashboard</h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">Welcome Teacher!</div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+```
+
+---
+
+## ✅ Step 8: (Optional) Middleware for Role Restriction
+
+চাইলে আপনি রোলের উপর ভিত্তি করে Middleware তৈরি করতে পারেন।
+
+```bash
+php artisan make:middleware EnsureUserIsTeacher
+```
+
+**EnsureUserIsTeacher.php**
+
+```php
+public function handle($request, Closure $next)
+{
+    if (auth()->check() && auth()->user()->role !== 'teacher') {
+        return redirect()->route('dashboard');
+    }
+
+    return $next($request);
+}
+```
+
+Register করুন: `app/Http/Kernel.php` -> `$routeMiddleware` এ যোগ করুন:
+
+```php
+'teacher' => \App\Http\Middleware\EnsureUserIsTeacher::class,
+```
+
+এখন কোনো route এ শুধুমাত্র টিচার দেখতে পারবে:
+
+```php
+Route::get('/teacher-only', function () {
+    return "Only Teachers Can See This!";
+})->middleware('teacher');
+```
+
+---
+
+## ✅ Step 9: Test the Application
+
+1. Register করুন → Role নির্বাচন করুন (Student or Teacher)
+2. Login করুন
+3. Role অনুযায়ী ভিন্ন ড্যাশবোর্ড দেখুন
+
+---
+
+## 🧾 Summary
+
+| Step | Description |
+|------|-------------|
+| 1 | Laravel Project Setup |
+| 2 | Laravel Breeze Install |
+| 3 | Add `role` column in users table |
+| 4 | Modify Registration form & controller |
+| 5 | Redirect based on role |
+| 6 | Create dashboard controller |
+| 7 | Create role-based views |
+| 8 | Optional: Role middleware |
+
+---
+
+## 🛠️ Next Steps (Optional)
+
+- Role Management Panel (Admin can change roles)
+- Multiple Roles (with Spatie Permission Package)
+- Email Verification
+- Profile Picture Upload etc.
+
+
+
+<div align="right">
+    <b><a href="#10-laravel-projects-for-beginners">⬆️ Go to Top</a></b>
+</div>
