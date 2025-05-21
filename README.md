@@ -1,8 +1,8 @@
 # The Ultimate Laravel Course in Bangla
 
-### After completing this course, we'll build [5 Projects]() in Laravel In-Sha-Allah.
+### After completing this course, we'll build [10 Projects](#10-laravel-projects-for-beginners) in Laravel In-Sha-Allah.
 
-After completing the 30-chapters module, jump in the [Projects Section](#).
+After completing the 30-chapters module, jump in the [Projects Section](#10-laravel-projects-for-beginners).
 
 |                                  **Chapter No.**                                   |                                                            **Topics**                                                            | **Video Explanation** |
 | :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :-------------------: |
@@ -48,15 +48,21 @@ After completing the 30-chapters module, jump in the [Projects Section](#).
 |                                        []()                                        |                                                               []()                                                               |     [Watch Now]()     |
 | [40](#chapter-40-introduction-to-php-mysql-database-with-the-story-of-foodies-hub) |                                                               []()                                                               |     [Watch Now]()     |
 
-# 5 Laravel Projects
+# 10 Laravel Projects for Beginners
 
-| **Project No.** | **Project Name** | **Video Explanation** | **Live Demo** |
-| :-------------: | :--------------: | :-------------------: | :-----------: |
-|       01        |                  |       Watch Now       |   Live Link   |
-|       02        |                  |                       |               |
-|       03        |                  |                       |               |
-|       04        |                  |                       |               |
-|       05        |                  |                       |               |
+|                                  **Project No.**                                   |                                                            **Project Name**                                                            | **Video Explanation** |
+| :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :-------------------: |
+|                    [00]()                    |                               []()                               |       Watch Now       |
+|                     [01](#project-01-laravel-crud-operation)                      |                                  [Laravel CRUD Operation](#project-01-laravel-crud-operation)                                  |       Watch Now       |
+|              [02](#project-02-student-teacher-role-based-auth)              |                  [Student Teacher Role Based Auth](#project-02-student-teacher-role-based-auth)                  |       Watch Now       |
+|          [03](#chapter-3-laravel-folder-structure--mvc-pattern-explained)          |          [](#chapter-3-laravel-folder-structure--mvc-pattern-explained)          |       Watch Now       |
+|                    [04](#chapter-4-routing-in-laravel-web--api)                    |                              [](#chapter-4-routing-in-laravel-web--api)                              |       Watch Now       |
+|      [05](#chapter-5-laravel-controllers--structure-usage-and-best-practices)      | [](#chapter-5-laravel-controllers--structure-usage-and-best-practices) |     [Watch Now]()     |
+|                [06](#chapter-6-blade-templating-engine-in-laravel)                 |                       [](#chapter-6-blade-templating-engine-in-laravel)                        |     [Watch Now]()     |
+|              [07](#chapter-7-laravel-models--eloquent-orm-explained)               |                   [](#chapter-7-laravel-models--eloquent-orm-explained)                   |     [Watch Now]()     |
+|              [08](#chapter-8-database-migration--seeding-in-laravel)               |                   [](#chapter-8-database-migration--seeding-in-laravel)                   |     [Watch Now]()     |
+|                          [09](#chapter-9-laravel-authentication)                           |                                                  [](#chapter-9-laravel-authentication)                                                   |     [Watch Now]()     |
+|                            [10](#chapter-10-laravel-breeze)                             |                                                    [](#chapter-10-laravel-breeze)                                                     |     [Watch Now]()     |
 
 # Chapter-00: How The Course is Designed
 
@@ -2751,22 +2757,6 @@ Route::get('/teacher/dashboard', function () {
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
-
-# 10 Laravel Projects for Beginners
-
-|                                  **Project No.**                                   |                                                            **Project Name**                                                            | **Video Explanation** |
-| :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :-------------------: |
-|                    [00]()                    |                               []()                               |       Watch Now       |
-|                     [01](#project-01-laravel-crud-operation)                      |                                  [Laravel CRUD Operation](#project-01-laravel-crud-operation)                                  |       Watch Now       |
-|              [02](#project-02-student-teacher-role-based-auth)              |                  [Student Teacher Role Based Auth](#project-02-student-teacher-role-based-auth)                  |       Watch Now       |
-|          [03](#chapter-3-laravel-folder-structure--mvc-pattern-explained)          |          [](#chapter-3-laravel-folder-structure--mvc-pattern-explained)          |       Watch Now       |
-|                    [04](#chapter-4-routing-in-laravel-web--api)                    |                              [](#chapter-4-routing-in-laravel-web--api)                              |       Watch Now       |
-|      [05](#chapter-5-laravel-controllers--structure-usage-and-best-practices)      | [](#chapter-5-laravel-controllers--structure-usage-and-best-practices) |     [Watch Now]()     |
-|                [06](#chapter-6-blade-templating-engine-in-laravel)                 |                       [](#chapter-6-blade-templating-engine-in-laravel)                        |     [Watch Now]()     |
-|              [07](#chapter-7-laravel-models--eloquent-orm-explained)               |                   [](#chapter-7-laravel-models--eloquent-orm-explained)                   |     [Watch Now]()     |
-|              [08](#chapter-8-database-migration--seeding-in-laravel)               |                   [](#chapter-8-database-migration--seeding-in-laravel)                   |     [Watch Now]()     |
-|                          [09](#chapter-9-laravel-authentication)                           |                                                  [](#chapter-9-laravel-authentication)                                                   |     [Watch Now]()     |
-|                            [10](#chapter-10-laravel-breeze)                             |                                                    [](#chapter-10-laravel-breeze)                                                     |     [Watch Now]()     |
 
 
 # Project 01: Laravel CRUD Operation
