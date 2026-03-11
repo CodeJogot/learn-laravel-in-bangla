@@ -1726,6 +1726,3144 @@ Laravel এবং Vite একসাথে ব্যবহার করলে Fro
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
+# Chapter 7: Starter Kits
+
+## 📚 Table of Contents
+
+1. [Creating an Application Using a Starter Kit](#creating-an-application-using-a-starter-kit)
+2. [Available Starter Kits](#available-starter-kits)
+3. [Starter Kit Customization](#starter-kit-customization)
+4. [Authentication](#authentication)
+5. [Enabling and Disabling Features](#enabling-and-disabling-features)
+6. [Customizing User Creation and Password Reset](#customizing-user-creation-and-password-reset)
+7. [Two-Factor Authentication](#two-factor-authentication)
+8. [Rate Limiting](#rate-limiting)
+9. [WorkOS AuthKit Authentication](#workos-authkit-authentication)
+10. [Configuring Your WorkOS Starter Kit](#configuring-your-workos-starter-kit)
+11. [Configuring AuthKit Authentication Methods](#configuring-authkit-authentication-methods)
+12. [Inertia SSR](#inertia-ssr)
+13. [Community Maintained Starter Kits](#community-maintained-starter-kits)
+14. [Creating Starter Kits](#creating-starter-kits)
+
+## Introduction
+
+নতুন একটি Laravel Application তৈরি করার সময় অনেক মৌলিক Feature শুরু থেকেই প্রয়োজন হয়। যেমন User Registration System, Login System, Authentication Flow, Route Structure, Controller এবং View। এই সব Feature শুরু থেকে নিজে তৈরি করলে অনেক সময় লাগে। এই কাজটি সহজ করার জন্য Laravel কিছু **Application Starter Kit** প্রদান করে।
+
+Starter Kit মূলত একটি প্রস্তুত Application Structure যা ব্যবহার করে খুব দ্রুত একটি Laravel Project শুরু করা যায়। এই Starter Kit-এর মধ্যে সাধারণত এমন কিছু প্রাথমিক Component আগে থেকেই তৈরি থাকে যেগুলো প্রায় সব Web Application-এ প্রয়োজন হয়।
+
+Starter Kit ব্যবহার করলে Application-এ শুরু থেকেই কিছু গুরুত্বপূর্ণ অংশ তৈরি হয়ে যায়, যেমন:
+
+* User Registration Route
+* Login Route
+* Authentication Controller
+* User Interface View
+* Authentication Logic
+
+এই Authentication System Laravel-এর একটি গুরুত্বপূর্ণ Package **Laravel Fortify** ব্যবহার করে তৈরি করা হয়। Laravel Fortify মূলত Backend Authentication Logic প্রদান করে। এর মাধ্যমে User Login, Registration, Password Reset, Email Verification ইত্যাদি Feature সহজে পরিচালনা করা যায়।
+
+Starter Kit ব্যবহার করা বাধ্যতামূলক নয়। Developer চাইলে সম্পূর্ণ নতুন একটি Laravel Project তৈরি করে নিজেই Application Structure তৈরি করতে পারে। Laravel এমনভাবে ডিজাইন করা হয়েছে যাতে Developer নিজের পছন্দ অনুযায়ী Application তৈরি করতে পারে।
+
+তবে Starter Kit ব্যবহার করলে Application Development দ্রুত শুরু করা যায়, কারণ অনেক সাধারণ কাজ আগে থেকেই তৈরি করা থাকে।
+
+---
+
+## Creating an Application Using a Starter Kit
+
+Starter Kit ব্যবহার করে একটি নতুন Laravel Application তৈরি করার জন্য প্রথমে **PHP এবং Laravel CLI Tool** Install থাকতে হবে।
+
+Laravel CLI Tool মূলত একটি Command Line Tool যার মাধ্যমে Terminal ব্যবহার করে সহজে Laravel Project তৈরি করা যায়।
+
+যদি System-এ PHP এবং Composer ইতোমধ্যে Install করা থাকে, তাহলে Laravel Installer CLI Tool Composer ব্যবহার করে Install করা যায়।
+
+```bash
+composer global require laravel/installer
+```
+
+এই Command ব্যবহার করলে Laravel Installer Globalভাবে Install হয় এবং Terminal থেকে সরাসরি Laravel Command ব্যবহার করা যায়।
+
+Laravel Installer Install হওয়ার পরে একটি নতুন Laravel Application তৈরি করা যায়।
+
+```bash
+laravel new my-app
+```
+
+এই Command চালানোর পরে Laravel Installer একটি নতুন Project তৈরি করবে। Installation Process চলাকালীন Laravel Installer Developer-কে জিজ্ঞাসা করবে কোন **Starter Kit** ব্যবহার করা হবে।
+
+Developer এখানে তার পছন্দ অনুযায়ী Starter Kit নির্বাচন করতে পারে।
+
+Application তৈরি হয়ে গেলে Frontend Dependency Install করতে হয়। Laravel Project সাধারণত JavaScript Package Manager **NPM** ব্যবহার করে Frontend Dependency Install করে।
+
+Project Directory-তে প্রবেশ করে নিচের Command চালাতে হয়।
+
+```bash
+cd my-app
+npm install && npm run build
+```
+
+এখানে `npm install` Command ব্যবহার করে Project-এর সমস্ত JavaScript Dependency Install করা হয়।
+
+এরপর `npm run build` Command ব্যবহার করে Frontend Asset যেমন CSS এবং JavaScript Production-ready Asset হিসেবে Compile করা হয়।
+
+এরপর Laravel Development Server চালু করা যায়।
+
+```bash
+composer run dev
+```
+
+এই Command Laravel Development Environment চালু করে এবং Application Local Server-এ Run হয়।
+
+Laravel Development Server চালু হওয়ার পরে Web Browser ব্যবহার করে Application দেখা যায়।
+
+```text
+http://localhost:8000
+```
+
+এই URL-এ প্রবেশ করলে নতুন তৈরি করা Laravel Application Browser-এ প্রদর্শিত হবে।
+
+
+## Available Starter Kits
+
+Laravel বিভিন্ন ধরনের **Starter Kit** প্রদান করে যাতে Developer নিজের পছন্দ অনুযায়ী Frontend Technology ব্যবহার করে দ্রুত Application Development শুরু করতে পারে। প্রতিটি Starter Kit একটি নির্দিষ্ট Frontend Framework বা Technology ব্যবহার করে এবং Laravel Backend-এর সাথে সুন্দরভাবে সংযুক্ত থাকে।
+
+---
+
+## React
+
+Laravel-এর **React Starter Kit** ব্যবহার করে Laravel Backend এবং React Frontend একসাথে ব্যবহার করে একটি আধুনিক Web Application তৈরি করা যায়।
+
+এই Starter Kit সাধারণত **Inertia.js** ব্যবহার করে Laravel এবং React-এর মধ্যে সংযোগ তৈরি করে। Inertia এমন একটি Bridge যা Backend এবং Frontend-এর মধ্যে যোগাযোগ সহজ করে।
+
+এই পদ্ধতিতে Laravel-এর **Routing এবং Controller System** ব্যবহার করা হয়। Controller থেকে Data পাঠানো হয় React Component-এ এবং React সেই Data ব্যবহার করে User Interface তৈরি করে।
+
+এই ধরনের Application সাধারণত **Single Page Application (SPA)** হিসেবে কাজ করে। SPA-তে Page Reload ছাড়াই User Interface পরিবর্তন হয়, ফলে Application দ্রুত এবং Smooth অনুভূত হয়।
+
+React Starter Kit ব্যবহার করলে Developer React-এর শক্তিশালী Ecosystem ব্যবহার করতে পারে এবং একই সাথে Laravel Backend-এর Productivity উপভোগ করতে পারে।
+
+এই Starter Kit সাধারণত নিচের Technology ব্যবহার করে:
+
+* **React 19**
+* **TypeScript**
+* **Tailwind CSS**
+* **shadcn/ui Component Library**
+* **Vite Build Tool**
+
+TypeScript ব্যবহার করার ফলে Code আরও নিরাপদ এবং Maintainable হয়। Tailwind CSS ব্যবহার করে দ্রুত Responsive UI তৈরি করা যায়।
+
+---
+
+## Svelte
+
+Laravel-এর **Svelte Starter Kit** ব্যবহার করে Laravel Backend এবং Svelte Frontend একসাথে ব্যবহার করা যায়।
+
+এই Starter Kit-ও **Inertia.js** ব্যবহার করে Laravel এবং Svelte-এর মধ্যে যোগাযোগ তৈরি করে। Developer Laravel-এর Routing এবং Controller ব্যবহার করে Data পরিচালনা করতে পারে এবং Svelte Component ব্যবহার করে Dynamic Interface তৈরি করতে পারে।
+
+Svelte একটি আধুনিক Frontend Framework যা খুব দ্রুত এবং Lightweight Application তৈরি করতে সাহায্য করে। Svelte Application সাধারণত কম JavaScript Bundle তৈরি করে এবং Performance খুব ভালো হয়।
+
+Svelte Starter Kit সাধারণত নিচের Technology ব্যবহার করে:
+
+* **Svelte 5**
+* **TypeScript**
+* **Tailwind CSS**
+* **shadcn-svelte Component Library**
+* **Vite**
+
+এই Technology গুলো ব্যবহার করে একটি আধুনিক এবং দ্রুত Frontend Application তৈরি করা যায়।
+
+---
+
+## Vue
+
+Laravel-এর **Vue Starter Kit** ব্যবহার করে Laravel Backend এবং Vue Frontend ব্যবহার করে Web Application তৈরি করা যায়।
+
+এই Starter Kit-এও **Inertia.js** ব্যবহার করা হয়। Inertia ব্যবহার করে Laravel-এর Controller এবং Route ব্যবহার করা যায়, কিন্তু Frontend Vue Component ব্যবহার করে তৈরি করা হয়।
+
+Vue Framework ব্যবহার করলে Developer সহজে Reactive User Interface তৈরি করতে পারে। Vue Component System ব্যবহার করে Application-এর বিভিন্ন অংশ আলাদা Component হিসেবে তৈরি করা যায়।
+
+Vue Starter Kit সাধারণত নিচের Technology ব্যবহার করে:
+
+* **Vue Composition API**
+* **TypeScript**
+* **Tailwind CSS**
+* **shadcn-vue Component Library**
+* **Vite**
+
+Vue Composition API ব্যবহার করে Application Logic আরও পরিষ্কারভাবে সংগঠিত করা যায়।
+
+---
+
+## Livewire
+
+Laravel-এর **Livewire Starter Kit** এমন Developer-দের জন্য তৈরি করা হয়েছে যারা Frontend তৈরি করতে JavaScript Framework ব্যবহার করতে চায় না এবং মূলত **PHP ব্যবহার করেই Dynamic UI তৈরি করতে চায়**।
+
+Livewire ব্যবহার করে Developer Laravel Application-এর Frontend Dynamic করতে পারে, কিন্তু এর জন্য React, Vue বা Svelte-এর মতো JavaScript Framework ব্যবহার করার প্রয়োজন হয় না।
+
+Livewire মূলত Backend এবং Frontend-এর মধ্যে একটি সংযোগ তৈরি করে যেখানে Frontend Interaction সরাসরি Laravel Component-এর সাথে যুক্ত থাকে।
+
+Livewire Component সাধারণত Blade Template ব্যবহার করে তৈরি করা হয় এবং Backend Logic PHP ব্যবহার করে লেখা হয়।
+
+Livewire ব্যবহার করলে Developer Laravel Environment-এর মধ্যেই থেকে একটি আধুনিক Dynamic User Interface তৈরি করতে পারে।
+
+Livewire Starter Kit সাধারণত নিচের Technology ব্যবহার করে:
+
+* **Laravel Livewire**
+* **Tailwind CSS**
+* **Flux UI Component Library**
+
+এই Starter Kit এমন Team-এর জন্য বিশেষভাবে উপযোগী যারা Blade Template ব্যবহার করে কাজ করতে অভ্যস্ত এবং JavaScript Framework ব্যবহার না করেই Interactive Web Application তৈরি করতে চায়।
+
+## Starter Kit Customization
+
+Laravel Starter Kit ব্যবহার করার একটি বড় সুবিধা হলো **পূর্ণ Customization Support**। Starter Kit ব্যবহার করলে Backend এবং Frontend উভয় Code আপনার Application-এর মধ্যেই থাকে। ফলে Developer চাইলে সহজেই UI Design, Layout, Component এবং Application Behavior পরিবর্তন করতে পারে।
+
+Laravel বিভিন্ন Frontend Technology অনুযায়ী আলাদা Starter Kit প্রদান করে। প্রতিটি Starter Kit-এ Frontend Code সাধারণত একটি নির্দিষ্ট Directory-তে রাখা থাকে, যেখান থেকে Developer সহজেই Code পরিবর্তন করতে পারে।
+
+---
+
+## React
+
+Laravel-এর **React Starter Kit** তৈরি করা হয়েছে **Inertia 2, React 19, Tailwind CSS 4 এবং shadcn/ui Component Library** ব্যবহার করে।
+
+এই Starter Kit ব্যবহার করলে Application-এর Frontend Code সাধারণত **resources/js** Directory-এর ভিতরে থাকে।
+
+```text
+resources/js/
+├── components/    
+├── hooks/         
+├── layouts/       
+├── lib/           
+├── pages/         
+└── types/         
+```
+
+এই Folder Structure-এর প্রতিটি অংশ নির্দিষ্ট কাজের জন্য ব্যবহৃত হয়।
+
+**components** Directory-তে Reusable React Component রাখা হয়। যেমন Button, Form Field বা UI Element।
+
+**hooks** Directory-তে Custom React Hook রাখা হয়। React Hook ব্যবহার করে Component Logic আলাদা করা যায়।
+
+**layouts** Directory-তে Application-এর Layout Component থাকে। যেমন Dashboard Layout বা Authentication Layout।
+
+**lib** Directory-তে Utility Function এবং Configuration File রাখা হয়।
+
+**pages** Directory-তে Application-এর Page Component থাকে। প্রতিটি Page সাধারণত একটি Route-এর সাথে সম্পর্কিত।
+
+**types** Directory-তে TypeScript Definition File রাখা হয়।
+
+React Starter Kit-এ **shadcn/ui Component Library** ব্যবহার করা হয়। যদি Developer নতুন UI Component ব্যবহার করতে চায়, তাহলে সেই Component Publish করা যায়।
+
+উদাহরণ:
+
+```bash
+npx shadcn@latest add switch
+```
+
+এই Command চালালে **Switch Component** Project-এ যুক্ত হবে।
+
+Component File সাধারণত তৈরি হয়:
+
+```text
+resources/js/components/ui/switch.tsx
+```
+
+এরপর Component Import করে ব্যবহার করা যায়।
+
+```javascript
+import { Switch } from "@/components/ui/switch"
+
+const MyPage = () => {
+  return (
+    <div>
+      <Switch />
+    </div>
+  );
+};
+
+export default MyPage;
+```
+
+### Available Layouts
+
+React Starter Kit-এ দুটি প্রধান Layout পাওয়া যায়।
+
+* Sidebar Layout
+* Header Layout
+
+Default Layout হলো **Sidebar Layout**।
+
+Layout পরিবর্তন করতে হলে নিচের File পরিবর্তন করতে হয়।
+
+```text
+resources/js/layouts/app-layout.tsx
+```
+
+উদাহরণ:
+
+```javascript
+import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
+import AppLayoutTemplate from '@/layouts/app/app-header-layout';
+```
+
+### Sidebar Variants
+
+Sidebar Layout-এর তিনটি Variant রয়েছে।
+
+* sidebar
+* inset
+* floating
+
+Variant পরিবর্তন করতে নিচের File পরিবর্তন করা হয়।
+
+```text
+resources/js/components/app-sidebar.tsx
+```
+
+উদাহরণ:
+
+```jsx
+<Sidebar collapsible="icon" variant="sidebar">
+<Sidebar collapsible="icon" variant="inset">
+```
+
+### Authentication Page Layout Variants
+
+Login এবং Registration Page-এর জন্য তিনটি Layout Variant রয়েছে।
+
+* simple
+* card
+* split
+
+Layout পরিবর্তন করতে নিচের File পরিবর্তন করতে হয়।
+
+```text
+resources/js/layouts/auth-layout.tsx
+```
+
+উদাহরণ:
+
+```javascript
+import AuthLayoutTemplate from '@/layouts/auth/auth-simple-layout';
+import AuthLayoutTemplate from '@/layouts/auth/auth-split-layout';
+```
+
+---
+
+## Svelte
+
+Laravel-এর **Svelte Starter Kit** তৈরি করা হয়েছে **Inertia 2, Svelte 5, Tailwind CSS এবং shadcn-svelte Component Library** ব্যবহার করে।
+
+Frontend Code সাধারণত **resources/js** Directory-এর মধ্যে থাকে।
+
+```text
+resources/js/
+├── components/
+├── layouts/
+├── lib/
+├── pages/
+└── types/
+```
+
+**components** Directory-তে Reusable Svelte Component রাখা হয়।
+
+**layouts** Directory-তে Application Layout থাকে।
+
+**lib** Directory-তে Utility Function এবং Configuration File থাকে।
+
+**pages** Directory-তে Page Component থাকে।
+
+**types** Directory-তে TypeScript Definition থাকে।
+
+shadcn-svelte Component Library থেকে নতুন Component যুক্ত করা যায়।
+
+```bash
+npx shadcn-svelte@latest add switch
+```
+
+Component তৈরি হবে:
+
+```text
+resources/js/components/ui/switch/switch.svelte
+```
+
+এরপর Component ব্যবহার করা যায়।
+
+```svelte
+<script lang="ts">
+    import { Switch } from '@/components/ui/switch'
+</script>
+
+<div>
+    <Switch />
+</div>
+```
+
+### Available Layouts
+
+Svelte Starter Kit-এ দুটি Layout রয়েছে।
+
+* Sidebar Layout
+* Header Layout
+
+Layout পরিবর্তন করতে নিচের File পরিবর্তন করতে হয়।
+
+```text
+resources/js/layouts/AppLayout.svelte
+```
+
+```javascript
+import AppLayout from '@/layouts/app/AppSidebarLayout.svelte';
+import AppLayout from '@/layouts/app/AppHeaderLayout.svelte';
+```
+
+### Sidebar Variants
+
+Sidebar Layout-এর তিনটি Variant রয়েছে।
+
+```svelte
+<Sidebar collapsible="icon" variant="sidebar">
+<Sidebar collapsible="icon" variant="inset">
+```
+
+### Authentication Layout Variants
+
+Authentication Page-এর Layout পরিবর্তন করতে নিচের File পরিবর্তন করা হয়।
+
+```text
+resources/js/layouts/AuthLayout.svelte
+```
+
+---
+
+## Vue
+
+Laravel-এর **Vue Starter Kit** তৈরি করা হয়েছে **Inertia 2, Vue 3 Composition API, Tailwind CSS এবং shadcn-vue Component Library** ব্যবহার করে।
+
+Frontend Code সাধারণত থাকে:
+
+```text
+resources/js/
+├── components/
+├── composables/
+├── layouts/
+├── lib/
+├── pages/
+└── types/
+```
+
+**components** Directory-তে Reusable Vue Component থাকে।
+
+**composables** Directory-তে Vue Logic Function বা Hook থাকে।
+
+**layouts** Directory-তে Layout Component থাকে।
+
+**pages** Directory-তে Application Page থাকে।
+
+**types** Directory-তে TypeScript Definition থাকে।
+
+নতুন UI Component যুক্ত করার জন্য ব্যবহার করা যায়:
+
+```bash
+npx shadcn-vue@latest add switch
+```
+
+Component তৈরি হবে:
+
+```text
+resources/js/components/ui/Switch.vue
+```
+
+ব্যবহার করার উদাহরণ:
+
+```vue
+<script setup lang="ts">
+import { Switch } from '@/components/ui/switch'
+</script>
+
+<template>
+    <div>
+        <Switch />
+    </div>
+</template>
+```
+
+### Available Layouts
+
+Vue Starter Kit-এ দুটি Layout রয়েছে।
+
+* Sidebar Layout
+* Header Layout
+
+Layout পরিবর্তন করতে নিচের File পরিবর্তন করা হয়।
+
+```text
+resources/js/layouts/AppLayout.vue
+```
+
+---
+
+### Sidebar Variants
+
+Sidebar Layout-এর তিনটি Variant রয়েছে।
+
+```vue
+<Sidebar collapsible="icon" variant="sidebar">
+<Sidebar collapsible="icon" variant="inset">
+```
+
+### Authentication Layout Variants
+
+Authentication Page-এর Layout পরিবর্তন করা যায়:
+
+```text
+resources/js/layouts/AuthLayout.vue
+```
+
+---
+
+## Livewire
+
+Laravel-এর **Livewire Starter Kit** তৈরি করা হয়েছে **Livewire 4, Tailwind CSS এবং Flux UI Component Library** ব্যবহার করে।
+
+Livewire Starter Kit-এ Frontend Code সাধারণত **resources/views** Directory-এর মধ্যে থাকে।
+
+```text
+resources/views
+├── components
+├── flux
+├── layouts
+├── pages
+├── partials
+├── dashboard.blade.php
+├── welcome.blade.php
+```
+
+**components** Directory-তে Reusable Blade Component থাকে।
+
+**flux** Directory-তে Customized Flux UI Component থাকে।
+
+**layouts** Directory-তে Application Layout থাকে।
+
+**pages** Directory-তে Livewire Page থাকে।
+
+**partials** Directory-তে Reusable Blade Partial Template থাকে।
+
+### Available Layouts
+
+Livewire Starter Kit-এ দুটি Layout রয়েছে।
+
+* Sidebar Layout
+* Header Layout
+
+Layout পরিবর্তন করতে নিচের File পরিবর্তন করা হয়।
+
+```text
+resources/views/layouts/app.blade.php
+```
+
+উদাহরণ:
+
+```blade
+<x-layouts::app.header>
+    <flux:main container>
+        {{ $slot }}
+    </flux:main>
+</x-layouts::app.header>
+```
+
+### Authentication Page Layout Variants
+
+Login এবং Registration Page-এর Layout পরিবর্তন করতে নিচের File ব্যবহার করা হয়।
+
+```text
+resources/views/layouts/auth.blade.php
+```
+
+উদাহরণ:
+
+```blade
+<x-layouts::auth.split>
+    {{ $slot }}
+</x-layouts::auth.split>
+```
+
+## Authentication
+
+Laravel Starter Kit গুলোতে **User Authentication System** পরিচালনার জন্য **Laravel Fortify** ব্যবহার করা হয়। Fortify মূলত Laravel Application-এর জন্য Authentication সম্পর্কিত Backend Logic প্রদান করে। এর মাধ্যমে Login, Registration, Password Reset, Email Verification, Password Confirmation এবং Two-Factor Authentication-এর মতো গুরুত্বপূর্ণ Feature সহজভাবে পরিচালনা করা যায়।
+
+Fortify Application-এর জন্য প্রয়োজনীয় **Route, Controller এবং Authentication Logic** স্বয়ংক্রিয়ভাবে Register করে। কোন কোন Route Application-এ সক্রিয় হবে তা নির্ভর করে **config/fortify.php** Configuration File-এ কোন Feature চালু করা আছে তার উপর।
+
+Fortify সক্রিয় থাকলে Laravel Application-এ সাধারণত নিচের Authentication Route গুলো উপলব্ধ থাকে।
+
+| Route                              | Method | Description                                                        |
+| ---------------------------------- | ------ | ------------------------------------------------------------------ |
+| `/login`                           | `GET`  | User Login করার জন্য Login Form প্রদর্শন করে                       |
+| `/login`                           | `POST` | User-এর Credentials যাচাই করে এবং User-কে Authenticate করে         |
+| `/logout`                          | `POST` | User-কে Application থেকে Logout করে                                |
+| `/register`                        | `GET`  | নতুন User Account তৈরি করার জন্য Registration Form প্রদর্শন করে    |
+| `/register`                        | `POST` | নতুন User Account Database-এ তৈরি করে                              |
+| `/forgot-password`                 | `GET`  | Password Reset Request করার জন্য Form প্রদর্শন করে                 |
+| `/forgot-password`                 | `POST` | User-এর Email-এ Password Reset Link পাঠায়                         |
+| `/reset-password/{token}`          | `GET`  | Password Reset Form প্রদর্শন করে যেখানে নতুন Password সেট করা যায় |
+| `/reset-password`                  | `POST` | নতুন Password Database-এ Update করে                                |
+| `/email/verify`                    | `GET`  | Email Verification Notice Page প্রদর্শন করে                        |
+| `/email/verify/{id}/{hash}`        | `GET`  | User-এর Email Address Verify করে                                   |
+| `/email/verification-notification` | `POST` | পুনরায় Email Verification Link পাঠায়                             |
+| `/user/confirm-password`           | `GET`  | Password Confirmation Form প্রদর্শন করে                            |
+| `/user/confirm-password`           | `POST` | User-এর Password পুনরায় যাচাই করে                                 |
+| `/two-factor-challenge`            | `GET`  | Two-Factor Authentication (2FA) Challenge Form প্রদর্শন করে        |
+| `/two-factor-challenge`            | `POST` | Two-Factor Authentication Code যাচাই করে                           |
+
+Laravel Application-এ বর্তমানে সক্রিয় থাকা সমস্ত Route Terminal-এ দেখার জন্য নিচের Artisan Command ব্যবহার করা যায়।
+
+```bash
+php artisan route:list
+```
+
+এই Command চালালে Application-এর সমস্ত Route, তাদের HTTP Method, URI, Controller এবং Middleware সম্পর্কিত তথ্য একটি তালিকা আকারে প্রদর্শিত হয়।
+
+## Enabling and Disabling Features
+
+Laravel Fortify ব্যবহার করার সময় Authentication System-এর বিভিন্ন Feature চালু বা বন্ধ করা যায়। কোন Feature সক্রিয় থাকবে তা নির্ধারণ করা হয় **config/fortify.php** Configuration File-এর ভিতরে।
+
+এই File-এ একটি **features array** থাকে যেখানে বিভিন্ন Authentication Feature তালিকা আকারে সংজ্ঞায়িত থাকে।
+
+উদাহরণ:
+
+```php
+use Laravel\Fortify\Features;
+
+'features' => [
+    Features::registration(),
+    Features::resetPasswords(),
+    Features::emailVerification(),
+    Features::twoFactorAuthentication([
+        'confirm' => true,
+        'confirmPassword' => true,
+    ]),
+],
+```
+
+এখানে প্রতিটি Feature একটি নির্দিষ্ট Authentication সুবিধা সক্রিয় করে।
+
+* **Features::registration()** ব্যবহার করে User Registration System সক্রিয় হয়
+* **Features::resetPasswords()** ব্যবহার করে Password Reset Feature সক্রিয় হয়
+* **Features::emailVerification()** ব্যবহার করে Email Verification System চালু হয়
+* **Features::twoFactorAuthentication()** ব্যবহার করে Two-Factor Authentication (2FA) চালু হয়
+
+যদি কোনো Feature বন্ধ করতে হয়, তাহলে সেই Feature-টি **features array** থেকে সরিয়ে দিতে হয় বা Comment করে দিতে হয়।
+
+উদাহরণ হিসেবে যদি Public Registration বন্ধ করতে হয়, তাহলে নিচের Feature সরিয়ে দেওয়া যায়।
+
+```php
+Features::registration()
+```
+
+React, Svelte বা Vue Starter Kit ব্যবহার করলে Frontend Code থেকেও সেই Feature-এর Route Reference মুছে ফেলতে হয়। কারণ এই Starter Kit গুলো **Wayfinder** ব্যবহার করে Type-safe Routing তৈরি করে। Wayfinder Build Time-এ Route Definition তৈরি করে। যদি Frontend Code এমন কোনো Route ব্যবহার করে যা Backend-এ আর নেই, তাহলে Application Build ব্যর্থ হবে।
+
+---
+
+## Customizing User Creation and Password Reset
+
+User Registration বা Password Reset করার সময় Fortify Application-এর কিছু **Action Class** ব্যবহার করে।
+
+এই Class গুলো সাধারণত থাকে:
+
+```
+app/Actions/Fortify
+```
+
+এই Directory-এর ভিতরে সাধারণত নিচের File গুলো থাকে।
+
+| File                        | Description                       |
+| --------------------------- | --------------------------------- |
+| CreateNewUser.php           | নতুন User তৈরি করার Logic         |
+| ResetUserPassword.php       | User Password Update করার Logic   |
+| PasswordValidationRules.php | Password Validation Rule নির্ধারণ |
+
+User Registration-এর সময় **CreateNewUser** Class ব্যবহার করা হয়। Developer চাইলে এই Class পরিবর্তন করে Registration Logic Customize করতে পারে।
+
+উদাহরণ:
+
+```php
+public function create(array $input): User
+{
+    Validator::make($input, [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'email', 'max:255', 'unique:users'],
+        'phone' => ['required', 'string', 'max:20'],
+        'password' => $this->passwordRules(),
+    ])->validate();
+
+    return User::create([
+        'name' => $input['name'],
+        'email' => $input['email'],
+        'phone' => $input['phone'],
+        'password' => Hash::make($input['password']),
+    ]);
+}
+```
+
+এখানে নতুন একটি **phone field** যোগ করা হয়েছে। Registration Form থেকে Phone Number নিয়ে Database-এ সংরক্ষণ করা হচ্ছে।
+
+---
+
+## Two-Factor Authentication
+
+Starter Kit গুলোতে সাধারণত **Two-Factor Authentication (2FA)** Feature অন্তর্ভুক্ত থাকে।
+
+2FA ব্যবহার করলে User Login করার সময় Password-এর পাশাপাশি একটি অতিরিক্ত Verification Code দিতে হয়। এই Code সাধারণত Google Authenticator বা অন্য TOTP-compatible Authentication App দ্বারা তৈরি হয়।
+
+2FA Feature সাধারণত Fortify Configuration File-এ সক্রিয় করা থাকে।
+
+```php
+Features::twoFactorAuthentication([
+    'confirm' => true,
+    'confirmPassword' => true,
+])
+```
+
+এখানে:
+
+* **confirm option** ব্যবহার করলে 2FA চালু করার আগে User-কে Verification Code নিশ্চিত করতে হয়
+* **confirmPassword option** ব্যবহার করলে 2FA চালু বা বন্ধ করার আগে User-কে Password নিশ্চিত করতে হয়
+
+এই Feature ব্যবহার করলে User Account আরও নিরাপদ হয়।
+
+---
+
+## Rate Limiting
+
+Authentication Endpoint নিরাপদ রাখার জন্য **Rate Limiting** ব্যবহার করা হয়।
+
+Rate Limiting ব্যবহার করলে একই User বা IP Address থেকে বারবার Login Attempt করলে তা সীমাবদ্ধ করা যায়। এটি Brute-force Attack প্রতিরোধ করতে সাহায্য করে।
+
+FortifyServiceProvider File-এ Rate Limiting Customize করা যায়।
+
+উদাহরণ:
+
+```php
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Cache\RateLimiting\Limit;
+
+RateLimiter::for('login', function ($request) {
+    return Limit::perMinute(5)->by($request->email.$request->ip());
+});
+```
+
+এখানে নির্ধারণ করা হয়েছে যে একটি নির্দিষ্ট Email এবং IP Address থেকে **প্রতি মিনিটে সর্বোচ্চ ৫ বার Login Attempt করা যাবে**।
+
+---
+
+## WorkOS AuthKit Authentication
+
+Laravel Starter Kit সাধারণত Laravel-এর নিজস্ব Authentication System ব্যবহার করে। তবে Laravel একটি বিকল্প Authentication Provider প্রদান করে যার নাম **WorkOS AuthKit**।
+
+WorkOS ব্যবহার করলে Application-এ অতিরিক্ত কিছু Authentication Feature যুক্ত করা যায়।
+
+যেমন:
+
+* Social Login (Google, Microsoft, GitHub, Apple)
+* Passkey Authentication
+* Email ভিত্তিক Magic Auth
+* Single Sign-On (SSO)
+
+WorkOS Authentication ব্যবহার করার জন্য একটি **WorkOS Account** প্রয়োজন। WorkOS সাধারণত প্রতি মাসে **১ মিলিয়ন Active User পর্যন্ত বিনামূল্যে Authentication Service প্রদান করে**।
+
+নতুন Application তৈরি করার সময় **laravel new** Command ব্যবহার করে WorkOS Starter Kit নির্বাচন করা যায়।
+
+---
+
+## Configuring Your WorkOS Starter Kit
+
+WorkOS Starter Kit ব্যবহার করলে Application-এর **.env file**-এ কিছু Environment Variable সেট করতে হয়।
+
+উদাহরণ:
+
+```
+WORKOS_CLIENT_ID=your-client-id
+WORKOS_API_KEY=your-api-key
+WORKOS_REDIRECT_URL="${APP_URL}/authenticate"
+```
+
+এই Value গুলো WorkOS Dashboard থেকে পাওয়া যায়।
+
+এছাড়া WorkOS Dashboard-এ Application-এর Homepage URL সেট করতে হয়। User Logout করার পরে এই URL-এ Redirect করা হয়।
+
+---
+
+## Configuring AuthKit Authentication Methods
+
+WorkOS ব্যবহার করলে **Email + Password Authentication** বন্ধ করে দেওয়ার পরামর্শ দেওয়া হয়।
+
+এর ফলে User Login করতে পারবে:
+
+* Social Login
+* Passkey
+* Magic Auth
+* SSO
+
+এই পদ্ধতি ব্যবহার করলে Application-কে সরাসরি User Password পরিচালনা করতে হয় না।
+
+---
+
+## Configuring AuthKit Session Timeouts
+
+WorkOS Session Timeout সাধারণত Laravel Session Timeout-এর সাথে মিল রেখে সেট করা উচিত।
+
+Laravel Application-এ সাধারণত Session Timeout প্রায় **২ ঘণ্টা** থাকে। তাই WorkOS Session Timeout একই সময়ের কাছাকাছি রাখা ভালো।
+
+---
+
+## Inertia SSR
+
+React, Vue এবং Svelte Starter Kit ব্যবহার করলে **Inertia Server-Side Rendering (SSR)** ব্যবহার করা যায়।
+
+SSR ব্যবহার করলে Page Server থেকে Render হয়ে Browser-এ পাঠানো হয়। এতে Performance এবং SEO উন্নত হয়।
+
+SSR Build করার জন্য নিচের Command ব্যবহার করা হয়।
+
+```bash
+npm run build:ssr
+```
+
+Laravel একটি Artisan Command-ও প্রদান করে যা Development Server এবং SSR Server একসাথে চালু করে।
+
+```bash
+composer dev:ssr
+```
+
+এর মাধ্যমে Local Environment-এ Server-Side Rendering পরীক্ষা করা যায়।
+
+---
+
+## Community Maintained Starter Kits
+
+Laravel Application তৈরি করার সময় Community তৈরি করা Starter Kit-ও ব্যবহার করা যায়।
+
+উদাহরণ:
+
+```bash
+laravel new my-app --using=example/starter-kit
+```
+
+এখানে `example/starter-kit` একটি Packagist Package।
+
+---
+
+## Creating Starter Kits
+
+নিজের তৈরি Starter Kit অন্যদের ব্যবহারের জন্য প্রকাশ করতে হলে সেটিকে **Packagist**-এ Publish করতে হয়।
+
+Starter Kit-এর মধ্যে একটি **.env.example file** থাকতে হবে যেখানে প্রয়োজনীয় Environment Variable উল্লেখ করা থাকবে।
+
+Starter Kit-এর **composer.json file**-এ `post-create-project-cmd` Section-এ Installation-এর পরে চালানোর Command গুলো তালিকা আকারে উল্লেখ করা যেতে পারে।
+
+---
+
+## Frequently Asked Questions
+
+### How do I upgrade?
+
+Starter Kit মূলত Application Development শুরু করার জন্য একটি Template প্রদান করে। Developer Application তৈরি করার পরে সাধারণত Starter Kit Update করার প্রয়োজন হয় না। কারণ Application-এর Code সম্পূর্ণভাবে Developer-এর নিয়ন্ত্রণে থাকে।
+
+---
+
+### How do I enable email verification?
+
+Email Verification চালু করতে হলে **User Model**-এ MustVerifyEmail Interface ব্যবহার করতে হয়।
+
+```php
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+}
+```
+
+User Registration করার পরে Laravel User-এর Email Address-এ একটি Verification Email পাঠায়।
+
+যে Route গুলো Email Verification ছাড়া Access করা যাবে না, সেখানে **verified middleware** ব্যবহার করা যায়।
+
+```php
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('dashboard', function () {
+        return Inertia::render('dashboard');
+    })->name('dashboard');
+});
+```
+
+---
+
+### How do I modify the default email template?
+
+Laravel-এর Default Email Template পরিবর্তন করতে চাইলে প্রথমে Email View Publish করতে হয়।
+
+```bash
+php artisan vendor:publish --tag=laravel-mail
+```
+
+এই Command চালানোর পরে Email Template File তৈরি হবে:
+
+```
+resources/views/vendor/mail
+```
+
+Developer চাইলে এই Template File এবং CSS File পরিবর্তন করে Email Design Customize করতে পারে।
+
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter 8: Deployment
+
+## 📚 Table of Contents
+
+1. [Deployment](#deployment)
+2. [Server Requirements](#server-requirements)
+3. [Server Configuration](#server-configuration)
+4. [Nginx](#nginx)
+5. [FrankenPHP](#frankenphp)
+6. [Directory Permissions](#directory-permissions)
+7. [Optimization](#optimization)
+8. [Caching Configuration](#caching-configuration)
+9. [Caching Events](#caching-events)
+10. [Caching Routes](#caching-routes)
+11. [Caching Views](#caching-views)
+12. [Reloading Services](#reloading-services)
+13. [Debug Mode](#debug-mode)
+14. [The Health Route](#the-health-route)
+15. [Deploying With Laravel Cloud or Forge](#deploying-with-laravel-cloud-or-forge)
+
+## Deployment
+
+## Introduction
+
+যখন একটি Laravel Application Development শেষ হয়ে যায় এবং সেটিকে **Production Server**-এ চালু করার সময় আসে, তখন শুধু Code Upload করলেই কাজ শেষ হয়ে যায় না। Production Environment-এ Application যেন দ্রুত, নিরাপদ এবং স্থিতিশীলভাবে চলে, সেজন্য কিছু গুরুত্বপূর্ণ বিষয় ঠিকভাবে প্রস্তুত করতে হয়। এই পুরো প্রক্রিয়াকেই Deployment বলা হয়।
+
+Deployment-এর মূল উদ্দেশ্য হলো Development Environment-এ তৈরি করা Application-কে এমনভাবে Live Server-এ প্রকাশ করা, যাতে End User সেটি ব্যবহার করতে পারে এবং Application ভালো Performance দেয়।
+
+Production-এ Laravel Application Deploy করার সময় সাধারণত কিছু বিষয় বিশেষভাবে গুরুত্ব পায়:
+
+* Server সঠিকভাবে Configure করা হয়েছে কিনা
+* PHP Version Laravel-এর প্রয়োজন অনুযায়ী আছে কিনা
+* দরকারি PHP Extension Install করা আছে কিনা
+* Web Server সঠিকভাবে Laravel Application-এর **public/index.php** File-এ Request পাঠাচ্ছে কিনা
+* Sensitive File Public-এর কাছে Expose হচ্ছে কিনা
+
+Laravel Documentation এই অংশে মূলত এই বিষয়গুলো সঠিকভাবে বোঝাতে চায়, যাতে Application Production-এ Deploy করার পরে কোনো বড় সমস্যা না হয়।
+
+---
+
+## Server Requirements
+
+Laravel Framework সঠিকভাবে চালানোর জন্য Server-এ কিছু **Minimum System Requirement** পূরণ থাকতে হবে। এর মধ্যে সবচেয়ে গুরুত্বপূর্ণ হলো **PHP Version** এবং কিছু প্রয়োজনীয় **PHP Extension**।
+
+Laravel চালানোর জন্য Server-এ কমপক্ষে নিচের PHP Version থাকতে হবে:
+
+```text
+PHP >= 8.2
+```
+
+এর মানে হলো PHP 8.2 অথবা এর চেয়ে নতুন Version থাকতে হবে। যদি Server-এ এর চেয়ে পুরোনো Version থাকে, তাহলে Laravel Application সঠিকভাবে চলবে না।
+
+Laravel-এর জন্য কিছু নির্দিষ্ট PHP Extension-ও প্রয়োজন হয়। প্রতিটি Extension একটি নির্দিষ্ট ধরনের কাজের জন্য দরকার হয়।
+
+### Required PHP Extensions
+
+* **Ctype PHP Extension**
+  এটি Character Type Check করার জন্য ব্যবহৃত হয়।
+
+* **cURL PHP Extension**
+  এটি অন্য Server বা API-এর সাথে HTTP Request পাঠানোর জন্য ব্যবহৃত হয়।
+
+* **DOM PHP Extension**
+  এটি HTML বা XML Document নিয়ে কাজ করার জন্য দরকার হয়।
+
+* **Fileinfo PHP Extension**
+  এটি File Type এবং MIME Type চিহ্নিত করতে সাহায্য করে।
+
+* **Filter PHP Extension**
+  এটি Input Filter এবং Validation-এর জন্য ব্যবহৃত হয়।
+
+* **Hash PHP Extension**
+  এটি Password Hashing এবং অন্যান্য Hash সম্পর্কিত কাজের জন্য ব্যবহৃত হয়।
+
+* **Mbstring PHP Extension**
+  এটি Multi-byte String Handle করার জন্য ব্যবহৃত হয়, বিশেষ করে Unicode Text নিয়ে কাজ করার সময়।
+
+* **OpenSSL PHP Extension**
+  এটি Encryption এবং Secure Communication-এর জন্য দরকার হয়।
+
+* **PCRE PHP Extension**
+  এটি Regular Expression ব্যবহার করার জন্য প্রয়োজন।
+
+* **PDO PHP Extension**
+  এটি Database Connection এবং Database Query চালানোর জন্য গুরুত্বপূর্ণ।
+
+* **Session PHP Extension**
+  এটি User Session Handle করার জন্য ব্যবহৃত হয়।
+
+* **Tokenizer PHP Extension**
+  এটি PHP Source Code Parse করার কাজে ব্যবহৃত হয়।
+
+* **XML PHP Extension**
+  এটি XML Data নিয়ে কাজ করার জন্য দরকার হয়।
+
+এই Requirement গুলো পূরণ না থাকলে Laravel Install হওয়ার সময় বা Application Run করার সময় Error আসতে পারে।
+
+---
+
+## Server Configuration
+
+Laravel Application Production-এ চালানোর জন্য শুধু PHP Install থাকলেই হয় না। Web Server-ও সঠিকভাবে Configure করতে হয়। Laravel Application এমনভাবে Serve করতে হয় যাতে সব Request সঠিক Entry Point-এ যায় এবং Sensitive File বাইরে থেকে Access করা না যায়।
+
+এই অংশে **Nginx** Web Server-এর জন্য একটি উদাহরণ Configuration দেখানো হয়েছে।
+
+---
+
+## Nginx
+
+যদি Server-এ **Nginx** ব্যবহার করা হয়, তাহলে Laravel Application Serve করার জন্য একটি নির্দিষ্ট Configuration দরকার হয়।
+
+Laravel Application-এর সবচেয়ে গুরুত্বপূর্ণ Entry Point হলো:
+
+```text
+public/index.php
+```
+
+Browser থেকে আসা সব Request শেষ পর্যন্ত এই File-এ পৌঁছানো উচিত। কারণ Laravel এখান থেকেই Application Boot করে এবং Route অনুযায়ী Response তৈরি করে।
+
+একটি খুব গুরুত্বপূর্ণ নিরাপত্তার বিষয় হলো:
+
+**কখনোই index.php File-কে Project Root-এ সরানো যাবে না।**
+
+কারণ যদি পুরো Project Root Web থেকে Serve করা হয়, তাহলে `.env`, `composer.json`, `config` File বা অন্য Sensitive File Public Internet-এ Expose হয়ে যেতে পারে। Laravel Application সবসময় **public directory** থেকে Serve করতে হবে।
+
+উদাহরণ Nginx Configuration:
+
+```nginx
+server {
+    listen 80;
+    listen [::]:80;
+    server_name example.com;
+    root /srv/example.com/public;
+ 
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+ 
+    index index.php;
+ 
+    charset utf-8;
+ 
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+ 
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+ 
+    error_page 404 /index.php;
+ 
+    location ~ ^/index\.php(/|$) {
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+        fastcgi_hide_header X-Powered-By;
+    }
+ 
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+
+এখন এই Configuration-এর গুরুত্বপূর্ণ অংশগুলো বুঝে নেওয়া যাক।
+
+### server block
+
+```nginx
+server {
+```
+
+এটি Nginx-এর একটি Server Block শুরু করছে। একটি Domain বা Website কীভাবে Serve হবে তা এই Block-এর মধ্যে নির্ধারণ করা হয়।
+
+---
+
+### listen
+
+```nginx
+listen 80;
+listen [::]:80;
+```
+
+এখানে Nginx-কে বলা হচ্ছে IPv4 এবং IPv6—দুই ধরনের Network-এর জন্য **Port 80**-এ Request গ্রহণ করতে।
+
+Port 80 সাধারণত HTTP Traffic-এর জন্য ব্যবহৃত হয়।
+
+---
+
+### server_name
+
+```nginx
+server_name example.com;
+```
+
+এখানে Domain Name নির্ধারণ করা হচ্ছে। অর্থাৎ `example.com` Domain-এ Request এলে এই Server Block কাজ করবে।
+
+Production-এ এখানে নিজের Domain Name ব্যবহার করতে হয়।
+
+---
+
+### root
+
+```nginx
+root /srv/example.com/public;
+```
+
+এটি খুব গুরুত্বপূর্ণ Line। এখানে বলা হচ্ছে Application-এর Web Root হবে **public directory**।
+
+এর মানে Browser থেকে Public File Access করার সময় Nginx এই Folder থেকে File Serve করবে।
+
+এখানে Laravel-এর Project Root নয়, বরং **public folder** ব্যবহার করা হয়েছে—যা নিরাপত্তার জন্য সঠিক পদ্ধতি।
+
+---
+
+### Security Headers
+
+```nginx
+add_header X-Frame-Options "SAMEORIGIN";
+add_header X-Content-Type-Options "nosniff";
+```
+
+এই Header গুলো Security বাড়ায়।
+
+* **X-Frame-Options "SAMEORIGIN"**
+  এটি অন্য Domain থেকে আপনার Website-কে Frame-এর ভিতরে Load হওয়া থেকে সীমাবদ্ধ করে। এতে Clickjacking Attack-এর ঝুঁকি কমে।
+
+* **X-Content-Type-Options "nosniff"**
+  এটি Browser-কে Content Type Guess করতে বাধা দেয়। ফলে কিছু ধরনের Security Risk কমে যায়।
+
+---
+
+### index
+
+```nginx
+index index.php;
+```
+
+এটি Nginx-কে জানায় যে Default Entry File হলো `index.php`।
+
+---
+
+### charset
+
+```nginx
+charset utf-8;
+```
+
+এটি Character Encoding হিসেবে UTF-8 ব্যবহার করে, যা বাংলা, ইংরেজি এবং অন্যান্য Unicode Character সঠিকভাবে দেখানোর জন্য গুরুত্বপূর্ণ।
+
+---
+
+### location /
+
+```nginx
+location / {
+    try_files $uri $uri/ /index.php?$query_string;
+}
+```
+
+এটি Laravel Application-এর জন্য সবচেয়ে গুরুত্বপূর্ণ অংশগুলোর একটি।
+
+`try_files` প্রথমে Request করা File বা Folder খুঁজে দেখে।
+
+* যদি `$uri` নামে কোনো File থাকে, সেটি Serve করবে
+* যদি `$uri/` নামে কোনো Directory থাকে, সেটি ব্যবহার করবে
+* যদি কিছুই না থাকে, তাহলে Request-কে `index.php`-এ পাঠাবে
+
+এর ফলে Laravel Route System কাজ করতে পারে। যেমন `/about`, `/dashboard`, `/profile` এর মতো Route গুলো বাস্তবে কোনো File না হলেও Laravel সেগুলো Handle করতে পারে।
+
+---
+
+### favicon.ico এবং robots.txt
+
+```nginx
+location = /favicon.ico { access_log off; log_not_found off; }
+location = /robots.txt  { access_log off; log_not_found off; }
+```
+
+এই Line গুলো `favicon.ico` এবং `robots.txt` Request-এর জন্য Logging বন্ধ করে দেয়।
+
+এতে অপ্রয়োজনীয় Log File কম তৈরি হয়।
+
+---
+
+### error_page 404
+
+```nginx
+error_page 404 /index.php;
+```
+
+যদি কোনো Request সরাসরি File হিসেবে না মেলে, তাহলে সেটি `index.php`-এ পাঠানো হবে। এর ফলে Laravel নিজের Route System ব্যবহার করে Request Handle করতে পারবে।
+
+---
+
+### PHP Processing Block
+
+```nginx
+location ~ ^/index\.php(/|$) {
+    fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+    fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_hide_header X-Powered-By;
+}
+```
+
+এই অংশটি PHP File Process করার জন্য ব্যবহৃত হয়।
+
+* **fastcgi_pass**
+  এটি Nginx-কে বলে PHP Request কোথায় পাঠাতে হবে। এখানে PHP-FPM Socket ব্যবহার করা হয়েছে:
+  `/var/run/php/php8.2-fpm.sock`
+
+* **fastcgi_param SCRIPT_FILENAME**
+  এটি PHP-FPM-কে জানায় কোন PHP File Execute করতে হবে।
+
+* **include fastcgi_params**
+  এটি প্রয়োজনীয় FastCGI Parameter যুক্ত করে।
+
+* **fastcgi_hide_header X-Powered-By**
+  এটি Response থেকে `X-Powered-By` Header লুকিয়ে দেয়। এতে Server সম্পর্কে অপ্রয়োজনীয় তথ্য Public-এ প্রকাশ হয় না।
+
+---
+
+### Hidden Files Protection
+
+```nginx
+location ~ /\.(?!well-known).* {
+    deny all;
+}
+```
+
+এই অংশটি Hidden File Access বন্ধ করার জন্য ব্যবহৃত হয়।
+
+Unix/Linux System-এ যেসব File Dot (`.`) দিয়ে শুরু হয়, সেগুলো সাধারণত Hidden File। যেমন:
+
+* `.env`
+* `.gitignore`
+* `.htaccess`
+
+এই Configuration বাইরের User-দের এই ধরনের File Access করতে বাধা দেয়।
+
+`well-known` Directory-কে Exception হিসেবে রাখা হয়েছে, কারণ কিছু ক্ষেত্রে SSL Verification-এর মতো কাজের জন্য এটি প্রয়োজন হতে পারে।
+
+---
+
+## মূল Deployment ধারণা
+
+এই পুরো অংশের মূল শিক্ষা হলো Laravel Application Production-এ Deploy করার সময় তিনটি বিষয় খুব গুরুত্বপূর্ণ:
+
+1. Server-এ Laravel-এর প্রয়োজনীয় PHP Version এবং Extension থাকতে হবে
+2. Web Server সব Request **public/index.php**-এ পাঠাবে
+3. Project Root কখনো Public Web Root হিসেবে ব্যবহার করা যাবে না
+
+Laravel-এর ক্ষেত্রে নিরাপদ এবং সঠিক Deployment মানে হলো Application-কে এমনভাবে Serve করা যাতে Framework ঠিকভাবে কাজ করে, Performance ভালো থাকে এবং Sensitive File কখনো Public-এ প্রকাশ না পায়।
+
+
+## FrankenPHP
+
+**FrankenPHP** একটি আধুনিক PHP Application Server যা **Go programming language** দিয়ে তৈরি করা হয়েছে। এটি Traditional Web Server (যেমন Apache বা Nginx + PHP-FPM) ছাড়াও সরাসরি PHP Application চালাতে পারে।
+
+Laravel Application চালানোর জন্য FrankenPHP ব্যবহার করলে আলাদা Web Server Configuration ছাড়াই সরাসরি Application Serve করা যায়।
+
+Laravel Application FrankenPHP দিয়ে চালু করার জন্য নিচের Command ব্যবহার করা যায়:
+
+```bash id="z9nq1m"
+frankenphp php-server -r public/
+```
+
+এখানে `public/` Directory Laravel Application-এর Entry Point হিসেবে ব্যবহৃত হচ্ছে। অর্থাৎ সমস্ত Request শেষ পর্যন্ত **public/index.php** File-এ যাবে।
+
+FrankenPHP কিছু আধুনিক Feature প্রদান করে:
+
+* **Laravel Octane integration**
+* **HTTP/3 support**
+* **Modern compression**
+* Laravel Application-কে **Standalone Binary** হিসেবে Package করার সুবিধা
+
+এই Feature গুলো ব্যবহার করলে Application Performance এবং Deployment Process আরও উন্নত হয়।
+
+---
+
+## Directory Permissions
+
+Laravel Application চলার সময় কিছু Directory-তে Framework-কে File লিখতে হয়। বিশেষভাবে দুটি Directory গুরুত্বপূর্ণ:
+
+```
+bootstrap/cache
+storage
+```
+
+এই Directory গুলোতে Laravel বিভিন্ন ধরনের File তৈরি করে যেমন:
+
+* Cached Configuration
+* Compiled Views
+* Session Files
+* Log Files
+* Cache Files
+
+এই কারণে Web Server Process Owner (যেমন `www-data` বা `nginx`) যেন এই Directory গুলোতে **write permission** পায় তা নিশ্চিত করতে হয়।
+
+যদি Permission সঠিকভাবে সেট না থাকে, তাহলে Application Run করার সময় Error হতে পারে। যেমন:
+
+* Cache তৈরি করতে পারবে না
+* Log File লিখতে পারবে না
+* Session সংরক্ষণ করতে পারবে না
+
+---
+
+## Optimization
+
+Production Environment-এ Laravel Application চালানোর সময় Performance উন্নত করার জন্য কিছু File Cache করা উচিত।
+
+Laravel এই কাজটি সহজ করার জন্য একটি Command প্রদান করে:
+
+```bash id="2qv7pf"
+php artisan optimize
+```
+
+এই Command Laravel Application-এর গুরুত্বপূর্ণ কিছু Component Cache করে।
+
+যেমন:
+
+* Configuration
+* Routes
+* Events
+* Views
+
+এতে Application-এর Performance উন্নত হয় কারণ বারবার File System থেকে তথ্য পড়তে হয় না।
+
+যদি এই Cache File গুলো মুছে ফেলতে হয়, তাহলে নিচের Command ব্যবহার করা যায়:
+
+```bash id="c4o7he"
+php artisan optimize:clear
+```
+
+এই Command নিচের কাজগুলো করে:
+
+* optimize Command দ্বারা তৈরি সব Cache File মুছে দেয়
+* Default Cache Driver-এর Cache Key গুলোও মুছে দেয়
+
+---
+
+## Caching Configuration
+
+Production Deployment-এর সময় **Configuration File Cache** করা অত্যন্ত গুরুত্বপূর্ণ।
+
+Laravel-এর Configuration File গুলো থাকে:
+
+```
+config/
+```
+
+এই File গুলো একত্রে Cache করার জন্য নিচের Command ব্যবহার করা হয়।
+
+```bash id="z8fd5t"
+php artisan config:cache
+```
+
+এই Command সব Configuration File একত্রে একটি Cached File-এ সংরক্ষণ করে।
+
+এর ফলে:
+
+* Laravel Configuration Load করার সময় File System Access কমে যায়
+* Application দ্রুত Configuration Load করতে পারে
+
+একটি গুরুত্বপূর্ণ বিষয় হলো Configuration Cache করার পরে Laravel আর `.env` File সরাসরি পড়ে না।
+
+এই কারণে `.env` Variable ব্যবহার করার সময় একটি নিয়ম অনুসরণ করতে হয়।
+
+`env()` Function শুধুমাত্র **Configuration File-এর ভিতরে ব্যবহার করা উচিত**।
+
+যদি Configuration Cache করার পরে Application Code-এর ভিতরে `env()` ব্যবহার করা হয়, তাহলে সেটি **null return করতে পারে**।
+
+---
+
+## Caching Events
+
+Laravel Application-এ Event এবং Listener Mapping অনেক সময় Automatically Discover করা হয়।
+
+Production Deployment-এর সময় এই Mapping Cache করলে Performance উন্নত হয়।
+
+Event Cache করার জন্য নিচের Command ব্যবহার করা হয়:
+
+```bash id="9ry6d1"
+php artisan event:cache
+```
+
+এই Command Application-এর Event → Listener Mapping Cache করে।
+
+এর ফলে Application Run করার সময় বারবার Event Discovery করতে হয় না।
+
+---
+
+## Caching Routes
+
+Laravel Application বড় হলে Route-এর সংখ্যা অনেক বেশি হতে পারে।
+
+যেমন:
+
+* Web Routes
+* API Routes
+* Admin Routes
+* Authentication Routes
+
+এই Route গুলো Register করার সময় Performance উন্নত করার জন্য Route Cache ব্যবহার করা যায়।
+
+Route Cache করার Command:
+
+```bash id="1y3xw0"
+php artisan route:cache
+```
+
+এই Command সব Route-কে একটি Cached File-এ সংরক্ষণ করে।
+
+এর ফলে Laravel Application Start হওয়ার সময় Route Registration দ্রুত সম্পন্ন হয়।
+
+বিশেষ করে শত শত Route থাকা Application-এ এটি Performance উন্নত করে।
+
+---
+
+## Caching Views
+
+Laravel Application সাধারণত **Blade Template Engine** ব্যবহার করে View Render করে।
+
+Blade Template প্রথমবার Render হওয়ার সময় Laravel সেটিকে **Compiled PHP File**-এ রূপান্তর করে।
+
+Production Deployment-এর সময় আগে থেকেই সব View Compile করে রাখা যায়।
+
+এই কাজটি করার জন্য নিচের Command ব্যবহার করা হয়:
+
+```bash id="8wfa9r"
+php artisan view:cache
+```
+
+এই Command:
+
+* সব Blade Template Precompile করে
+* View Render করার সময় Delay কমায়
+
+এর ফলে User Request দ্রুত Response পায়।
+
+---
+
+## Reloading Services
+
+Laravel Application Production Server-এ Deploy করার পরে কিছু Service দীর্ঘ সময় ধরে Background-এ চলতে থাকে।
+
+যেমন:
+
+* **Queue Workers**
+* **Laravel Reverb**
+* **Laravel Octane**
+
+Application-এর নতুন Version Deploy করার পরে এই Service গুলো পুরোনো Code ব্যবহার করতে পারে।
+
+এই কারণে Deployment-এর পরে এই Service গুলো **Restart বা Reload** করা দরকার।
+
+Laravel এই কাজের জন্য একটি Command প্রদান করে:
+
+```bash id="h0npsl"
+php artisan reload
+```
+
+এই Command চলমান Service গুলোকে Terminate করে যাতে তারা নতুন Code ব্যবহার করে পুনরায় শুরু হয়।
+
+যদি Application **Laravel Cloud**-এ Deploy করা হয়, তাহলে এই Reload Process Automatic ভাবে পরিচালিত হয়।
+
+Laravel Cloud ব্যবহার না করলে Server-এ একটি **Process Monitor** ব্যবহার করা উচিত।
+
+যেমন:
+
+* Supervisor
+* Systemd
+* PM2
+
+এই Monitor Service গুলো Restart করে যখন তারা Stop হয়ে যায়।
+
+এভাবে নিশ্চিত করা যায় যে Application-এর Background Process সবসময় নতুন Code ব্যবহার করছে।
+
+## Debug Mode
+
+Laravel Application-এ কোনো Error ঘটলে User-কে কতটুকু Error Information দেখানো হবে তা নির্ধারণ করা হয় **Debug Mode** দ্বারা।
+
+Debug Mode Configuration থাকে:
+
+```php
+config/app.php
+```
+
+এই File-এ একটি `debug` Option থাকে যা সাধারণত `.env` File-এর **APP_DEBUG** Environment Variable-এর উপর নির্ভর করে।
+
+উদাহরণ:
+
+```env
+APP_DEBUG=true
+```
+
+যদি **APP_DEBUG=true** হয়, তাহলে Laravel Error ঘটলে বিস্তারিত Error Information দেখায়। যেমন:
+
+* Error Message
+* File Name
+* Line Number
+* Stack Trace
+* Debug Information
+
+এটি Development Environment-এ খুব গুরুত্বপূর্ণ কারণ এতে Developer সহজে Error খুঁজে বের করতে পারে।
+
+Production Environment-এ **APP_DEBUG অবশ্যই false হতে হবে**।
+
+```env
+APP_DEBUG=false
+```
+
+যদি Production Server-এ `APP_DEBUG=true` থাকে, তাহলে User Error Page-এ অনেক Sensitive Information দেখতে পারে।
+
+যেমন:
+
+* Database Configuration
+* File Path
+* Internal Application Structure
+* Environment Variables
+
+এগুলো প্রকাশ হয়ে গেলে Application Security ঝুঁকির মধ্যে পড়তে পারে। তাই Production Server-এ Debug Mode সবসময় বন্ধ রাখা উচিত।
+
+---
+
+## The Health Route
+
+Laravel Application-এর একটি **Built-in Health Check Route** থাকে যা Application ঠিকভাবে চলছে কিনা তা পরীক্ষা করার জন্য ব্যবহৃত হয়।
+
+Production Environment-এ এই Route ব্যবহার করা হয়:
+
+* Uptime Monitoring System
+* Load Balancer
+* Orchestration System (যেমন Kubernetes)
+
+Default ভাবে Laravel Health Route থাকে:
+
+```
+/up
+```
+
+যদি Application ঠিকভাবে Boot হয় এবং কোনো Exception না ঘটে, তাহলে এই Route Response দেয়:
+
+```
+HTTP Status: 200
+```
+
+এটি নির্দেশ করে Application সঠিকভাবে চলছে।
+
+যদি Application Boot হওয়ার সময় কোনো সমস্যা ঘটে, তাহলে Response হয়:
+
+```
+HTTP Status: 500
+```
+
+এটি নির্দেশ করে Application-এ সমস্যা রয়েছে।
+
+Health Route-এর URI পরিবর্তন করা যায় **bootstrap/app.php** File-এ।
+
+উদাহরণ:
+
+```php
+->withRouting(
+    web: __DIR__.'/../routes/web.php',
+    commands: __DIR__.'/../routes/console.php',
+    health: '/up',
+    health: '/status',
+)
+```
+
+এখানে Health Route `/status` করা হয়েছে।
+
+---
+
+### DiagnosingHealth Event
+
+যখন Health Route-এ Request আসে, তখন Laravel একটি Event Dispatch করে।
+
+Event:
+
+```
+Illuminate\Foundation\Events\DiagnosingHealth
+```
+
+Developer চাইলে এই Event-এর Listener তৈরি করে Application-এর অতিরিক্ত Health Check করতে পারে।
+
+উদাহরণ হিসেবে Listener-এর ভিতরে নিচের বিষয়গুলো পরীক্ষা করা যায়:
+
+* Database Connection কাজ করছে কিনা
+* Cache System ঠিক আছে কিনা
+* External Service Available কিনা
+
+যদি Listener কোনো সমস্যা সনাক্ত করে, তাহলে একটি **Exception Throw** করা যায়। এতে Health Route Response **500** হয়ে যাবে, যা Monitoring System-কে জানাবে যে Application-এ সমস্যা রয়েছে।
+
+---
+
+## Deploying With Laravel Cloud or Forge
+
+Laravel Application Production Server-এ Deploy করার জন্য Laravel কিছু Managed Platform প্রদান করে।
+
+---
+
+### Laravel Cloud
+
+**Laravel Cloud** হলো Laravel Application Deploy করার জন্য একটি Fully Managed Platform।
+
+এই Platform-এ Application Deploy করলে Developer-কে Server Configuration নিয়ে খুব বেশি চিন্তা করতে হয় না।
+
+Laravel Cloud সাধারণত নিচের Service গুলো Managed ভাবে প্রদান করে:
+
+* Compute Servers
+* Databases
+* Cache Systems
+* Object Storage
+
+Laravel Cloud-এর প্রধান সুবিধা হলো:
+
+* Automatic Scaling
+* Simplified Deployment
+* Laravel Framework-এর সাথে Seamless Integration
+
+Laravel Framework-এর Creator-রা এই Platform তৈরি করেছে, তাই এটি Laravel Application-এর সাথে খুব ভালোভাবে কাজ করে।
+
+Developer Application Code লিখে Deploy করলেই Cloud Platform Server Management Handle করে।
+
+---
+
+### Laravel Forge
+
+**Laravel Forge** একটি Server Management Platform যা Developer-কে নিজের Server ব্যবহার করেও সহজভাবে Laravel Application Deploy করতে সাহায্য করে।
+
+Forge ব্যবহার করলে Developer নিজের **VPS Server** ব্যবহার করতে পারে।
+
+Forge বিভিন্ন Cloud Provider-এ Server তৈরি করতে পারে।
+
+যেমন:
+
+* DigitalOcean
+* Linode
+* AWS
+* Vultr
+
+Laravel Forge Server তৈরি করার পরে Automatically প্রয়োজনীয় Software Install করে।
+
+যেমন:
+
+* **Nginx** (Web Server)
+* **MySQL** (Database)
+* **Redis** (Cache)
+* **Memcached**
+* **Beanstalk Queue**
+
+এর ফলে Developer-কে Server Configuration Manual ভাবে করতে হয় না।
+
+Forge মূলত তাদের জন্য উপযোগী যারা:
+
+* নিজের Server Control করতে চায়
+* কিন্তু Server Setup Manual ভাবে করতে স্বাচ্ছন্দ্য বোধ করে না
+
+Forge Server Setup এবং Laravel Deployment Process সহজ করে দেয়।
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter-9: Architecture Concepts - Request Lifecycle
+
+## 📚 Table of Contents
+
+1. [Request Lifecycle](#request-lifecycle)
+
+## Request Lifecycle
+
+## Introduction
+
+কোনো Framework ব্যবহার করার সময় যদি Developer বুঝতে পারে Frameworkটি ভিতরে ভিতরে কীভাবে কাজ করে, তাহলে সেই Framework ব্যবহার করা অনেক সহজ হয়ে যায়। Laravel-ও এর ব্যতিক্রম নয়। Laravel Application-এর ভিতরে একটি Request Browser থেকে Server-এ আসার পর কীভাবে Process হয় এবং শেষ পর্যন্ত কীভাবে Response Browser-এ ফিরে যায়—এই পুরো Process-কে **Request Lifecycle** বলা হয়।
+
+Laravel Framework অনেক কাজ Automatic ভাবে করে বলে অনেক সময় মনে হয় Framework-এর ভিতরে যেন “magic” হচ্ছে। কিন্তু বাস্তবে প্রতিটি Step নির্দিষ্টভাবে কাজ করে। Request Lifecycle বোঝার মাধ্যমে Developer বুঝতে পারে:
+
+* Request কোথা থেকে শুরু হয়
+* কীভাবে Framework Load হয়
+* Middleware কীভাবে কাজ করে
+* Controller কীভাবে Execute হয়
+* Response কীভাবে Browser-এ ফিরে যায়
+
+---
+
+## Lifecycle Overview
+
+Laravel Application-এ একটি HTTP Request সাধারণত নিচের ধাপগুলো অতিক্রম করে:
+
+1. Request প্রথমে `public/index.php` File-এ আসে
+2. Laravel Application Bootstrap হয়
+3. Request Kernel-এর মাধ্যমে Process হয়
+4. Service Providers Load হয়
+5. Request Router-এ পাঠানো হয়
+6. Middleware Process হয়
+7. Controller বা Route Execute হয়
+8. Response তৈরি হয়
+9. Response Middleware-এর মাধ্যমে ফিরে আসে
+10. Browser-এ Response পাঠানো হয়
+
+---
+
+## First Steps
+
+Laravel Application-এ আসা প্রতিটি HTTP Request-এর **Entry Point** হলো:
+
+```text
+public/index.php
+```
+
+Browser থেকে যখন কোনো User URL Access করে, তখন Web Server (যেমন Apache বা Nginx) সব Request এই File-এ পাঠিয়ে দেয়।
+
+এই File-এ খুব বেশি Code থাকে না। এর কাজ মূলত Laravel Framework Load করার জন্য একটি Starting Point হিসেবে কাজ করা।
+
+এই File দুটি গুরুত্বপূর্ণ কাজ করে।
+
+প্রথমত, এটি Composer-এর Autoloader Load করে।
+
+```php
+require __DIR__.'/../vendor/autoload.php';
+```
+
+Composer Autoloader Laravel Application-এর সমস্ত Class Automatic Load করতে সাহায্য করে।
+
+দ্বিতীয়ত, এটি Laravel Application Instance তৈরি করে।
+
+```php
+bootstrap/app.php
+```
+
+এই File থেকে Laravel Application Instance Load করা হয়। Laravel Application Instance তৈরি হওয়ার সময় Framework-এর **Service Container** তৈরি হয়।
+
+Service Container হলো Laravel-এর একটি গুরুত্বপূর্ণ Component যা Dependency Management এবং Object Creation পরিচালনা করে।
+
+---
+
+## HTTP / Console Kernels
+
+Laravel Application-এ Request দুই ধরনের হতে পারে।
+
+1. HTTP Request
+2. Console Request (Artisan Command)
+
+HTTP Request সাধারণত Browser থেকে আসে।
+Console Request আসে Terminal থেকে Artisan Command চালানোর সময়।
+
+Laravel এই দুই ধরনের Request Handle করার জন্য দুটি Kernel ব্যবহার করে।
+
+* HTTP Kernel
+* Console Kernel
+
+HTTP Request সাধারণত Process হয়:
+
+```text
+Illuminate\Foundation\Http\Kernel
+```
+
+এই Kernel Application-এর কেন্দ্রীয় Processing System হিসেবে কাজ করে।
+
+Kernel-এর প্রধান কাজগুলো হলো:
+
+* Request Process করা
+* Middleware Run করা
+* Response Return করা
+
+Kernel-এর `handle` Method Request গ্রহণ করে এবং একটি Response Return করে।
+
+সরলভাবে Kernel-কে এমন একটি Black Box হিসেবে ভাবা যায় যেখানে Request দিলে Response পাওয়া যায়।
+
+---
+
+## Bootstrappers
+
+HTTP Kernel কিছু Bootstrapping Class Execute করে Request Process করার আগে।
+
+এই Bootstrappers কিছু গুরুত্বপূর্ণ কাজ করে যেমন:
+
+* Error Handling Configure করা
+* Logging Configure করা
+* Application Environment Detect করা
+* Framework Configuration Load করা
+
+এই Bootstrapping Process সাধারণত Framework-এর Internal Configuration পরিচালনা করে।
+
+---
+
+## Middleware
+
+HTTP Kernel Request-কে Application-এর **Middleware Stack** এর মাধ্যমে পাঠায়।
+
+Middleware হলো এমন কিছু Filter যা Request Application-এর ভিতরে প্রবেশ করার আগে বা Response Browser-এ যাওয়ার আগে কিছু কাজ করতে পারে।
+
+Middleware সাধারণত নিচের কাজগুলো করে:
+
+* Session Handle করা
+* CSRF Token Verify করা
+* Authentication Check করা
+* Maintenance Mode Check করা
+
+উদাহরণ হিসেবে Laravel-এ একটি Middleware আছে যা পরীক্ষা করে User Login করা আছে কিনা।
+
+যদি User Authenticate না হয়, তাহলে Middleware তাকে Login Page-এ Redirect করে।
+
+যদি User Authenticate হয়, তাহলে Request Application-এর পরবর্তী ধাপে এগিয়ে যায়।
+
+কিছু Middleware Application-এর সব Route-এ প্রযোজ্য হয়। যেমন:
+
+```text
+PreventRequestsDuringMaintenance
+```
+
+আবার কিছু Middleware নির্দিষ্ট Route বা Route Group-এ ব্যবহার করা হয়।
+
+---
+
+## Service Providers
+
+Laravel Framework Bootstrapping-এর সবচেয়ে গুরুত্বপূর্ণ অংশ হলো **Service Providers**।
+
+Service Provider-এর কাজ হলো Framework-এর বিভিন্ন Component Initialize করা।
+
+উদাহরণ:
+
+* Database System
+* Queue System
+* Validation System
+* Routing System
+
+Laravel Application Boot হওয়ার সময় Framework একটি List থেকে সব Service Provider Load করে।
+
+প্রতিটি Service Provider-এর দুটি গুরুত্বপূর্ণ Method থাকে।
+
+### register()
+
+এই Method Service Container-এ বিভিন্ন Service Bind করার জন্য ব্যবহৃত হয়।
+
+### boot()
+
+এই Method Application Boot হওয়ার পরে বিভিন্ন Service Configure করার জন্য ব্যবহৃত হয়।
+
+Laravel প্রথমে সব Provider-এর `register()` Method Run করে।
+
+এর পরে সব Provider Register হওয়ার পর `boot()` Method Run করে।
+
+এর ফলে প্রতিটি Provider নিশ্চিত হতে পারে যে সব Service Container Binding ইতিমধ্যে তৈরি হয়েছে।
+
+Laravel Framework-এর প্রায় সব Feature Service Provider-এর মাধ্যমে Initialize হয়।
+
+Application-এর Service Provider সাধারণত থাকে:
+
+```text
+app/Providers
+```
+
+Laravel Application-এর Custom Provider গুলো এই Directory-তে রাখা হয়।
+
+Laravel Application কোন কোন Provider ব্যবহার করছে তা দেখা যায়:
+
+```text
+bootstrap/providers.php
+```
+
+---
+
+## Routing
+
+Application Bootstrap হওয়ার পরে Request **Router**-এর কাছে পাঠানো হয়।
+
+Router Request-এর URL অনুযায়ী নির্ধারণ করে কোন Route বা Controller Execute হবে।
+
+উদাহরণ:
+
+```php
+Route::get('/users', [UserController::class, 'index']);
+```
+
+যদি User `/users` URL Access করে, তাহলে `UserController@index` Method Execute হবে।
+
+Router Route Execute করার আগে সেই Route-এর Middleware Run করে।
+
+---
+
+## Middleware During Routing
+
+Route Execute হওয়ার আগে Middleware Request পরীক্ষা করে।
+
+উদাহরণ:
+
+```php
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', DashboardController::class);
+});
+```
+
+এখানে `auth` Middleware পরীক্ষা করে User Login করা আছে কিনা।
+
+যদি User Login না থাকে, তাহলে তাকে Login Page-এ পাঠানো হয়।
+
+যদি User Login করা থাকে, তাহলে Request Controller পর্যন্ত পৌঁছে।
+
+---
+
+## Controller Execution
+
+যখন Request সমস্ত Middleware পার হয়ে যায়, তখন Laravel সংশ্লিষ্ট **Route বা Controller Method** Execute করে।
+
+Controller Method সাধারণত নিচের কাজগুলো করে:
+
+* Database Query
+* Business Logic Execute
+* Data Process করা
+* View Return করা
+
+উদাহরণ:
+
+```php
+return view('dashboard');
+```
+
+এটি একটি Response তৈরি করে।
+
+---
+
+## Finishing Up
+
+Controller বা Route Method যখন Response তৈরি করে, তখন সেই Response আবার Middleware-এর মাধ্যমে ফিরে আসে।
+
+এই সময় Middleware Response Modify করতে পারে।
+
+যেমন:
+
+* Header যোগ করা
+* Response পরিবর্তন করা
+* Cookie যুক্ত করা
+
+শেষে HTTP Kernel সেই Response Browser-এ পাঠিয়ে দেয়।
+
+Laravel-এর ভিতরে Response পাঠানোর জন্য `send()` Method ব্যবহার করা হয়।
+
+এর মাধ্যমে Response Content User-এর Browser-এ পৌঁছে যায়।
+
+এভাবেই Laravel Request Lifecycle সম্পন্ন হয়।
+
+---
+
+## Focus on Service Providers
+
+Laravel Application Bootstrapping বোঝার ক্ষেত্রে **Service Providers** সবচেয়ে গুরুত্বপূর্ণ অংশ।
+
+Laravel Application Boot হওয়ার সময় তিনটি প্রধান কাজ হয়:
+
+1. Application Instance তৈরি হয়
+2. Service Providers Register হয়
+3. Request Bootstrapped Application-এ পাঠানো হয়
+
+Application-এর Custom Service Provider সাধারণত থাকে:
+
+```text
+app/Providers
+```
+
+এখানে একটি Default Provider থাকে:
+
+```text
+AppServiceProvider
+```
+
+এই Provider সাধারণত খুবই সাধারণ থাকে এবং Developer চাইলে এখানে Application-এর নিজস্ব Bootstrapping Logic যোগ করতে পারে।
+
+উদাহরণ:
+
+* Custom Service Container Binding
+* Application Configuration
+* Global Event Listener
+
+বড় Application-এ Developer অনেকগুলো Service Provider তৈরি করতে পারে যাতে বিভিন্ন Feature আলাদা আলাদা Provider দ্বারা পরিচালিত হয়।
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter-10: Service Container
+
+## 📚 Table of Contents
+
+1. [Service Container](#service-container)
+2. [Binding](#binding)
+3. [Resolving](#resolving)
+
+## Service Container
+
+## Introduction
+
+Laravel Framework-এর একটি অত্যন্ত গুরুত্বপূর্ণ Component হলো **Service Container**। এটি মূলত একটি শক্তিশালী Dependency Management System যা Application-এর বিভিন্ন Class-এর মধ্যে Dependency পরিচালনা করে এবং **Dependency Injection** সহজভাবে বাস্তবায়ন করতে সাহায্য করে।
+
+Dependency Injection বলতে বোঝায়—একটি Class-এর প্রয়োজনীয় অন্য Class বা Service-কে সেই Class-এর ভিতরে Inject করা। সাধারণত এটি করা হয় **Constructor** অথবা কখনও কখনও **Setter Method** ব্যবহার করে।
+
+Laravel Service Container এই Dependency গুলো স্বয়ংক্রিয়ভাবে তৈরি করে এবং সঠিক স্থানে Inject করে দেয়।
+
+একটি Controller উদাহরণ দেখা যাক।
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Services\AppleMusic;
+use Illuminate\View\View;
+
+class PodcastController extends Controller
+{
+    /**
+     * Create a new controller instance.
+     */
+    public function __construct(
+        protected AppleMusic $apple,
+    ) {}
+
+    /**
+     * Show information about the given podcast.
+     */
+    public function show(string $id): View
+    {
+        return view('podcasts.show', [
+            'podcast' => $this->apple->findPodcast($id)
+        ]);
+    }
+}
+```
+
+এই Controller-এ `PodcastController` নামের একটি Class তৈরি করা হয়েছে। এই Controller-এর কাজ হলো Podcast সম্পর্কিত তথ্য প্রদর্শন করা।
+
+এই Controller-এর Constructor-এ একটি Dependency রয়েছে:
+
+```php
+protected AppleMusic $apple
+```
+
+এর মানে এই Controller কাজ করার জন্য `AppleMusic` নামের একটি Service দরকার।
+
+Laravel Service Container স্বয়ংক্রিয়ভাবে `AppleMusic` Class-এর একটি Instance তৈরি করে এবং Controller-এর Constructor-এ Inject করে দেয়।
+
+এর ফলে Controller সহজেই Apple Music API বা অন্য কোনো Data Source থেকে Podcast তথ্য আনতে পারে।
+
+```php
+$this->apple->findPodcast($id)
+```
+
+এখানে `findPodcast()` Method ব্যবহার করে নির্দিষ্ট Podcast-এর তথ্য সংগ্রহ করা হচ্ছে।
+
+Dependency Injection ব্যবহারের একটি বড় সুবিধা হলো **Testing সহজ হয়ে যায়**। Testing করার সময় Developer আসল Service ব্যবহার না করে একটি **Mock Service** ব্যবহার করতে পারে। এতে Application-এর বিভিন্ন অংশ আলাদা করে পরীক্ষা করা সহজ হয়।
+
+---
+
+## Zero Configuration Resolution
+
+Laravel Service Container-এর একটি গুরুত্বপূর্ণ বৈশিষ্ট্য হলো **Zero Configuration Resolution**।
+
+এর মানে হলো অনেক ক্ষেত্রে Developer-কে Container-কে আলাদা করে কিছু বলতে হয় না। Laravel নিজেই Class Dependency বুঝে নিয়ে Instance তৈরি করে দেয়।
+
+যদি একটি Class-এর কোনো Dependency না থাকে, অথবা শুধুমাত্র অন্য Concrete Class-এর উপর নির্ভর করে, তাহলে Container নিজে থেকেই সেটি Resolve করতে পারে।
+
+উদাহরণ:
+
+```php
+<?php
+
+class Service
+{
+    // ...
+}
+
+Route::get('/', function (Service $service) {
+    dd($service::class);
+});
+```
+
+এখানে একটি `Service` Class তৈরি করা হয়েছে।
+
+Route-এর ভিতরে `Service $service` Parameter ব্যবহার করা হয়েছে।
+
+Laravel Service Container স্বয়ংক্রিয়ভাবে `Service` Class-এর একটি Instance তৈরি করে এবং Route Handler-এ Inject করে দেয়।
+
+এর ফলে Developer-কে আলাদা করে Object তৈরি করতে হয় না।
+
+এই পদ্ধতি Laravel Development-কে অনেক সহজ করে তোলে এবং Configuration File বড় হওয়ার প্রয়োজন হয় না।
+
+---
+
+## Automatic Dependency Injection
+
+Laravel Application-এর অনেক Component স্বয়ংক্রিয়ভাবে Service Container ব্যবহার করে Dependency Injection করে।
+
+যেমন:
+
+* Controllers
+* Event Listeners
+* Middleware
+* Queued Jobs
+
+উদাহরণ হিসেবে Route-এর ভিতরে Request Object Inject করা যায়।
+
+```php
+use Illuminate\Http\Request;
+
+Route::get('/', function (Request $request) {
+    // ...
+});
+```
+
+এখানে `Request` Object Container দ্বারা স্বয়ংক্রিয়ভাবে তৈরি হয় এবং Route Function-এর মধ্যে Inject করা হয়।
+
+এর ফলে Developer সহজে বর্তমান HTTP Request-এর তথ্য ব্যবহার করতে পারে।
+
+এই পুরো Injection Process Service Container-এর মাধ্যমে Background-এ পরিচালিত হয়।
+
+---
+
+## When to Utilize the Container
+
+Laravel Application তৈরি করার সময় বেশিরভাগ ক্ষেত্রেই Developer-কে Service Container-এর সাথে সরাসরি কাজ করতে হয় না। কারণ Laravel Automatic Dependency Injection এবং Facades ব্যবহার করে অনেক কাজ সহজ করে দেয়।
+
+তবুও কিছু পরিস্থিতিতে Developer-কে Container-এর সাথে সরাসরি কাজ করতে হতে পারে।
+
+প্রথম পরিস্থিতি হলো যখন একটি Class **Interface implement** করে।
+
+যদি কোনো Route, Controller বা Class Constructor-এ Interface Type-hint ব্যবহার করা হয়, তাহলে Laravel-কে বলতে হয় কোন Concrete Class সেই Interface-এর Implementation হিসেবে ব্যবহার করতে হবে।
+
+কারণ Interface নিজে থেকে Instantiate করা যায় না।
+
+দ্বিতীয় পরিস্থিতি হলো যখন Developer একটি **Laravel Package** তৈরি করে।
+
+যদি সেই Package অন্য Developer ব্যবহার করতে পারে এমনভাবে তৈরি করা হয়, তাহলে Package-এর Service গুলো Laravel Service Container-এর মধ্যে Register করতে হয়।
+
+এর ফলে Laravel Application সহজে সেই Package-এর Service ব্যবহার করতে পারে।
+
+Laravel Service Container মূলত Application-এর ভিতরে Object Creation, Dependency Injection এবং Service Management পরিচালনা করে। বড় এবং জটিল Application তৈরি করার সময় এটি অত্যন্ত গুরুত্বপূর্ণ ভূমিকা পালন করে।
+
+
+## Binding
+
+Service Container-এ **Binding** বলতে বোঝায়—Container-কে জানিয়ে দেওয়া যে কোনো নির্দিষ্ট Class, Interface, বা Object কীভাবে তৈরি হবে এবং Application-এর কোথায় কোথায় সেটি ব্যবহার করা হবে।
+
+Laravel-এ Binding সাধারণত **Service Provider**-এর ভিতরে করা হয়। Service Provider-এর মধ্যে `$this->app` Property ব্যবহার করে Service Container Access করা যায়।
+
+---
+
+## Binding Basics
+
+Service Container-এ Binding করার সময় সাধারণত দুটি জিনিস দেওয়া হয়:
+
+1. কোন Class বা Interface Container-এ Register করা হবে
+2. কীভাবে সেই Object তৈরি হবে
+
+Binding করার জন্য Container-এর `bind()` Method ব্যবহার করা হয়।
+
+---
+
+## Simple Bindings
+
+Service Provider-এর ভিতরে একটি Class Container-এ Bind করার উদাহরণ:
+
+```php
+use App\Services\Transistor;
+use App\Services\PodcastParser;
+use Illuminate\Contracts\Foundation\Application;
+
+$this->app->bind(Transistor::class, function (Application $app) {
+    return new Transistor($app->make(PodcastParser::class));
+});
+```
+
+এখানে `Transistor` Class Container-এ Register করা হয়েছে।
+
+Closure Function-এর ভিতরে Container (`$app`) পাওয়া যায়। এই Container ব্যবহার করে অন্য Dependency Resolve করা যায়।
+
+উপরের উদাহরণে `Transistor` Class তৈরি করার সময় `PodcastParser` Class-কে Container থেকে তৈরি করা হয়েছে।
+
+```php
+$app->make(PodcastParser::class)
+```
+
+এর মানে Container `PodcastParser` Class-এর Instance তৈরি করবে এবং সেটি `Transistor`-এর Constructor-এ পাঠাবে।
+
+---
+
+## Container Outside Service Provider
+
+Service Container সাধারণত Service Provider-এ ব্যবহার করা হয়। তবে চাইলে Application-এর অন্য জায়গা থেকেও Container ব্যবহার করা যায়।
+
+এর জন্য **App Facade** ব্যবহার করা হয়।
+
+```php
+use App\Services\Transistor;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\Facades\App;
+
+App::bind(Transistor::class, function (Application $app) {
+    // ...
+});
+```
+
+এখানে `App::bind()` ব্যবহার করে Container-এ Binding করা হয়েছে।
+
+---
+
+## bindIf Method
+
+কখনও কখনও Container-এ Binding শুধুমাত্র তখন করতে হয় যখন আগে থেকে কোনো Binding Register করা না থাকে।
+
+এই ক্ষেত্রে `bindIf()` Method ব্যবহার করা হয়।
+
+```php
+$this->app->bindIf(Transistor::class, function (Application $app) {
+    return new Transistor($app->make(PodcastParser::class));
+});
+```
+
+যদি `Transistor` Class ইতিমধ্যে Container-এ Bind করা থাকে, তাহলে নতুন Binding Register হবে না।
+
+---
+
+## Automatic Type Inference
+
+Binding করার সময় Class Name আলাদা করে না লিখলেও Laravel Return Type দেখে Class নির্ধারণ করতে পারে।
+
+উদাহরণ:
+
+```php
+App::bind(function (Application $app): Transistor {
+    return new Transistor($app->make(PodcastParser::class));
+});
+```
+
+এখানে Closure-এর Return Type `Transistor` হওয়ায় Laravel নিজে থেকেই বুঝে নেয় কোন Class Bind করতে হবে।
+
+---
+
+## Binding A Singleton
+
+কিছু Service Application-এ শুধুমাত্র একবার তৈরি হওয়া উচিত। এই ধরনের Service Container-এ **Singleton Binding** ব্যবহার করা হয়।
+
+Singleton Binding করার জন্য `singleton()` Method ব্যবহার করা হয়।
+
+```php
+use App\Services\Transistor;
+use App\Services\PodcastParser;
+use Illuminate\Contracts\Foundation\Application;
+
+$this->app->singleton(Transistor::class, function (Application $app) {
+    return new Transistor($app->make(PodcastParser::class));
+});
+```
+
+এখানে `Transistor` Class শুধুমাত্র একবার তৈরি হবে।
+
+পরবর্তী সব Container Call-এ একই Instance ব্যবহার করা হবে।
+
+---
+
+## singletonIf Method
+
+Singleton Binding শুধুমাত্র তখন Register করতে চাইলে যখন আগে থেকে Binding না থাকে, তখন `singletonIf()` ব্যবহার করা হয়।
+
+```php
+$this->app->singletonIf(Transistor::class, function (Application $app) {
+    return new Transistor($app->make(PodcastParser::class));
+});
+```
+
+---
+
+## Singleton Attribute
+
+Laravel-এ Attribute ব্যবহার করেও Singleton Binding নির্ধারণ করা যায়।
+
+```php
+namespace App\Services;
+
+use Illuminate\Container\Attributes\Singleton;
+
+#[Singleton]
+class Transistor
+{
+    // ...
+}
+```
+
+এখানে `#[Singleton]` Attribute ব্যবহার করার ফলে Container এই Class-কে শুধুমাত্র একবার Resolve করবে।
+
+---
+
+## Binding Scoped Singletons
+
+`scoped()` Method ব্যবহার করে এমন Binding তৈরি করা যায় যা একটি নির্দিষ্ট **Request বা Job Lifecycle**-এর মধ্যে একবার তৈরি হবে।
+
+```php
+use App\Services\Transistor;
+use App\Services\PodcastParser;
+use Illuminate\Contracts\Foundation\Application;
+
+$this->app->scoped(Transistor::class, function (Application $app) {
+    return new Transistor($app->make(PodcastParser::class));
+});
+```
+
+এই Binding নতুন Lifecycle শুরু হলে আবার নতুন Instance তৈরি করবে।
+
+Lifecycle উদাহরণ:
+
+* নতুন HTTP Request
+* Queue Worker-এর নতুন Job
+* Laravel Octane Worker-এর নতুন Request
+
+---
+
+## scopedIf Method
+
+Scoped Binding শুধুমাত্র তখন Register করতে চাইলে যখন আগে থেকে Binding না থাকে, তখন `scopedIf()` ব্যবহার করা হয়।
+
+```php
+$this->app->scopedIf(Transistor::class, function (Application $app) {
+    return new Transistor($app->make(PodcastParser::class));
+});
+```
+
+---
+
+## Scoped Attribute
+
+Attribute ব্যবহার করেও Scoped Binding নির্ধারণ করা যায়।
+
+```php
+namespace App\Services;
+
+use Illuminate\Container\Attributes\Scoped;
+
+#[Scoped]
+class Transistor
+{
+    // ...
+}
+```
+
+এই Attribute ব্যবহার করলে Class-টি একটি Lifecycle-এর মধ্যে একবার Resolve হবে।
+
+---
+
+## Binding Instances
+
+কখনও কখনও Container-এ একটি Object Instance সরাসরি Register করতে হয়।
+
+এর জন্য `instance()` Method ব্যবহার করা হয়।
+
+```php
+use App\Services\Transistor;
+use App\Services\PodcastParser;
+
+$service = new Transistor(new PodcastParser);
+
+$this->app->instance(Transistor::class, $service);
+```
+
+এখানে Container-এ একটি নির্দিষ্ট Object Register করা হয়েছে।
+
+পরবর্তী সব Container Call-এ একই Instance Return হবে।
+
+---
+
+## Binding Interfaces to Implementations
+
+Service Container-এর একটি শক্তিশালী Feature হলো **Interface-কে নির্দিষ্ট Implementation-এর সাথে Bind করা**।
+
+উদাহরণ:
+
+```php
+use App\Contracts\EventPusher;
+use App\Services\RedisEventPusher;
+
+$this->app->bind(EventPusher::class, RedisEventPusher::class);
+```
+
+এখানে Container-কে বলা হয়েছে:
+
+যখনই `EventPusher` Interface দরকার হবে, তখন `RedisEventPusher` Class ব্যবহার করতে হবে।
+
+এর ফলে Controller বা অন্য Class-এ Interface ব্যবহার করা যায়।
+
+```php
+use App\Contracts\EventPusher;
+
+public function __construct(
+    protected EventPusher $pusher,
+) {}
+```
+
+Container তখন Automatic ভাবে `RedisEventPusher` Inject করবে।
+
+---
+
+## Bind Attribute
+
+Laravel একটি **Bind Attribute** প্রদান করে যা Interface-এর উপর ব্যবহার করা যায়।
+
+```php
+namespace App\Contracts;
+
+use App\Services\FakeEventPusher;
+use App\Services\RedisEventPusher;
+use Illuminate\Container\Attributes\Bind;
+
+#[Bind(RedisEventPusher::class)]
+#[Bind(FakeEventPusher::class, environments: ['local', 'testing'])]
+interface EventPusher
+{
+    // ...
+}
+```
+
+এখানে দুটি Implementation নির্ধারণ করা হয়েছে।
+
+Production Environment-এ `RedisEventPusher` ব্যবহার হবে।
+
+Local এবং Testing Environment-এ `FakeEventPusher` ব্যবহার হবে।
+
+---
+
+## Combining Bind with Singleton
+
+Bind Attribute-এর সাথে `Singleton` বা `Scoped` Attribute ব্যবহার করা যায়।
+
+```php
+use App\Services\RedisEventPusher;
+use Illuminate\Container\Attributes\Bind;
+use Illuminate\Container\Attributes\Singleton;
+
+#[Bind(RedisEventPusher::class)]
+#[Singleton]
+interface EventPusher
+{
+    // ...
+}
+```
+
+এখানে `EventPusher` Interface-এর Implementation হবে `RedisEventPusher` এবং এটি Container-এ Singleton হিসেবে Resolve হবে।
+
+
+## Contextual Binding
+
+Laravel Service Container সাধারণত একটি Interface-এর জন্য একটি নির্দিষ্ট Implementation ব্যবহার করে। কিন্তু কিছু ক্ষেত্রে একই Interface বিভিন্ন Class-এ ভিন্ন Implementation ব্যবহার করতে হতে পারে। এই সমস্যার সমাধানের জন্য Laravel **Contextual Binding** প্রদান করে।
+
+Contextual Binding ব্যবহার করলে Container-কে বলা যায় — **কোন Class-এর জন্য কোন Implementation ব্যবহার করতে হবে**।
+
+ধরুন একটি Interface আছে:
+
+```
+Illuminate\Contracts\Filesystem\Filesystem
+```
+
+এই Interface ব্যবহার করে File Storage পরিচালনা করা হয়। এখন ধরুন তিনটি Controller আছে:
+
+* PhotoController
+* VideoController
+* UploadController
+
+এদের প্রত্যেকের জন্য ভিন্ন Storage Disk ব্যবহার করতে হবে।
+
+উদাহরণ:
+
+```php id="3fa0rv"
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\UploadController;
+use App\Http\Controllers\VideoController;
+use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
+
+$this->app->when(PhotoController::class)
+    ->needs(Filesystem::class)
+    ->give(function () {
+        return Storage::disk('local');
+    });
+
+$this->app->when([VideoController::class, UploadController::class])
+    ->needs(Filesystem::class)
+    ->give(function () {
+        return Storage::disk('s3');
+    });
+```
+
+এখানে Container-কে বলা হয়েছে:
+
+* **PhotoController** → local disk ব্যবহার করবে
+* **VideoController এবং UploadController** → s3 disk ব্যবহার করবে
+
+অর্থাৎ একই Interface হলেও Controller অনুযায়ী Implementation আলাদা হবে।
+
+---
+
+## Contextual Attributes
+
+Contextual Binding অনেক সময় Driver বা Configuration Value Inject করার জন্য ব্যবহার করা হয়। Laravel এই কাজ সহজ করার জন্য কিছু **Contextual Attributes** প্রদান করেছে।
+
+এই Attribute ব্যবহার করলে Service Provider-এ Binding আলাদা করে লিখতে হয় না।
+
+### Storage Attribute
+
+উদাহরণ:
+
+```php id="d14tqp"
+namespace App\Http\Controllers;
+
+use Illuminate\Container\Attributes\Storage;
+use Illuminate\Contracts\Filesystem\Filesystem;
+
+class PhotoController extends Controller
+{
+    public function __construct(
+        #[Storage('local')] protected Filesystem $filesystem
+    ) {
+        // ...
+    }
+}
+```
+
+এখানে `#[Storage('local')]` Attribute ব্যবহার করা হয়েছে।
+
+এর ফলে Container স্বয়ংক্রিয়ভাবে **local disk** ব্যবহার করে Filesystem Instance Inject করবে।
+
+---
+
+## Available Contextual Attributes
+
+Laravel অনেক ধরনের Built-in Attribute প্রদান করে।
+
+উদাহরণ:
+
+```php id="86wsg7"
+namespace App\Http\Controllers;
+
+use App\Contracts\UserRepository;
+use App\Models\Photo;
+use App\Repositories\DatabaseRepository;
+use Illuminate\Container\Attributes\Auth;
+use Illuminate\Container\Attributes\Cache;
+use Illuminate\Container\Attributes\Config;
+use Illuminate\Container\Attributes\Context;
+use Illuminate\Container\Attributes\DB;
+use Illuminate\Container\Attributes\Give;
+use Illuminate\Container\Attributes\Log;
+use Illuminate\Container\Attributes\RouteParameter;
+use Illuminate\Container\Attributes\Tag;
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Cache\Repository;
+use Illuminate\Database\Connection;
+use Psr\Log\LoggerInterface;
+
+class PhotoController extends Controller
+{
+    public function __construct(
+        #[Auth('web')] protected Guard $auth,
+        #[Cache('redis')] protected Repository $cache,
+        #[Config('app.timezone')] protected string $timezone,
+        #[Context('uuid')] protected string $uuid,
+        #[Context('ulid', hidden: true)] protected string $ulid,
+        #[DB('mysql')] protected Connection $connection,
+        #[Give(DatabaseRepository::class)] protected UserRepository $users,
+        #[Log('daily')] protected LoggerInterface $log,
+        #[RouteParameter('photo')] protected Photo $photo,
+        #[Tag('reports')] protected iterable $reports,
+    ) {
+        // ...
+    }
+}
+```
+
+এই Attribute গুলোর কাজ সংক্ষেপে:
+
+* **Auth** → নির্দিষ্ট Auth Guard Inject করে
+* **Cache** → নির্দিষ্ট Cache Driver Inject করে
+* **Config** → Configuration Value Inject করে
+* **Context** → Custom Context Data Inject করে
+* **DB** → নির্দিষ্ট Database Connection Inject করে
+* **Give** → নির্দিষ্ট Implementation Inject করে
+* **Log** → নির্দিষ্ট Log Channel Inject করে
+* **RouteParameter** → Route Parameter Inject করে
+* **Tag** → Tag করা Service গুলো Inject করে
+
+---
+
+## CurrentUser Attribute
+
+Laravel একটি বিশেষ Attribute প্রদান করে যার নাম **CurrentUser**।
+
+এটি বর্তমানে Authenticate করা User Inject করার জন্য ব্যবহৃত হয়।
+
+উদাহরণ:
+
+```php id="48htuc"
+use App\Models\User;
+use Illuminate\Container\Attributes\CurrentUser;
+
+Route::get('/user', function (#[CurrentUser] User $user) {
+    return $user;
+})->middleware('auth');
+```
+
+এখানে Container বর্তমানে Login করা User Object Inject করবে।
+
+---
+
+## Defining Custom Attributes
+
+Laravel-এ Developer চাইলে নিজের **Custom Contextual Attribute** তৈরি করতে পারে।
+
+এর জন্য `ContextualAttribute` Interface Implement করতে হয়।
+
+উদাহরণ:
+
+```php id="tfh9q2"
+namespace App\Attributes;
+
+use Attribute;
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Contracts\Container\ContextualAttribute;
+
+#[Attribute(Attribute::TARGET_PARAMETER)]
+class Config implements ContextualAttribute
+{
+    public function __construct(
+        public string $key,
+        public mixed $default = null
+    ) {}
+
+    public static function resolve(self $attribute, Container $container)
+    {
+        return $container->make('config')->get(
+            $attribute->key,
+            $attribute->default
+        );
+    }
+}
+```
+
+এখানে একটি Custom Config Attribute তৈরি করা হয়েছে।
+
+Container যখন এই Attribute ব্যবহার করা Parameter পাবে, তখন `resolve()` Method ব্যবহার করে Value Inject করবে।
+
+---
+
+## Binding Primitives
+
+কিছু ক্ষেত্রে Class-এর Constructor-এ Primitive Value (যেমন string, integer) Inject করতে হয়।
+
+Contextual Binding ব্যবহার করে সহজেই এটি করা যায়।
+
+উদাহরণ:
+
+```php id="yte4tn"
+use App\Http\Controllers\UserController;
+
+$this->app->when(UserController::class)
+    ->needs('$variableName')
+    ->give($value);
+```
+
+এখানে `$variableName` Parameter-এর জন্য একটি নির্দিষ্ট Value Inject করা হচ্ছে।
+
+---
+
+## Injecting Tagged Services
+
+কিছু ক্ষেত্রে একটি Class অনেকগুলো Service Instance ব্যবহার করে।
+
+এই ক্ষেত্রে Service গুলোকে **Tag** করে Container থেকে Inject করা যায়।
+
+```php id="0g8n5x"
+$this->app->when(ReportAggregator::class)
+    ->needs('$reports')
+    ->giveTagged('reports');
+```
+
+এখানে `reports` Tag থাকা সব Service Inject হবে।
+
+---
+
+## Injecting Config Values
+
+Configuration File থেকে Value Inject করার জন্য `giveConfig()` ব্যবহার করা যায়।
+
+```php id="2xgkva"
+$this->app->when(ReportAggregator::class)
+    ->needs('$timezone')
+    ->giveConfig('app.timezone');
+```
+
+এখানে `app.timezone` Configuration Value Inject করা হচ্ছে।
+
+---
+
+## Binding Typed Variadics
+
+কখনও কখনও একটি Class Constructor-এ **Variadic Parameter** ব্যবহার করে অনেকগুলো Object গ্রহণ করে।
+
+উদাহরণ:
+
+```php id="csy50y"
+class Firewall
+{
+    protected $filters;
+
+    public function __construct(
+        protected Logger $logger,
+        Filter ...$filters,
+    ) {
+        $this->filters = $filters;
+    }
+}
+```
+
+এখানে `Filter ...$filters` মানে অনেকগুলো Filter Object Constructor-এ পাঠানো যাবে।
+
+Contextual Binding ব্যবহার করে এই Dependency Resolve করা যায়।
+
+```php id="glq7am"
+$this->app->when(Firewall::class)
+    ->needs(Filter::class)
+    ->give(function (Application $app) {
+        return [
+            $app->make(NullFilter::class),
+            $app->make(ProfanityFilter::class),
+            $app->make(TooLongFilter::class),
+        ];
+    });
+```
+
+এখানে Container তিনটি Filter Instance Inject করবে।
+
+আরও সহজভাবে Class Name Array দিয়েও করা যায়।
+
+```php id="3um6p2"
+$this->app->when(Firewall::class)
+    ->needs(Filter::class)
+    ->give([
+        NullFilter::class,
+        ProfanityFilter::class,
+        TooLongFilter::class,
+    ]);
+```
+
+---
+
+## Variadic Tag Dependencies
+
+Variadic Dependency থাকলে Tag ব্যবহার করেও Instance Inject করা যায়।
+
+```php id="s8lgm6"
+$this->app->when(ReportAggregator::class)
+    ->needs(Report::class)
+    ->giveTagged('reports');
+```
+
+এখানে `reports` Tag থাকা সব Service Container থেকে Resolve হয়ে Inject হবে।
+
+---
+
+Laravel Service Container-এর **Contextual Binding** Feature বড় এবং জটিল Application তৈরি করার সময় অত্যন্ত গুরুত্বপূর্ণ। এটি Dependency Injection-কে আরও Flexible এবং Powerful করে তোলে।
+
+## Tagging
+
+Laravel Service Container-এ **Tagging** ব্যবহার করা হয় যখন একই ধরনের অনেকগুলো Service বা Class একসাথে পরিচালনা করতে হয়। অর্থাৎ যদি অনেকগুলো Binding একই Category-এর অন্তর্ভুক্ত হয়, তাহলে সেগুলোকে একটি **Tag** দিয়ে Group করা যায়।
+
+এর ফলে Container থেকে সহজেই সেই Category-এর সব Service একসাথে Resolve করা যায়।
+
+ধরুন একটি Application-এ বিভিন্ন ধরনের **Report Generator** রয়েছে।
+
+উদাহরণ:
+
+* CPU Report
+* Memory Report
+* Disk Report
+
+এই Report Class গুলো একই Interface ব্যবহার করতে পারে, যেমন `Report` Interface।
+
+প্রথমে Container-এ এই Class গুলো Bind করা হয়।
+
+```php id="6c8v0k"
+$this->app->bind(CpuReport::class, function () {
+    // ...
+});
+
+$this->app->bind(MemoryReport::class, function () {
+    // ...
+});
+```
+
+এখন এই Class গুলোকে একটি Group-এর মধ্যে রাখার জন্য **tag()** Method ব্যবহার করা হয়।
+
+```php id="ylqj22"
+$this->app->tag([CpuReport::class, MemoryReport::class], 'reports');
+```
+
+এখানে `reports` নামে একটি Tag তৈরি করা হয়েছে এবং `CpuReport` ও `MemoryReport` এই Tag-এর অন্তর্ভুক্ত হয়েছে।
+
+---
+
+### Resolving Tagged Services
+
+Tag করা Service গুলো Container থেকে একসাথে Retrieve করা যায়।
+
+এর জন্য Container-এর **tagged()** Method ব্যবহার করা হয়।
+
+```php id="y8og6h"
+$this->app->bind(ReportAnalyzer::class, function (Application $app) {
+    return new ReportAnalyzer($app->tagged('reports'));
+});
+```
+
+এখানে Container `reports` Tag-এর অন্তর্ভুক্ত সব Service Resolve করে `ReportAnalyzer` Class-এর Constructor-এ পাঠাবে।
+
+অর্থাৎ `ReportAnalyzer` Class একটি Array বা Iterable আকারে সব Report Implementation পাবে।
+
+এই পদ্ধতি বড় Application-এ খুবই কার্যকর। বিশেষ করে যখন একই ধরনের অনেকগুলো Service একসাথে পরিচালনা করতে হয়।
+
+---
+
+## Extending Bindings
+
+Laravel Service Container-এর আরেকটি গুরুত্বপূর্ণ Feature হলো **extend()** Method।
+
+extend() ব্যবহার করে Container-এ Resolve হওয়া Service-কে Modify বা Decorate করা যায়।
+
+অর্থাৎ একটি Service তৈরি হওয়ার পরে সেটিকে আরেকটি Layer দিয়ে Wrap করা যায়।
+
+উদাহরণ:
+
+```php id="h8b5ls"
+$this->app->extend(Service::class, function (Service $service, Application $app) {
+    return new DecoratedService($service);
+});
+```
+
+এখানে দুটি Parameter থাকে।
+
+1. যে Service Extend করা হচ্ছে
+2. একটি Closure যা Modified Service Return করবে
+
+Closure Function দুটি Argument গ্রহণ করে:
+
+* `$service` → মূল Service Instance
+* `$app` → Service Container Instance
+
+এই উদাহরণে মূল `Service` Object-কে একটি `DecoratedService` Class-এর মধ্যে Wrap করা হয়েছে।
+
+এটি সাধারণত **Decorator Pattern** বাস্তবায়নের জন্য ব্যবহৃত হয়।
+
+Decorator Pattern ব্যবহার করলে মূল Service-এর আচরণ পরিবর্তন না করে অতিরিক্ত Feature যোগ করা যায়।
+
+উদাহরণ হিসেবে extend() ব্যবহার করা হতে পারে:
+
+* Logging যোগ করা
+* Performance Monitoring
+* Caching Layer যুক্ত করা
+* Debugging Information যুক্ত করা
+
+এইভাবে Laravel Service Container শুধুমাত্র Object তৈরি করেই থেমে থাকে না, বরং সেই Object-এর Behavior পরিবর্তন বা উন্নত করার সুযোগও প্রদান করে।
+
+## Resolving
+
+Service Container-এ **Resolving** বলতে বোঝায় Container থেকে কোনো Class বা Service-এর Instance তৈরি করে আনা। Laravel Service Container Object Creation এবং Dependency Injection পরিচালনা করে। যখন কোনো Class দরকার হয়, তখন Container সেটিকে Resolve করে।
+
+---
+
+## The make Method
+
+Container থেকে কোনো Class-এর Instance তৈরি করার জন্য `make()` Method ব্যবহার করা হয়।
+
+উদাহরণ:
+
+```php
+use App\Services\Transistor;
+
+$transistor = $this->app->make(Transistor::class);
+```
+
+এখানে Container `Transistor` Class-এর একটি Instance তৈরি করে Return করবে।
+
+যদি `Transistor` Class-এর Constructor-এ অন্য Dependency থাকে, তাহলে Container সেগুলোকেও স্বয়ংক্রিয়ভাবে Resolve করে Inject করবে।
+
+---
+
+## The makeWith Method
+
+কখনও কখনও কোনো Class-এর কিছু Dependency Container Resolve করতে পারে না। যেমন Constructor-এ কোনো Primitive Value (যেমন id) দরকার হতে পারে।
+
+এই ক্ষেত্রে `makeWith()` Method ব্যবহার করা হয়।
+
+উদাহরণ:
+
+```php
+use App\Services\Transistor;
+
+$transistor = $this->app->makeWith(Transistor::class, ['id' => 1]);
+```
+
+এখানে Container `Transistor` Class তৈরি করার সময় Constructor-এর `$id` Parameter হিসেবে `1` পাঠানো হয়েছে।
+
+---
+
+## Checking If Binding Exists
+
+কোনো Class বা Interface Container-এ Bind করা আছে কিনা তা পরীক্ষা করার জন্য `bound()` Method ব্যবহার করা যায়।
+
+```php
+if ($this->app->bound(Transistor::class)) {
+    // ...
+}
+```
+
+যদি `Transistor` Class Container-এ Bind করা থাকে, তাহলে এই Method `true` Return করবে।
+
+---
+
+## Using App Facade or Helper
+
+Service Provider-এর বাইরে Container Access করার জন্য **App Facade** অথবা **app() helper function** ব্যবহার করা যায়।
+
+উদাহরণ:
+
+```php
+use App\Services\Transistor;
+use Illuminate\Support\Facades\App;
+
+$transistor = App::make(Transistor::class);
+
+$transistor = app(Transistor::class);
+```
+
+এই দুটি পদ্ধতি Container থেকে `Transistor` Class Resolve করবে।
+
+---
+
+## Injecting the Container
+
+কখনও কখনও কোনো Class-এর ভিতরে Container Instance দরকার হতে পারে।
+
+এই ক্ষেত্রে Constructor-এ `Container` Class Type Hint করা যায়।
+
+```php
+use Illuminate\Container\Container;
+
+public function __construct(
+    protected Container $container,
+) {}
+```
+
+এতে Container স্বয়ংক্রিয়ভাবে Class-এর ভিতরে Inject হবে।
+
+---
+
+## Automatic Injection
+
+Laravel-এর সবচেয়ে শক্তিশালী Featureগুলোর একটি হলো **Automatic Dependency Injection**।
+
+যদি কোনো Class Container দ্বারা Resolve হয়, তাহলে তার Constructor-এর Dependency Laravel নিজেই Inject করে দেয়।
+
+উদাহরণ:
+
+```php
+namespace App\Http\Controllers;
+
+use App\Services\AppleMusic;
+
+class PodcastController extends Controller
+{
+    public function __construct(
+        protected AppleMusic $apple,
+    ) {}
+
+    public function show(string $id): Podcast
+    {
+        return $this->apple->findPodcast($id);
+    }
+}
+```
+
+এখানে `AppleMusic` Service Container থেকে Automatic Inject হয়েছে।
+
+Developer-কে আলাদা করে Object তৈরি করতে হয়নি।
+
+Laravel সাধারণত নিচের Component গুলো Resolve করার সময় Automatic Dependency Injection ব্যবহার করে:
+
+* Controllers
+* Middleware
+* Event Listeners
+* Jobs
+* Commands
+
+---
+
+## Method Invocation and Injection
+
+কখনও কোনো Object-এর Method Call করার সময়ও Container Dependency Inject করতে পারে।
+
+ধরুন একটি Class আছে:
+
+```php
+namespace App;
+
+use App\Services\AppleMusic;
+
+class PodcastStats
+{
+    public function generate(AppleMusic $apple): array
+    {
+        return [
+            // ...
+        ];
+    }
+}
+```
+
+এই Method Call করার সময় Container Dependency Inject করতে পারে।
+
+উদাহরণ:
+
+```php
+use App\PodcastStats;
+use Illuminate\Support\Facades\App;
+
+$stats = App::call([new PodcastStats, 'generate']);
+```
+
+এখানে Container `AppleMusic` Service Inject করে Method Execute করবে।
+
+Closure-এর ক্ষেত্রেও একইভাবে কাজ করে।
+
+```php
+use App\Services\AppleMusic;
+use Illuminate\Support\Facades\App;
+
+$result = App::call(function (AppleMusic $apple) {
+    // ...
+});
+```
+
+এখানে Container `AppleMusic` Dependency Inject করে Closure Execute করবে।
+
+---
+
+## Container Events
+
+Service Container প্রতিবার কোনো Object Resolve করলে একটি Event Trigger করে।
+
+এই Event ধরার জন্য `resolving()` Method ব্যবহার করা যায়।
+
+উদাহরণ:
+
+```php
+use App\Services\Transistor;
+use Illuminate\Contracts\Foundation\Application;
+
+$this->app->resolving(Transistor::class, function (Transistor $transistor, Application $app) {
+    // Called when Transistor is resolved
+});
+```
+
+এখানে Container যখনই `Transistor` Class Resolve করবে, তখন এই Callback Execute হবে।
+
+সব ধরনের Object Resolve হওয়ার সময় Event ধরার উদাহরণ:
+
+```php
+$this->app->resolving(function (mixed $object, Application $app) {
+    // Called when any object is resolved
+});
+```
+
+এখানে Resolve হওয়া Object Callback-এ পাওয়া যায় এবং চাইলে তার Property Modify করা যায়।
+
+---
+
+## Rebinding
+
+কখনও কোনো Service Container-এ পুনরায় Bind করা হতে পারে। তখন সেই পরিবর্তন Detect করার জন্য `rebinding()` Method ব্যবহার করা যায়।
+
+উদাহরণ:
+
+```php
+use App\Contracts\PodcastPublisher;
+use App\Services\SpotifyPublisher;
+use App\Services\TransistorPublisher;
+use Illuminate\Contracts\Foundation\Application;
+
+$this->app->bind(PodcastPublisher::class, SpotifyPublisher::class);
+
+$this->app->rebinding(
+    PodcastPublisher::class,
+    function (Application $app, PodcastPublisher $newInstance) {
+        //
+    },
+);
+
+// New binding
+$this->app->bind(PodcastPublisher::class, TransistorPublisher::class);
+```
+
+এখানে `PodcastPublisher` Service নতুন করে Bind হলে `rebinding` Callback Execute হবে।
+
+---
+
+## PSR-11
+
+Laravel Service Container **PSR-11 Standard** অনুসরণ করে। PSR-11 হলো একটি Standard Interface যা PHP Application-এ Container ব্যবহারের নিয়ম নির্ধারণ করে।
+
+Laravel Container `Psr\Container\ContainerInterface` Implement করে।
+
+উদাহরণ:
+
+```php
+use App\Services\Transistor;
+use Psr\Container\ContainerInterface;
+
+Route::get('/', function (ContainerInterface $container) {
+    $service = $container->get(Transistor::class);
+});
+```
+
+এখানে PSR-11 Container Interface ব্যবহার করে `Transistor` Service Resolve করা হয়েছে।
+
+যদি Container কোনো Service Resolve করতে না পারে, তাহলে Exception Throw হবে।
+
+দুই ধরনের Exception হতে পারে:
+
+1. **NotFoundExceptionInterface**
+   → Service Container-এ Bind করা ছিল না।
+
+2. **ContainerExceptionInterface**
+   → Service Bind করা ছিল কিন্তু Resolve করা সম্ভব হয়নি।
+
+এইভাবে Laravel Service Container Application-এর Object Creation, Dependency Injection এবং Service Management পরিচালনা করে।
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
 # Chapter 3: Laravel Folder Structure & MVC Pattern Explained
 
 ## 📚 Table of Contents
