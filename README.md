@@ -4864,6 +4864,1661 @@ Route::get('/', function (ContainerInterface $container) {
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
+# Chapter 11: Service Providers
+
+## 📚 Table of Contents
+
+1. [Service Providers](#service-providers)
+
+## Service Providers
+
+## Introduction
+
+Laravel Application Boot হওয়ার সময় Framework-এর বিভিন্ন Component Initialize করতে হয়। এই Bootstrapping Process পরিচালনা করার জন্য Laravel একটি গুরুত্বপূর্ণ ব্যবস্থা ব্যবহার করে যার নাম **Service Providers**।
+
+Service Provider হলো Laravel Application-এর কেন্দ্রীয় Configuration স্থান যেখানে Application-এর বিভিন্ন Service Register এবং Initialize করা হয়।
+
+Bootstrapping বলতে মূলত বোঝানো হয়:
+
+* Service Container Binding Register করা
+* Event Listener Register করা
+* Middleware Register করা
+* Route Register করা
+* Application Service Configure করা
+
+Laravel Framework নিজেও তার Core Service গুলো Bootstrapping করার জন্য অনেক Service Provider ব্যবহার করে।
+
+উদাহরণ:
+
+* Mail Service
+* Queue System
+* Cache System
+* Database System
+
+Laravel-এর অনেক Service Provider **Deferred Provider** হিসেবে কাজ করে। এর মানে হলো Provider সব Request-এ Load হয় না। শুধুমাত্র যখন সেই Provider-এর Service দরকার হয় তখনই সেটি Load হয়। এর ফলে Application-এর Performance উন্নত হয়।
+
+Application-এর সমস্ত User-defined Service Provider সাধারণত Register থাকে:
+
+```text
+bootstrap/providers.php
+```
+
+এই File-এ Laravel Application কোন কোন Provider ব্যবহার করছে তা তালিকা আকারে থাকে।
+
+---
+
+## Writing Service Providers
+
+Laravel Application-এ নতুন Service Provider তৈরি করতে হলে সেই Class-কে Extend করতে হয়:
+
+```php
+Illuminate\Support\ServiceProvider
+```
+
+একটি Service Provider সাধারণত দুটি গুরুত্বপূর্ণ Method ধারণ করে।
+
+* register()
+* boot()
+
+Laravel CLI ব্যবহার করে সহজেই একটি নতুন Service Provider তৈরি করা যায়।
+
+```bash
+php artisan make:provider RiakServiceProvider
+```
+
+এই Command চালালে Laravel একটি নতুন Provider Class তৈরি করবে এবং সেটিকে স্বয়ংক্রিয়ভাবে `bootstrap/providers.php` File-এ Register করবে।
+
+---
+
+## The Register Method
+
+Service Provider-এর `register()` Method ব্যবহার করা হয় **Service Container Binding Register করার জন্য**।
+
+এই Method-এর ভিতরে শুধুমাত্র Container Binding করা উচিত।
+
+এই Method-এর ভিতরে নিচের কাজগুলো করা উচিত নয়:
+
+* Event Listener Register করা
+* Route Register করা
+* Middleware Register করা
+
+কারণ এই সময় Application-এর অন্য Provider এখনও Load নাও হতে পারে।
+
+উদাহরণ:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use App\Services\Riak\Connection;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
+
+class RiakServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        $this->app->singleton(Connection::class, function (Application $app) {
+            return new Connection(config('riak'));
+        });
+    }
+}
+```
+
+এখানে `Connection` Class Container-এ **Singleton Binding** হিসেবে Register করা হয়েছে।
+
+`config('riak')` ব্যবহার করে Configuration File থেকে Value নেওয়া হয়েছে।
+
+---
+
+## The bindings and singletons Properties
+
+যদি Service Provider-এ অনেকগুলো সহজ Binding থাকে, তাহলে `register()` Method ব্যবহার না করে সরাসরি Property ব্যবহার করা যায়।
+
+Laravel Provider Load করার সময় এই Property গুলো Automatically Register করে।
+
+উদাহরণ:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use App\Contracts\DowntimeNotifier;
+use App\Contracts\ServerProvider;
+use App\Services\DigitalOceanServerProvider;
+use App\Services\PingdomDowntimeNotifier;
+use App\Services\ServerToolsProvider;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public $bindings = [
+        ServerProvider::class => DigitalOceanServerProvider::class,
+    ];
+
+    public $singletons = [
+        DowntimeNotifier::class => PingdomDowntimeNotifier::class,
+        ServerProvider::class => ServerToolsProvider::class,
+    ];
+}
+```
+
+এখানে দুটি Property ব্যবহার করা হয়েছে।
+
+### bindings
+
+এই Property সাধারণ Container Binding Register করে।
+
+### singletons
+
+এই Property Singleton Binding Register করে।
+
+---
+
+## The Boot Method
+
+Service Provider-এর `boot()` Method ব্যবহার করা হয় Application Boot হওয়ার পরে Service Configure করার জন্য।
+
+এই Method তখন Execute হয় যখন Application-এর সমস্ত Service Provider Register হয়ে যায়।
+
+এই সময় Framework-এর সব Service ব্যবহার করা সম্ভব।
+
+উদাহরণ:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
+
+class ComposerServiceProvider extends ServiceProvider
+{
+    public function boot(): void
+    {
+        View::composer('view', function () {
+            // ...
+        });
+    }
+}
+```
+
+এখানে `View Composer` Register করা হয়েছে।
+
+---
+
+## Boot Method Dependency Injection
+
+Service Provider-এর `boot()` Method-এও Dependency Injection ব্যবহার করা যায়।
+
+Laravel Container Automatic ভাবে Dependency Inject করে।
+
+উদাহরণ:
+
+```php
+use Illuminate\Contracts\Routing\ResponseFactory;
+
+public function boot(ResponseFactory $response): void
+{
+    $response->macro('serialized', function (mixed $value) {
+        // ...
+    });
+}
+```
+
+এখানে `ResponseFactory` Container থেকে Inject হয়েছে।
+
+---
+
+## Registering Providers
+
+Laravel Application-এ Service Provider Register থাকে:
+
+```text
+bootstrap/providers.php
+```
+
+উদাহরণ:
+
+```php
+return [
+    App\Providers\AppServiceProvider::class,
+];
+```
+
+যদি Developer নতুন Provider তৈরি করে, তাহলে সেটি এই File-এ যোগ করতে হয়।
+
+```php
+return [
+    App\Providers\AppServiceProvider::class,
+    App\Providers\ComposerServiceProvider::class,
+];
+```
+
+---
+
+## Deferred Providers
+
+Laravel Performance উন্নত করার জন্য কিছু Service Provider **Deferred Provider** হিসেবে কাজ করে।
+
+Deferred Provider শুধুমাত্র তখন Load হয় যখন সেই Provider-এর Service ব্যবহার করা হয়।
+
+Deferred Provider তৈরি করার জন্য Provider Class-কে Implement করতে হয়:
+
+```php
+Illuminate\Contracts\Support\DeferrableProvider
+```
+
+উদাহরণ:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use App\Services\Riak\Connection;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
+
+class RiakServiceProvider extends ServiceProvider implements DeferrableProvider
+{
+    public function register(): void
+    {
+        $this->app->singleton(Connection::class, function (Application $app) {
+            return new Connection($app['config']['riak']);
+        });
+    }
+
+    public function provides(): array
+    {
+        return [Connection::class];
+    }
+}
+```
+
+এখানে `provides()` Method Container-কে জানায় এই Provider কোন Service প্রদান করে।
+
+Laravel Application যখন `Connection` Service Resolve করতে চেষ্টা করবে, তখনই এই Provider Load হবে।
+
+এর ফলে Provider সব Request-এ Load হয় না এবং Application Performance উন্নত হয়।
+
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+
+# Chapter-12: Facades
+
+## 📚 Table of Contents
+
+1. [Facades](#facades)
+
+## Facades
+
+### Introduction
+
+Laravel documentation-এ অনেক উদাহরণে আপনি এমন কোড দেখতে পাবেন যেখানে Laravel-এর বিভিন্ন ফিচারের সাথে কাজ করার জন্য **facades** ব্যবহার করা হয়েছে। Facade মূলত একটি **"static interface"** যা Laravel-এর **service container**-এ থাকা class গুলোর সাথে যোগাযোগ করার সহজ উপায় প্রদান করে।
+
+**Service Container** হলো Laravel-এর একটি শক্তিশালী component যা application-এর বিভিন্ন class এবং dependency পরিচালনা করে। Facade এই container থেকে class resolve করে ব্যবহার করার সুবিধা দেয়।
+
+Laravel-এ অনেক built-in facade রয়েছে যা framework-এর প্রায় সব ফিচারের সাথে কাজ করার সহজ উপায় দেয়।
+
+Facade মূলত **static proxy** হিসেবে কাজ করে। অর্থাৎ:
+
+* আমরা কোডে static method call করি
+* কিন্তু Laravel আসলে background-এ container থেকে object resolve করে method call করে
+
+এর ফলে আমরা পাই:
+
+* ছোট ও পরিষ্কার syntax
+* readable code
+* test করা সহজ
+
+Laravel-এর সব facade থাকে এই namespace-এ:
+
+```
+Illuminate\Support\Facades
+```
+
+একটি facade ব্যবহার করার উদাহরণ:
+
+```php
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/cache', function () {
+    return Cache::get('key');
+});
+```
+
+এখানে:
+
+* `Cache` একটি facade
+* `Cache::get('key')` ব্যবহার করে cache থেকে data নেওয়া হচ্ছে
+
+Laravel documentation-এর অনেক উদাহরণেই facade ব্যবহার করা হয় কারণ এটি কোডকে সংক্ষিপ্ত এবং সহজ করে।
+
+### Helper Functions
+
+Laravel-এ facades এর পাশাপাশি **helper functions** নামের কিছু global function রয়েছে।
+
+এই helper function গুলো Laravel-এর common feature ব্যবহার করা আরও সহজ করে।
+
+কিছু জনপ্রিয় helper function:
+
+* `view()`
+* `response()`
+* `url()`
+* `config()`
+* `cache()`
+
+Helper function গুলো **globally available**, তাই এগুলো ব্যবহার করতে class import করতে হয় না।
+
+উদাহরণ:
+
+Facade ব্যবহার করে JSON response তৈরি করা:
+
+```php
+use Illuminate\Support\Facades\Response;
+
+Route::get('/users', function () {
+    return Response::json([
+        // ...
+    ]);
+});
+```
+
+একই কাজ helper function দিয়ে:
+
+```php
+Route::get('/users', function () {
+    return response()->json([
+        // ...
+    ]);
+});
+```
+
+এখানে:
+
+* `Response::json()` → facade ব্যবহার
+* `response()->json()` → helper function ব্যবহার
+
+Helper function ব্যবহার করলে কোড আরও সংক্ষিপ্ত হয় এবং import করার দরকার হয় না।
+
+Laravel-এর সব helper function আলাদা helper documentation-এ তালিকাভুক্ত থাকে।
+
+### When to Utilize Facades
+
+Facades ব্যবহার করার কিছু গুরুত্বপূর্ণ সুবিধা রয়েছে।
+
+প্রথমত, facades কোডকে **সংক্ষিপ্ত এবং সহজে মনে রাখার মতো syntax** দেয়।
+
+উদাহরণস্বরূপ:
+
+* বড় class নাম মনে রাখতে হয় না
+* manually dependency inject করতে হয় না
+
+এছাড়া facades **dynamic method ব্যবহার করে**, যার কারণে এগুলো **testing করা সহজ**।
+
+তবে facades ব্যবহার করার সময় কিছু বিষয় খেয়াল রাখতে হয়।
+
+একটি বড় সমস্যা হতে পারে **class scope creep**।
+
+এর মানে হলো:
+
+* facades ব্যবহার করা খুব সহজ
+* ফলে একটি class-এর মধ্যে অনেক facade ব্যবহার হতে পারে
+* এতে class খুব বড় হয়ে যায়
+
+এটি software design-এর জন্য ভালো নয় কারণ একটি class ideally **একটি নির্দিষ্ট দায়িত্ব পালন করবে**।
+
+Dependency Injection ব্যবহার করলে constructor-এ অনেক dependency দেখা গেলে সহজেই বোঝা যায় class বড় হয়ে যাচ্ছে।
+
+তাই facade ব্যবহার করার সময় খেয়াল রাখতে হবে:
+
+* class খুব বড় হয়ে যাচ্ছে কিনা
+* অনেক facade ব্যবহার হচ্ছে কিনা
+
+যদি class বড় হয়ে যায় তাহলে সেটিকে **ছোট ছোট class-এ ভাগ করা উচিত**।
+
+### Facades vs. Dependency Injection
+
+Dependency Injection (DI) এর একটি বড় সুবিধা হলো **implementation সহজে পরিবর্তন করা যায়**।
+
+Testing-এর সময় আমরা:
+
+* mock
+* stub
+
+ব্যবহার করতে পারি।
+
+Mock হলো এমন একটি fake object যা test করার সময় method call verify করতে সাহায্য করে।
+
+Static method সাধারণত mock করা কঠিন।
+
+কিন্তু Laravel facades আসলে true static নয়।
+
+Facade method call গুলো **service container থেকে resolve হওয়া object-এ forward করা হয়**।
+
+এর ফলে facade-ও test করা সম্ভব।
+
+উদাহরণ route:
+
+```php
+use Illuminate\Support\Facades\Cache;
+
+Route::get('/cache', function () {
+    return Cache::get('key');
+});
+```
+
+এখন আমরা test লিখতে পারি:
+
+```php
+use Illuminate\Support\Facades\Cache;
+
+test('basic example', function () {
+    Cache::shouldReceive('get')
+        ->with('key')
+        ->andReturn('value');
+
+    $response = $this->get('/cache');
+
+    $response->assertSee('value');
+});
+```
+
+এখানে:
+
+* `shouldReceive()` → method call expect করা হচ্ছে
+* `with('key')` → argument যাচাই করা হচ্ছে
+* `andReturn('value')` → method return value সেট করা হচ্ছে
+
+এর ফলে test verify করতে পারে `Cache::get()` ঠিকভাবে call হয়েছে কিনা।
+
+### Facades vs. Helper Functions
+
+Laravel-এ facades ছাড়াও অনেক helper function রয়েছে যেগুলো একই কাজ করতে পারে।
+
+উদাহরণ:
+
+Facade ব্যবহার করে view তৈরি করা:
+
+```php
+return Illuminate\Support\Facades\View::make('profile');
+```
+
+Helper function ব্যবহার করে:
+
+```php
+return view('profile');
+```
+
+দুইটি একই কাজ করে।
+
+Facade এবং helper function-এর মধ্যে বাস্তবে **কোনো বড় পার্থক্য নেই**।
+
+Helper function ব্যবহার করলেও testing করা যায়।
+
+উদাহরণ route:
+
+```php
+Route::get('/cache', function () {
+    return cache('key');
+});
+```
+
+এখানে `cache()` helper function ব্যবহার করা হয়েছে।
+
+কিন্তু test লেখার সময় আমরা facade ব্যবহার করে verify করতে পারি:
+
+```php
+use Illuminate\Support\Facades\Cache;
+
+public function testbasicexample(): void
+{
+    Cache::shouldReceive('get')
+        ->with('key')
+        ->andReturn('value');
+
+    $response = $this->get('/cache');
+
+    $response->assertSee('value');
+}
+```
+
+কারণ helper function আসলে facade-এর underlying class-এ method call করে।
+
+### How Facades Work
+
+Laravel-এ facade হলো একটি class যা service container থেকে object access করার সুবিধা দেয়।
+
+এই পুরো ব্যবস্থার মূল class হলো:
+
+```
+Illuminate\Support\Facades\Facade
+```
+
+Laravel-এর সব facade এই base class extend করে।
+
+Facade class **callStatic() magic method** ব্যবহার করে।
+
+Magic method হলো PHP-এর special method যা dynamic behavior তৈরি করে।
+
+Facade-এ static method call করলে:
+
+1. Laravel callStatic() method trigger করে
+2. Service container থেকে object resolve করে
+3. সেই object-এ method call করে
+
+উদাহরণ controller:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\Cache;
+use Illuminate\View\View;
+
+class UserController extends Controller
+{
+    public function showProfile(string $id): View
+    {
+        $user = Cache::get('user:'.$id);
+
+        return view('profile', ['user' => $user]);
+    }
+}
+```
+
+এখানে `Cache::get()` দেখে মনে হতে পারে static method call হচ্ছে।
+
+কিন্তু বাস্তবে:
+
+* Laravel service container থেকে cache service resolve করে
+* তারপর সেই object-এর `get()` method call করে
+
+Cache facade class:
+
+```php
+class Cache extends Facade
+{
+    protected static function getFacadeAccessor(): string
+    {
+        return 'cache';
+    }
+}
+```
+
+এখানে গুরুত্বপূর্ণ method হলো:
+
+```
+getFacadeAccessor()
+```
+
+এই method service container-এর binding key return করে।
+
+এখানে key হলো:
+
+```
+cache
+```
+
+Laravel এই key ব্যবহার করে container থেকে cache service resolve করে।
+
+### Real-Time Facades
+
+Real-time facades ব্যবহার করে application-এর যেকোনো class-কে facade এর মতো ব্যবহার করা যায়।
+
+ধরুন একটি `Podcast` model আছে যার `publish` method আছে।
+
+এই method কাজ করার জন্য `Publisher` instance দরকার।
+
+উদাহরণ:
+
+```php
+namespace App\Models;
+
+use App\Contracts\Publisher;
+use Illuminate\Database\Eloquent\Model;
+
+class Podcast extends Model
+{
+    public function publish(Publisher $publisher): void
+    {
+        $this->update(['publishing' => now()]);
+
+        $publisher->publish($this);
+    }
+}
+```
+
+এখানে:
+
+* `Publisher` dependency method-এ inject করা হয়েছে
+* এর সুবিধা হলো testing সহজ
+
+কিন্তু প্রতিবার method call করার সময় publisher pass করতে হয়।
+
+Real-time facade ব্যবহার করলে এটি সহজ হয়।
+
+আমরা class import করার সময় `Facades\` prefix ব্যবহার করি:
+
+```php
+use Facades\App\Contracts\Publisher;
+```
+
+তারপর method পরিবর্তন করি:
+
+```php
+class Podcast extends Model
+{
+    public function publish(): void
+    {
+        $this->update(['publishing' => now()]);
+
+        Publisher::publish($this);
+    }
+}
+```
+
+এখানে:
+
+* `Publisher::publish()` facade style call
+* Laravel service container থেকে publisher resolve করে
+
+Testing-এ এটি mock করা যায়:
+
+```php
+use App\Models\Podcast;
+use Facades\App\Contracts\Publisher;
+
+test('podcast can be published', function () {
+    $podcast = Podcast::factory()->create();
+
+    Publisher::shouldReceive('publish')->once()->with($podcast);
+
+    $podcast->publish();
+});
+```
+
+এখানে:
+
+* `shouldReceive()` → publish method call verify করছে
+* `once()` → একবার call হবে নিশ্চিত করছে
+
+### Facade Class Reference
+
+Laravel-এ অনেক built-in facade রয়েছে। প্রতিটি facade একটি নির্দিষ্ট class এবং service container binding এর সাথে যুক্ত থাকে।
+
+কিছু গুরুত্বপূর্ণ facade উদাহরণ:
+
+**App**
+
+Class: `Illuminate\Foundation\Application`
+Binding: `app`
+
+**Artisan**
+
+Class: `Illuminate\Contracts\Console\Kernel`
+Binding: `artisan`
+
+**Auth**
+
+Class: `Illuminate\Auth\AuthManager`
+Binding: `auth`
+
+**Cache**
+
+Class: `Illuminate\Cache\CacheManager`
+Binding: `cache`
+
+**Config**
+
+Class: `Illuminate\Config\Repository`
+Binding: `config`
+
+**DB**
+
+Class: `Illuminate\Database\DatabaseManager`
+Binding: `db`
+
+**Event**
+
+Class: `Illuminate\Events\Dispatcher`
+Binding: `events`
+
+**Log**
+
+Class: `Illuminate\Log\LogManager`
+Binding: `log`
+
+**Mail**
+
+Class: `Illuminate\Mail\Mailer`
+Binding: `mailer`
+
+**Queue**
+
+Class: `Illuminate\Queue\QueueManager`
+Binding: `queue`
+
+**Redis**
+
+Class: `Illuminate\Redis\RedisManager`
+Binding: `redis`
+
+**Route**
+
+Class: `Illuminate\Routing\Router`
+Binding: `router`
+
+**Session**
+
+Class: `Illuminate\Session\SessionManager`
+Binding: `session`
+
+**Storage**
+
+Class: `Illuminate\Filesystem\FilesystemManager`
+Binding: `filesystem`
+
+**URL**
+
+Class: `Illuminate\Routing\UrlGenerator`
+Binding: `url`
+
+**Validator**
+
+Class: `Illuminate\Validation\Factory`
+Binding: `validator`
+
+**View**
+
+Class: `Illuminate\View\Factory`
+Binding: `view`
+
+এই তালিকা developer-দের জন্য একটি দ্রুত reference হিসেবে কাজ করে যাতে facade-এর underlying class এবং container binding সহজে জানা যায়।
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter-13: The Basics - Routing
+
+## 📚 Table of Contents
+
+1. [Routing](#routing)
+2. []
+
+## Routing
+
+### Basic Routing
+
+Laravel-এ **Routing** হলো এমন একটি ব্যবস্থা যার মাধ্যমে নির্ধারণ করা হয় কোন URL এ request আসলে কোন code execute হবে। অর্থাৎ, যখন ব্যবহারকারী browser-এ একটি URL লিখে request পাঠায়, তখন Laravel সেই request কোন function বা controller handle করবে তা route দ্বারা নির্ধারিত হয়।
+
+Laravel-এ সবচেয়ে সহজ route হলো এমন route যা একটি **URI (URL path)** এবং একটি **closure function** গ্রহণ করে।
+
+Closure হলো একটি anonymous function, অর্থাৎ এমন function যার আলাদা কোনো নাম থাকে না এবং সরাসরি route এর ভিতরে লেখা যায়।
+
+উদাহরণ:
+
+```php
+use Illuminate\Support\Facades\Route;
+ 
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+```
+
+এখানে:
+
+* `Route::get()` → HTTP GET request handle করার জন্য route তৈরি করছে
+* `/greeting` → URI বা URL path
+* Closure function → যখন এই URL access করা হবে তখন এই function run হবে
+* `return 'Hello World'` → browser-এ text হিসেবে দেখাবে
+
+যদি ব্যবহারকারী browser-এ এই URL এ যায়:
+
+```
+http://example.com/greeting
+```
+
+তাহলে Laravel `"Hello World"` response হিসেবে দেখাবে।
+
+### The Default Route Files
+
+Laravel-এর সব route সাধারণত **routes directory**-এর মধ্যে থাকা বিভিন্ন file-এ লেখা হয়।
+
+এই route file গুলো Laravel স্বয়ংক্রিয়ভাবে load করে application boot হওয়ার সময়।
+
+Route file loading configuration থাকে:
+
+```
+bootstrap/app.php
+```
+
+সবচেয়ে গুরুত্বপূর্ণ route file হলো:
+
+```
+routes/web.php
+```
+
+এই file-এ সাধারণত web application-এর routes লেখা হয়।
+
+এই routes গুলো **web middleware group** ব্যবহার করে।
+
+Middleware হলো এমন code যা request এবং response এর মাঝখানে কাজ করে।
+
+web middleware group কিছু গুরুত্বপূর্ণ feature প্রদান করে:
+
+* session management
+* CSRF protection
+* cookies handling
+
+অধিকাংশ Laravel application-এ developer প্রথমে `routes/web.php` file-এ route লেখা শুরু করে।
+
+উদাহরণ:
+
+```php
+use App\Http\Controllers\UserController;
+ 
+Route::get('/user', [UserController::class, 'index']);
+```
+
+এখানে:
+
+* `/user` → URL path
+* `UserController::class` → controller class
+* `index` → controller method
+
+যখন ব্যবহারকারী browser-এ এই URL এ যাবে:
+
+```
+http://example.com/user
+```
+
+তখন Laravel `UserController` এর `index()` method execute করবে।
+
+### API Routes
+
+যদি আপনার application একটি **API (Application Programming Interface)** প্রদান করে, তাহলে Laravel API routing support দেয়।
+
+API routing enable করার জন্য Artisan command ব্যবহার করা হয়:
+
+```
+php artisan install:api
+```
+
+এই command কয়েকটি গুরুত্বপূর্ণ কাজ করে:
+
+1. **Laravel Sanctum install করে**
+2. API authentication system তৈরি করে
+3. `routes/api.php` file তৈরি করে
+
+**Laravel Sanctum** হলো Laravel-এর একটি authentication system যা API token ব্যবহার করে user authenticate করতে পারে।
+
+এই authentication ব্যবহার করা যায়:
+
+* third-party API clients
+* Single Page Applications (SPA)
+* mobile applications
+
+`routes/api.php` file-এ সাধারণত API routes লেখা হয়।
+
+উদাহরণ:
+
+```php
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+```
+
+এখানে:
+
+* route API endpoint হিসেবে কাজ করছে
+* `auth:sanctum` middleware ব্যবহার করে authentication করা হচ্ছে
+
+যদি route public হয় তাহলে `auth:sanctum` middleware বাদ দেওয়া যায়।
+
+`routes/api.php`-এর routes সাধারণত:
+
+* **stateless**
+* session ব্যবহার করে না
+
+এছাড়া Laravel স্বয়ংক্রিয়ভাবে API routes এর আগে `/api` prefix যোগ করে।
+
+উদাহরণ:
+
+```
+routes/api.php
+Route::get('/user', ...);
+```
+
+Actual URL হবে:
+
+```
+http://example.com/api/user
+```
+
+এই prefix পরিবর্তন করা যায় `bootstrap/app.php` file-এ:
+
+```php
+->withRouting(
+    api: __DIR__.'/../routes/api.php',
+    apiPrefix: 'api/admin',
+)
+```
+
+এখন API route হবে:
+
+```
+/api/admin/user
+```
+
+### Available Router Methods
+
+Laravel router বিভিন্ন HTTP method অনুযায়ী route তৈরি করার সুবিধা দেয়।
+
+HTTP verbs হলো HTTP request-এর ধরন।
+
+Laravel এ উপলব্ধ router method গুলো:
+
+```php
+Route::get($uri, $callback);
+Route::post($uri, $callback);
+Route::put($uri, $callback);
+Route::patch($uri, $callback);
+Route::delete($uri, $callback);
+Route::options($uri, $callback);
+```
+
+প্রতিটি method নির্দিষ্ট ধরনের HTTP request handle করে।
+
+উদাহরণ:
+
+```php
+Route::post('/users', function () {
+    // create user
+});
+```
+
+কখনও কখনও একটি route একাধিক HTTP method handle করতে পারে।
+
+এক্ষেত্রে `match()` method ব্যবহার করা হয়:
+
+```php
+Route::match(['get', 'post'], '/', function () {
+    // ...
+});
+```
+
+এখানে:
+
+* GET এবং POST উভয় request handle হবে
+
+যদি একটি route সব HTTP method handle করে তাহলে `any()` method ব্যবহার করা যায়:
+
+```php
+Route::any('/', function () {
+    // ...
+});
+```
+
+একই URI-এর জন্য একাধিক route থাকলে গুরুত্বপূর্ণ নিয়ম হলো:
+
+`get`, `post`, `put`, `patch`, `delete`, `options` route গুলো আগে define করা উচিত।
+
+তারপর:
+
+* `any`
+* `match`
+* `redirect`
+
+define করা উচিত।
+
+এতে Laravel সঠিক route match করতে পারে।
+
+### Dependency Injection
+
+Laravel route callback এর ভিতরে **dependency injection** ব্যবহার করা যায়।
+
+Dependency Injection হলো এমন একটি technique যেখানে একটি class বা object automatically function-এ inject করা হয়।
+
+Laravel এর **service container** dependency resolve করে callback এ inject করে।
+
+উদাহরণ:
+
+```php
+use Illuminate\Http\Request;
+ 
+Route::get('/users', function (Request $request) {
+    // ...
+});
+```
+
+এখানে:
+
+* `Request` class type-hint করা হয়েছে
+* Laravel automatically বর্তমান HTTP request object inject করবে
+
+এর ফলে developer সহজে request data access করতে পারে।
+
+### CSRF Protection
+
+Laravel web routes-এ **CSRF Protection** ব্যবহার করা হয়।
+
+CSRF (Cross-Site Request Forgery) হলো একটি security attack যেখানে malicious site ব্যবহারকারীর browser ব্যবহার করে unauthorized request পাঠাতে পারে।
+
+Laravel এই সমস্যা প্রতিরোধ করার জন্য form-এ একটি **CSRF token** ব্যবহার করে।
+
+যেসব form নিচের HTTP method ব্যবহার করে:
+
+* POST
+* PUT
+* PATCH
+* DELETE
+
+সেসব form-এ CSRF token থাকতে হবে।
+
+উদাহরণ:
+
+```html
+<form method="POST" action="/profile">
+    @csrf
+    ...
+</form>
+```
+
+এখানে:
+
+```
+@csrf
+```
+
+Blade directive যা একটি hidden CSRF token field generate করে।
+
+যদি token না থাকে তাহলে Laravel request reject করবে।
+
+### Redirect Routes
+
+যদি একটি route অন্য URI-এ redirect করতে হয়, তাহলে `Route::redirect()` ব্যবহার করা যায়।
+
+এটি একটি shortcut method যা redirect করার জন্য controller তৈরি করার দরকার পড়ে না।
+
+উদাহরণ:
+
+```php
+Route::redirect('/here', '/there');
+```
+
+এখানে:
+
+* `/here` → old URL
+* `/there` → new URL
+
+Default redirect status code হলো:
+
+```
+302
+```
+
+Status code পরিবর্তন করা যায়:
+
+```php
+Route::redirect('/here', '/there', 301);
+```
+
+301 status code মানে **permanent redirect**।
+
+Laravel আরেকটি method দেয়:
+
+```php
+Route::permanentRedirect('/here', '/there');
+```
+
+এটিও 301 redirect তৈরি করে।
+
+Redirect route ব্যবহার করার সময় কিছু parameter Laravel reserved রাখে:
+
+* destination
+* status
+
+এই নামগুলো route parameter হিসেবে ব্যবহার করা যাবে না।
+
+### View Routes
+
+যদি একটি route শুধুমাত্র একটি **view return** করে, তাহলে `Route::view()` ব্যবহার করা যায়।
+
+এটি controller তৈরি করার প্রয়োজন ছাড়াই view return করার সহজ উপায়।
+
+উদাহরণ:
+
+```php
+Route::view('/welcome', 'welcome');
+```
+
+এখানে:
+
+* `/welcome` → URI
+* `welcome` → view file
+
+যদি view-এ data পাঠাতে হয়:
+
+```php
+Route::view('/welcome', 'welcome', ['name' => 'Taylor']);
+```
+
+এখানে:
+
+```
+['name' => 'Taylor']
+```
+
+array হিসেবে data view-এ পাঠানো হচ্ছে।
+
+View route ব্যবহার করার সময় কিছু reserved parameter আছে:
+
+* view
+* data
+* status
+* headers
+
+এই নামগুলো route parameter হিসেবে ব্যবহার করা যাবে না।
+
+### Listing Your Routes
+
+Laravel-এ সব route দেখার জন্য Artisan command ব্যবহার করা যায়।
+
+Command:
+
+```
+php artisan route:list
+```
+
+এই command application-এর সব route এর তালিকা দেখায়।
+
+সাধারণত middleware list দেখা যায় না।
+
+middleware দেখতে চাইলে:
+
+```
+php artisan route:list -v
+```
+
+আরও বিস্তারিত দেখতে:
+
+```
+php artisan route:list -vv
+```
+
+শুধু নির্দিষ্ট URI prefix-এর route দেখতে:
+
+```
+php artisan route:list --path=api
+```
+
+third-party package এর route hide করতে:
+
+```
+php artisan route:list --except-vendor
+```
+
+শুধু third-party package route দেখতে:
+
+```
+php artisan route:list --only-vendor
+```
+
+### Routing Customization
+
+Laravel-এ default route loading configuration থাকে:
+
+```
+bootstrap/app.php
+```
+
+উদাহরণ:
+
+```php
+use Illuminate\Foundation\Application;
+ 
+return Application::configure(basePath: dirname(__DIR__))
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )->create();
+```
+
+এখানে Laravel route files load করছে:
+
+* `routes/web.php`
+* `routes/console.php`
+
+কখনও কখনও application-এর জন্য আলাদা route file তৈরি করতে হয়।
+
+এই ক্ষেত্রে `then` closure ব্যবহার করা যায়:
+
+```php
+use Illuminate\Support\Facades\Route;
+ 
+->withRouting(
+    web: __DIR__.'/../routes/web.php',
+    commands: __DIR__.'/../routes/console.php',
+    health: '/up',
+    then: function () {
+        Route::middleware('api')
+            ->prefix('webhooks')
+            ->name('webhooks.')
+            ->group(base_path('routes/webhooks.php'));
+    },
+)
+```
+
+এখানে:
+
+* `middleware('api')` → API middleware ব্যবহার করছে
+* `prefix('webhooks')` → URL prefix যোগ করছে
+* `name('webhooks.')` → route name prefix
+* `group()` → routes/webhooks.php file load করছে
+
+Laravel route registration সম্পূর্ণভাবে manual করাও সম্ভব।
+
+এক্ষেত্রে `using` closure ব্যবহার করা হয়:
+
+```php
+use Illuminate\Support\Facades\Route;
+ 
+->withRouting(
+    commands: __DIR__.'/../routes/console.php',
+    using: function () {
+        Route::middleware('api')
+            ->prefix('api')
+            ->group(base_path('routes/api.php'));
+ 
+        Route::middleware('web')
+            ->group(base_path('routes/web.php'));
+    },
+)
+```
+
+এখানে Laravel default route loading বন্ধ করে দেয় এবং developer নিজে route register করে।
+
+# Route Parameters
+
+### Required Parameters
+
+Laravel-এ অনেক সময় URL-এর কিছু অংশ থেকে data নিতে হয়। এই data-গুলোকে **route parameters** বলা হয়।
+
+ধরুন, URL-এর মধ্যে user-এর ID আছে। তখন সেই ID route-এর মাধ্যমে capture করা যায়।
+
+উদাহরণ:
+
+```php
+Route::get('/user/{id}', function (string $id) {
+    return 'User '.$id;
+});
+```
+
+এখানে:
+
+* `/user/{id}` → route parameter define করা হয়েছে
+* `{id}` → URL-এর dynamic অংশ
+* `function (string $id)` → captured value callback-এ receive করছে
+
+যদি browser-এ এই URL খোলা হয়:
+
+```text
+/user/25
+```
+
+তাহলে `{id}` এর মান হবে `25`
+
+এবং output হবে:
+
+```text
+User 25
+```
+
+একটি route-এ একাধিক parameter-ও থাকতে পারে।
+
+উদাহরণ:
+
+```php
+Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {
+    // ...
+});
+```
+
+এখানে URL-এর দুইটি অংশ capture করা হচ্ছে:
+
+* `{post}`
+* `{comment}`
+
+Route parameter লেখার নিয়ম:
+
+* সব সময় `{}` braces-এর ভিতরে লিখতে হয়
+* সাধারণত alphabetic character ব্যবহার করা হয়
+* underscore `_` ব্যবহার করা যায়
+
+Laravel route parameter callback বা controller-এ **order অনুযায়ী inject করে**।
+
+এখানে একটি গুরুত্বপূর্ণ বিষয় হলো callback-এর argument name parameter name-এর সাথে একদম একই না হলেও কাজ হবে, যতক্ষণ order ঠিক থাকে।
+
+অর্থাৎ:
+
+```php
+Route::get('/posts/{post}/comments/{comment}', function (string $postId, string $commentId) {
+    // ...
+});
+```
+
+এখানে route-এ parameter নাম `post` এবং `comment`, কিন্তু callback-এ variable নাম `postId` এবং `commentId`। তবুও কাজ করবে, কারণ Laravel position অনুযায়ী value পাঠায়।
+
+### Parameters and Dependency Injection
+
+Laravel route callback-এ শুধু route parameter নয়, অন্য dependency-ও inject করা যায়।
+
+এটি **dependency injection** নামে পরিচিত।
+
+ধরুন, আপনি একই callback-এ current request object এবং route parameter দুটোই চান। তখন dependency আগে লিখতে হবে, তারপর route parameter লিখতে হবে।
+
+উদাহরণ:
+
+```php
+use Illuminate\Http\Request;
+ 
+Route::get('/user/{id}', function (Request $request, string $id) {
+    return 'User '.$id;
+});
+```
+
+এখানে:
+
+* `Request $request` → Laravel service container automatically inject করবে
+* `string $id` → URL থেকে route parameter হিসেবে আসবে
+
+এর মানে Laravel callback-এর signature দেখে বুঝে যায় কোনটি dependency এবং কোনটি route parameter।
+
+গুরুত্বপূর্ণ নিয়ম:
+
+* dependency আগে
+* route parameter পরে
+
+এভাবে লিখলে Laravel সঠিকভাবে value inject করতে পারে।
+
+### Optional Parameters
+
+কখনও কখনও URL-এর কোনো parameter থাকা বাধ্যতামূলক নয়।
+
+এই ধরনের parameter-কে **optional parameter** বলা হয়।
+
+Optional parameter তৈরি করতে parameter name-এর পরে `?` দিতে হয়।
+
+উদাহরণ:
+
+```php
+Route::get('/user/{name?}', function (?string $name = null) {
+    return $name;
+});
+```
+
+এখানে:
+
+* `{name?}` → optional parameter
+* `?string $name = null` → parameter না থাকলে `null` হবে
+
+যদি URL হয়:
+
+```text
+/user
+```
+
+তাহলে `$name` হবে `null`
+
+আর যদি URL হয়:
+
+```text
+/user/Rahim
+```
+
+তাহলে `$name` হবে `"Rahim"`
+
+Default value দিয়েও optional parameter ব্যবহার করা যায়:
+
+```php
+Route::get('/user/{name?}', function (?string $name = 'John') {
+    return $name;
+});
+```
+
+এখানে parameter না দিলে default value `"John"` ব্যবহার হবে।
+
+অর্থাৎ:
+
+```text
+/user
+```
+
+output হবে:
+
+```text
+John
+```
+
+### Regular Expression Constraints
+
+সব route parameter যেকোনো value নিক, এমনটি সব সময় চাওয়া হয় না। অনেক সময় parameter-এর format নিয়ন্ত্রণ করতে হয়।
+
+এই কাজের জন্য Laravel `where()` method দেয়।
+
+`where()` method ব্যবহার করে route parameter-এর জন্য **regular expression constraint** দেওয়া যায়।
+
+**Regular expression** বা regex হলো text pattern match করার একটি নিয়ম।
+
+উদাহরণ:
+
+```php
+Route::get('/user/{name}', function (string $name) {
+    // ...
+})->where('name', '[A-Za-z]+');
+```
+
+এখানে:
+
+* `name` parameter শুধু alphabetic character নিতে পারবে
+* সংখ্যা বা অন্য symbol match করবে না
+
+আরেকটি উদাহরণ:
+
+```php
+Route::get('/user/{id}', function (string $id) {
+    // ...
+})->where('id', '[0-9]+');
+```
+
+এখানে:
+
+* `id` শুধু সংখ্যা হতে পারবে
+
+একাধিক parameter-এ constraint দেওয়া যায়:
+
+```php
+Route::get('/user/{id}/{name}', function (string $id, string $name) {
+    // ...
+})->where(['id' => '[0-9]+', 'name' => '[a-z]+']);
+```
+
+এখানে:
+
+* `id` → numeric
+* `name` → lowercase alphabetic
+
+Laravel আরও সহজ helper method-ও দেয় যাতে regex সরাসরি না লিখেও constraint দেওয়া যায়।
+
+উদাহরণ:
+
+```php
+Route::get('/user/{id}/{name}', function (string $id, string $name) {
+    // ...
+})->whereNumber('id')->whereAlpha('name');
+```
+
+এখানে:
+
+* `whereNumber('id')` → `id` অবশ্যই সংখ্যা
+* `whereAlpha('name')` → `name` অবশ্যই alphabetic
+
+আরও উদাহরণ:
+
+```php
+Route::get('/user/{name}', function (string $name) {
+    // ...
+})->whereAlphaNumeric('name');
+```
+
+এখানে `name` এ letter এবং number দুটোই থাকতে পারে।
+
+```php
+Route::get('/user/{id}', function (string $id) {
+    // ...
+})->whereUuid('id');
+```
+
+এখানে parameter অবশ্যই UUID format হতে হবে।
+
+```php
+Route::get('/user/{id}', function (string $id) {
+    // ...
+})->whereUlid('id');
+```
+
+এখানে parameter অবশ্যই ULID format হতে হবে।
+
+```php
+Route::get('/category/{category}', function (string $category) {
+    // ...
+})->whereIn('category', ['movie', 'song', 'painting']);
+```
+
+এখানে `category` parameter শুধু এই তিনটি value নিতে পারবে:
+
+* `movie`
+* `song`
+* `painting`
+
+Enum ব্যবহার করেও constraint দেওয়া যায়:
+
+```php
+Route::get('/category/{category}', function (string $category) {
+    // ...
+})->whereIn('category', CategoryEnum::cases());
+```
+
+যদি incoming request দেওয়া constraint match না করে, তাহলে Laravel স্বয়ংক্রিয়ভাবে:
+
+```text
+404 HTTP response
+```
+
+return করবে।
+
+অর্থাৎ route execute-ই হবে না।
+
+### Global Constraints
+
+যদি কোনো parameter name সব route-এ একই ধরনের constraint অনুসরণ করে, তাহলে বারবার `where()` লেখার দরকার নেই।
+
+এই ক্ষেত্রে **global constraint** ব্যবহার করা যায়।
+
+এর জন্য `Route::pattern()` method ব্যবহার করা হয়।
+
+এটি সাধারণত `App\Providers\AppServiceProvider` class-এর `boot()` method-এ define করা হয়।
+
+উদাহরণ:
+
+```php
+use Illuminate\Support\Facades\Route;
+ 
+public function boot(): void
+{
+    Route::pattern('id', '[0-9]+');
+}
+```
+
+এখানে Laravel-কে বলা হচ্ছে:
+
+* যেকোনো route parameter-এর নাম যদি `id` হয়
+* তাহলে সেটি অবশ্যই numeric হতে হবে
+
+এরপর route লিখলে:
+
+```php
+Route::get('/user/{id}', function (string $id) {
+    // Only executed if {id} is numeric...
+});
+```
+
+এই route আলাদা করে `where('id', '[0-9]+')` না লিখলেও একই নিয়ম follow করবে।
+
+এর সুবিধা হলো:
+
+* code repeat কমে
+* application জুড়ে একই rule বজায় থাকে
+* route definition পরিষ্কার হয়
+
+### Encoded Forward Slashes
+
+Laravel route parameter-এর মধ্যে সাধারণত সব character গ্রহণ করতে পারে, কিন্তু `/` character স্বাভাবিকভাবে allow করে না।
+
+কারণ `/` URL segment আলাদা করার জন্য ব্যবহৃত হয়।
+
+তবে কিছু ক্ষেত্রে parameter-এর ভিতরে slash দরকার হতে পারে, যেমন search string বা path-like value।
+
+এক্ষেত্রে আপনাকে explicitভাবে regex দিয়ে slash allow করতে হবে।
+
+উদাহরণ:
+
+```php
+Route::get('/search/{search}', function (string $search) {
+    return $search;
+})->where('search', '.*');
+```
+
+এখানে:
+
+* `.*` regex pattern যেকোনো character match করে
+* এর ফলে slash-সহ value capture করা সম্ভব হয়
+
+উদাহরণ হিসেবে যদি URL হয়:
+
+```text
+/search/laravel/routing/example
+```
+
+তাহলে শেষ segment হিসেবে পুরো অংশ capture করা যেতে পারে, যদি route pattern সেইভাবে লেখা থাকে।
+
+গুরুত্বপূর্ণ নিয়ম হলো:
+
+**Encoded forward slashes শুধু শেষ route segment-এ support করে।**
+
+অর্থাৎ route parameter-এর মধ্যে `/` allow করতে চাইলে সেটি route-এর শেষ অংশে থাকতে হবে।
+
+
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
 # Chapter 3: Laravel Folder Structure & MVC Pattern Explained
 
 ## 📚 Table of Contents
