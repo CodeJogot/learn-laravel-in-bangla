@@ -22,7 +22,7 @@ After completing the 30-chapters module, jump in the [Projects Section](#10-lara
 |                       [13](#chapter-13-the-basics---routing)                       |                        [The Basics - Routing](#chapter-13-the-basics---routing)                         |     [Watch Now]()     |
 |                       [14](#chapter-14-laravel-blade-syntax)                       |                        [Laravel Blade Syntax](#chapter-14-laravel-blade-syntax)                         |     [Watch Now]()     |
 |                       [15](#chapter-15-laravel-controllers)                        |                         [Laravel Controllers](#chapter-15-laravel-controllers)                          |     [Watch Now]()     |
-|                         [16](#chapter-16-laravel-request)                          |                             [Laravel Request](#chapter-16-laravel-request)                              |     [Watch Now]()     |
+|                      [16](#chapter-16-laravel-request-class)                       |                       [Laravel Request Class](#chapter-16-laravel-request-class)                        |     [Watch Now]()     |
 |                   [17](#chapter-17-laravel-resource-controller)                    |                 [Laravel Resource Controller](#chapter-17-laravel-resource-controller)                  |     [Watch Now]()     |
 |        [18](#chapter-18-project----laravel-crud-project-with-tailwind-css)         | [Laravel CRUD Project with Tailwind CSS](#chapter-18-project----laravel-crud-project-with-tailwind-css) |     [Watch Now]()     |
 |                       [18](#chapter-18-php-form-validation)                        |                                   [](#chapter-18-php-form-validation)                                   |     [Watch Now]()     |
@@ -8695,7 +8695,7 @@ Blade:
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
-# Chapter 16: Laravel Request
+# Chapter 16: Laravel Request Class
 
 ## Table of Contents
 
