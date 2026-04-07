@@ -22,8 +22,9 @@ After completing the 30-chapters module, jump in the [Projects Section](#10-lara
 |                       [13](#chapter-13-the-basics---routing)                       |                        [The Basics - Routing](#chapter-13-the-basics---routing)                         |     [Watch Now]()     |
 |                       [14](#chapter-14-laravel-blade-syntax)                       |                        [Laravel Blade Syntax](#chapter-14-laravel-blade-syntax)                         |     [Watch Now]()     |
 |                       [15](#chapter-15-laravel-controllers)                        |                         [Laravel Controllers](#chapter-15-laravel-controllers)                          |     [Watch Now]()     |
-|                   [16](#chapter-16-laravel-resource-controller)                    |                 [Laravel Resource Controller](#chapter-16-laravel-resource-controller)                  |     [Watch Now]()     |
-|        [17](#chapter-17-project----laravel-crud-project-with-tailwind-css)         | [Laravel CRUD Project with Tailwind CSS](#chapter-17-project----laravel-crud-project-with-tailwind-css) |     [Watch Now]()     |
+|                         [16](#chapter-16-laravel-request)                          |                             [Laravel Request](#chapter-16-laravel-request)                              |     [Watch Now]()     |
+|                   [17](#chapter-17-laravel-resource-controller)                    |                 [Laravel Resource Controller](#chapter-17-laravel-resource-controller)                  |     [Watch Now]()     |
+|        [18](#chapter-18-project----laravel-crud-project-with-tailwind-css)         | [Laravel CRUD Project with Tailwind CSS](#chapter-18-project----laravel-crud-project-with-tailwind-css) |     [Watch Now]()     |
 |                       [18](#chapter-18-php-form-validation)                        |                                   [](#chapter-18-php-form-validation)                                   |     [Watch Now]()     |
 |               [19](#chapter-19-php-form-required-fields-validation)                |                           [](#chapter-19-php-form-required-fields-validation)                           |     [Watch Now]()     |
 |               [20](#chapter-20-php-forms---validate-e-mail-and-url)                |                           [](#chapter-20-php-forms---validate-e-mail-and-url)                           |     [Watch Now]()     |
@@ -8694,7 +8695,662 @@ Blade:
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
-# Chapter 16: Laravel Resource Controller
+# Chapter 16: Laravel Request
+
+## Table of Contents
+
+1. [What is Request](#1-what-is-request)
+2. [কেন Request দরকার](#2-কেন-request-দরকার)
+3. [Request Class Import করা](#3-request-class-import-করা)
+4. [Controller Method এ Request ব্যবহার](#4-controller-method-এ-request-ব্যবহার)
+5. [Request থেকে Data নেওয়ার উপায়](#5-request-থেকে-data-নেওয়ার-উপায়)
+6. [`input()` Method](#6-input-method)
+7. [Direct Property Access](#7-direct-property-access)
+8. [`all()` Method](#8-all-method)
+9. [`only()` and `except()`](#9-only-and-except)
+10. [`query()` Method](#10-query-method)
+11. [`has()` and `filled()`](#11-has-and-filled)
+12. [Default Value ব্যবহার](#12-default-value-ব্যবহার)
+13. [Form Submission Example](#13-form-submission-example)
+14. [Validation with Request](#14-validation-with-request)
+15. [File Upload with Request](#15-file-upload-with-request)
+16. [Request Method Check](#16-request-method-check)
+17. [Real-Life Example](#17-real-life-example)
+18. [Summary](#18-summary)
+
+---
+
+## 1. What is Request
+
+Laravel এ `Request` হলো এমন একটি object, যেটার মধ্যে browser বা client থেকে server এ পাঠানো request related সব information থাকে।
+
+যখন একজন user কোনো page visit করে, form submit করে, search করে, file upload করে, login করে — তখন browser server এর কাছে একটি **HTTP Request** পাঠায়। Laravel সেই request কে একটি object আকারে আমাদের হাতে দেয়। এই object-টাই হলো `Request`।
+
+---
+
+## 2. কেন Request দরকার
+
+একটা controller method এর মধ্যে অনেক সময় user-এর পাঠানো data নিয়ে কাজ করতে হয়। যেমন:
+
+- Name input নেওয়া
+- Email নেওয়া
+- Search keyword নেওয়া
+- Query string নেওয়া
+- File upload নেওয়া
+- Form submit হয়েছে কিনা দেখা
+- কোন method (`GET`, `POST`) দিয়ে request এসেছে তা check করা
+
+এই সব কাজের জন্য `Request` দরকার হয়।
+
+---
+
+## 3. Request Class Import করা
+
+সাধারণত controller এর উপরে এটা লিখতে হয়:
+
+```php
+use Illuminate\Http\Request;
+```
+
+এটি না লিখলে Laravel বুঝবে না আপনি কোন `Request` class ব্যবহার করতে চাচ্ছেন।
+
+---
+
+## 4. Controller Method এ Request ব্যবহার
+
+```php
+public function show(Request $request)
+{
+
+}
+```
+
+এখানে:
+
+- `Request` = class name
+- `$request` = object variable
+
+Laravel automatically এই object তৈরি করে method এর মধ্যে পাঠিয়ে দেয়।
+এটাকে বলে **Dependency Injection**।
+
+পুরো example:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function show(Request $request)
+    {
+        dd($request);
+    }
+}
+```
+
+এখানে `dd($request)` দিলে পুরো request object দেখা যাবে।
+
+---
+
+## 5. Request থেকে Data নেওয়ার উপায়
+
+Laravel এ request data নেওয়ার অনেকগুলো উপায় আছে। সবচেয়ে common গুলো হলো:
+
+- `$request->input('name')`
+- `$request->name`
+- `$request->all()`
+- `$request->only([...])`
+- `$request->except([...])`
+- `$request->query('key')`
+- `$request->has('field')`
+- `$request->filled('field')`
+
+এখন এক এক করে দেখি।
+
+---
+
+## 6. `input()` Method
+
+এটি request থেকে নির্দিষ্ট input নেওয়ার সবচেয়ে common উপায়।
+
+```php
+public function show(Request $request)
+{
+    $name = $request->input('name');
+    return $name;
+}
+```
+
+যদি form বা request এ `name=Alim` আসে, তাহলে output হবে:
+
+```php
+Alim
+```
+
+আরও example:
+
+```php
+public function show(Request $request)
+{
+    $email = $request->input('email');
+    $phone = $request->input('phone');
+
+    return $email . ' - ' . $phone;
+}
+```
+
+---
+
+## 7. Direct Property Access
+
+Laravel এ অনেক সময় এভাবেও input নেওয়া যায়:
+
+```php
+public function show(Request $request)
+{
+    $name = $request->name;
+    return $name;
+}
+```
+
+এটা shorthand style।
+
+### Example
+
+```php
+public function store(Request $request)
+{
+    $name = $request->name;
+    $email = $request->email;
+
+    return $name . ' | ' . $email;
+}
+```
+
+### তবে beginner হিসেবে কোনটা ভালো?
+
+`input()` বেশি explicit এবং readable:
+
+```php
+$request->input('name')
+```
+
+আর direct property access হলো ছোট করে লেখা:
+
+```php
+$request->name
+```
+
+দুটোই কাজ করে।
+
+---
+
+## 8. `all()` Method
+
+যদি request এর সব input একসাথে দেখতে চান:
+
+```php
+public function show(Request $request)
+{
+    dd($request->all());
+}
+```
+
+ধরি form এ ছিল:
+
+- name = Alim
+- email = [alim@gmail.com](mailto:alim@gmail.com)
+
+তাহলে output এমন হতে পারে:
+
+```php
+[
+    "name" => "Alim",
+    "email" => "alim@gmail.com"
+]
+```
+
+### কখন useful?
+
+- debugging
+- সব form data একসাথে দেখতে
+- testing করার সময়
+
+---
+
+## 9. `only()` and `except()`
+
+### `only()`
+
+শুধু নির্দিষ্ট কিছু field নিতে:
+
+```php
+public function show(Request $request)
+{
+    $data = $request->only(['name', 'email']);
+    dd($data);
+}
+```
+
+Output:
+
+```php
+[
+    "name" => "Alim",
+    "email" => "alim@gmail.com"
+]
+```
+
+### `except()`
+
+নির্দিষ্ট কিছু বাদ দিয়ে সব data নিতে:
+
+```php
+public function show(Request $request)
+{
+    $data = $request->except(['password']);
+    dd($data);
+}
+```
+
+এটি useful যখন sensitive field বাদ দিতে চান।
+
+---
+
+## 10. `query()` Method
+
+যদি URL query string থেকে data নিতে চান:
+
+ধরি URL:
+
+```php
+/products?category=mobile
+```
+
+তাহলে:
+
+```php
+public function show(Request $request)
+{
+    $category = $request->query('category');
+    return $category;
+}
+```
+
+Output:
+
+```php
+mobile
+```
+
+### কেন `query()`?
+
+এটি specifically URL-এর query string থেকে value আনে।
+
+আরও example:
+
+```php
+/search?keyword=laravel
+```
+
+```php
+public function search(Request $request)
+{
+    return $request->query('keyword');
+}
+```
+
+Output:
+
+```php
+laravel
+```
+
+---
+
+## 11. `has()` and `filled()`
+
+### `has()`
+
+Check করে field আছে কিনা।
+
+```php
+public function show(Request $request)
+{
+    if ($request->has('name')) {
+        return 'Name exists';
+    }
+
+    return 'Name not found';
+}
+```
+
+### `filled()`
+
+Check করে field আছে এবং empty না কিনা।
+
+```php
+public function show(Request $request)
+{
+    if ($request->filled('name')) {
+        return 'Name has value';
+    }
+
+    return 'Name is empty';
+}
+```
+
+### Difference
+
+ধরি:
+
+```php
+name = ""
+```
+
+- `has('name')` → true হতে পারে
+- `filled('name')` → false হবে
+
+কারণ field আছে, কিন্তু value empty।
+
+---
+
+## 12. Default Value ব্যবহার
+
+যদি input না আসে, তাহলে default value দিতে পারেন।
+
+```php
+public function show(Request $request)
+{
+    $name = $request->input('name', 'Guest');
+    return $name;
+}
+```
+
+যদি `name` না থাকে, তাহলে output হবে:
+
+```php
+Guest
+```
+
+এটি খুব useful।
+
+আরও example:
+
+```php
+public function search(Request $request)
+{
+    $keyword = $request->query('keyword', 'Nothing searched');
+    return $keyword;
+}
+```
+
+---
+
+## 13. Form Submission Example
+
+ধরি একটি simple form আছে:
+
+```html
+<form action="/submit" method="POST">
+  @csrf
+  <input type="text" name="name" placeholder="Enter name" />
+  <input type="email" name="email" placeholder="Enter email" />
+  <button type="submit">Submit</button>
+</form>
+```
+
+Route:
+
+```php
+Route::post('/submit', [UserController::class, 'submit']);
+```
+
+Controller:
+
+```php
+use Illuminate\Http\Request;
+
+public function submit(Request $request)
+{
+    $name = $request->input('name');
+    $email = $request->input('email');
+
+    return "Name: $name, Email: $email";
+}
+```
+
+যদি user input দেয়:
+
+- name = Abdul Alim
+- email = [alim@gmail.com](mailto:alim@gmail.com)
+
+তাহলে output হবে:
+
+```php
+Name: Abdul Alim, Email: alim@gmail.com
+```
+
+---
+
+## 14. Validation with Request
+
+Request object এর সবচেয়ে important use এর একটি হলো validation।
+
+```php
+public function submit(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+    ]);
+
+    return 'Validation passed';
+}
+```
+
+### এটা কি করে?
+
+- `name` অবশ্যই থাকতে হবে
+- `email` অবশ্যই থাকতে হবে
+- email valid format হতে হবে
+
+যদি invalid হয়, Laravel automatically error return করবে।
+
+### কেন useful?
+
+কারণ user ভুল data পাঠাতে পারে। Validation সেই ভুল data filter করে।
+
+---
+
+## 15. File Upload with Request
+
+ধরি user একটি image upload করছে।
+
+Form:
+
+```html
+<form action="/upload" method="POST" enctype="multipart/form-data">
+  @csrf
+  <input type="file" name="photo" />
+  <button type="submit">Upload</button>
+</form>
+```
+
+Controller:
+
+```php
+public function upload(Request $request)
+{
+    if ($request->hasFile('photo')) {
+        $file = $request->file('photo');
+        $name = $file->getClientOriginalName();
+
+        return $name;
+    }
+
+    return 'No file uploaded';
+}
+```
+
+### এখানে:
+
+- `hasFile('photo')` → file এসেছে কিনা check করে
+- `file('photo')` → file object দেয়
+
+আরও store example:
+
+```php
+public function upload(Request $request)
+{
+    if ($request->hasFile('photo')) {
+        $path = $request->file('photo')->store('photos');
+        return $path;
+    }
+
+    return 'No file uploaded';
+}
+```
+
+---
+
+## 16. Request Method Check
+
+অনেক সময় check করতে হয় request `GET` নাকি `POST`।
+
+```php
+public function show(Request $request)
+{
+    return $request->method();
+}
+```
+
+Output হতে পারে:
+
+```php
+GET
+```
+
+অথবা
+
+```php
+POST
+```
+
+আরও check:
+
+```php
+public function show(Request $request)
+{
+    if ($request->isMethod('post')) {
+        return 'This is a POST request';
+    }
+
+    return 'This is not a POST request';
+}
+```
+
+---
+
+## 17. Real-Life Example
+
+ধরুন CodeJogot-এ একটি ভর্তি form আছে। সেখানে student নিচের তথ্য দেয়:
+
+- name
+- email
+- phone
+- course
+
+এই form submit হলে Laravel controller এ request আসে।
+
+```php
+public function enroll(Request $request)
+{
+    $name = $request->input('name');
+    $email = $request->input('email');
+    $phone = $request->input('phone');
+    $course = $request->input('course');
+
+    return "Student $name enrolled in $course";
+}
+```
+
+এখানে `Request` হচ্ছে পুরো ভর্তি form।
+আর আপনি form থেকে আলাদা আলাদা তথ্য বের করছেন।
+
+মানে:
+
+- পুরো খাম = `Request`
+- খামের ভিতরের নাম = `$request->input('name')`
+- খামের ভিতরের email = `$request->input('email')`
+
+---
+
+## 18. Summary
+
+Laravel এর `Request` হলো user/browser থেকে আসা HTTP request data ধারণকারী object।
+
+এটি দিয়ে আপনি করতে পারেন:
+
+- input নেওয়া
+- query string নেওয়া
+- সব data দেখা
+- validation করা
+- file upload নেওয়া
+- request method check করা
+
+সবচেয়ে common usage:
+
+```php
+public function show(Request $request)
+{
+    $name = $request->input('name');
+    return $name;
+}
+```
+
+---
+
+## সবচেয়ে গুরুত্বপূর্ণ methods একসাথে
+
+```php
+$request->input('name');
+$request->name;
+$request->all();
+$request->only(['name', 'email']);
+$request->except(['password']);
+$request->query('keyword');
+$request->has('name');
+$request->filled('name');
+$request->validate([...]);
+$request->file('photo');
+$request->hasFile('photo');
+$request->method();
+$request->isMethod('post');
+```
+
+---
+
+## ছোট্ট Final Note
+
+```php
+public function show(Request $request)
+{
+}
+```
+
+এখানে `Request` হলো Laravel এর class,
+আর `$request` হলো সেই class এর object,
+যার মধ্যে user-এর পাঠানো সব request data থাকে। ✅
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter 17: Laravel Resource Controller
 
 ## Table of Contents
 
@@ -9605,7 +10261,7 @@ public function index()
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
-# Chapter 17: PROJECT - Laravel CRUD Project with Tailwind CSS
+# Chapter 18: PROJECT - Laravel CRUD Project with Tailwind CSS
 
 আমরা এখানে একটি **Student Management System** বানাবো, যেখানে থাকবে:
 
