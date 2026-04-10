@@ -4,50 +4,50 @@
 
 After completing the 30-chapters module, jump in the [Projects Section](#10-laravel-projects-for-beginners).
 
-|                                  **Chapter No.**                                   |                                               **Topics**                                                | **Video Explanation** |
-| :--------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------: | :-------------------: |
-|                    [00](#chapter-00-how-the-course-is-designed)                    |                  [How The Course is Designed](#chapter-00-how-the-course-is-designed)                   |       Watch Now       |
-|                     [01](#chapter-01-introduction-to-laravel)                      |                     [Introduction to Laravel](#chapter-01-introduction-to-laravel)                      |       Watch Now       |
-|              [02](#chapter-2-laravel-installation--environment-setup)              |     [Laravel Installation & Environment Setup](#chapter-2-laravel-installation--environment-setup)      |       Watch Now       |
-|                           [03](#chapter-3-configuration)                           |                                [Configuration](#chapter-3-configuration)                                |       Watch Now       |
-|                      [04](#chapter-4-ai-assisted-development)                      |                      [AI Assisted Development](#chapter-4-ai-assisted-development)                      |       Watch Now       |
-|                        [05](#chapter-5-directory-structure)                        |                          [Directory Structure](#chapter-5-directory-structure)                          |     [Watch Now]()     |
-|                             [06](#chapter-6-frontend)                              |                                     [Frontend](#chapter-6-frontend)                                     |     [Watch Now]()     |
-|                           [07](#chapter-7-starter-kits)                            |                                 [Starter Kits](#chapter-7-starter-kits)                                 |     [Watch Now]()     |
-|                            [08](#chapter-8-deployment)                             |                                   [Deployment](#chapter-8-deployment)                                   |     [Watch Now]()     |
-|             [09](#chapter-9-architecture-concepts---request-lifecycle)             |    [Architecture Concepts & Request Lifecyle](#chapter-9-architecture-concepts---request-lifecycle)     |     [Watch Now]()     |
-|                        [10](#chapter-10-service-container)                         |                           [Service Container](#chapter-10-service-container)                            |     [Watch Now]()     |
-|                        [11](#chapter-11-service-providers)                         |                           [Service Providers](#chapter-11-service-providers)                            |     [Watch Now]()     |
-|                             [12](#chapter-12-facades)                              |                                     [Facades](#chapter-12-facades)                                      |     [Watch Now]()     |
-|                       [13](#chapter-13-the-basics---routing)                       |                        [The Basics - Routing](#chapter-13-the-basics---routing)                         |     [Watch Now]()     |
-|                       [14](#chapter-14-laravel-blade-syntax)                       |                        [Laravel Blade Syntax](#chapter-14-laravel-blade-syntax)                         |     [Watch Now]()     |
-|                       [15](#chapter-15-laravel-controllers)                        |                         [Laravel Controllers](#chapter-15-laravel-controllers)                          |     [Watch Now]()     |
-|                      [16](#chapter-16-laravel-request-class)                       |                       [Laravel Request Class](#chapter-16-laravel-request-class)                        |     [Watch Now]()     |
-|                   [17](#chapter-17-laravel-resource-controller)                    |                 [Laravel Resource Controller](#chapter-17-laravel-resource-controller)                  |     [Watch Now]()     |
-|        [18](#chapter-18-project----laravel-crud-project-with-tailwind-css)         | [Laravel CRUD Project with Tailwind CSS](#chapter-18-project----laravel-crud-project-with-tailwind-css) |     [Watch Now]()     |
-|                       [18](#chapter-18-php-form-validation)                        |                                   [](#chapter-18-php-form-validation)                                   |     [Watch Now]()     |
-|               [19](#chapter-19-php-form-required-fields-validation)                |                           [](#chapter-19-php-form-required-fields-validation)                           |     [Watch Now]()     |
-|               [20](#chapter-20-php-forms---validate-e-mail-and-url)                |                           [](#chapter-20-php-forms---validate-e-mail-and-url)                           |     [Watch Now]()     |
-|                        [21](#chapter-21-php-date-and-time)                         |                                    [](#chapter-21-php-date-and-time)                                    |     [Watch Now]()     |
-|                      [22](#chapter-22-php-include-vs-require)                      |                                 [](#chapter-22-php-include-vs-require)                                  |     [Watch Now]()     |
-|                        [23](#chapter-23-php-file-handling)                         |                                    [](#chapter-23-php-file-handling)                                    |     [Watch Now]()     |
-|                         [24](#chapter-24-php-file-upload)                          |                                     [](#chapter-24-php-file-upload)                                     |     [Watch Now]()     |
-|                           [25](#chapter-25-php-cookies)                            |                                       [](#chapter-25-php-cookies)                                       |     [Watch Now]()     |
-|                           [26](#chapter-26-php-sessions)                           |                                      [](#chapter-26-php-sessions)                                       |     [Watch Now]()     |
-|                           [27](#chapter-27-php-filters)                            |                                       [](#chapter-27-php-filters)                                       |     [Watch Now]()     |
-|                      [28](#chapter-28-php-callback-functions)                      |                                 [](#chapter-28-php-callback-functions)                                  |     [Watch Now]()     |
-|                           [29](#chapter-29-php-and-json)                           |                                      [](#chapter-29-php-and-json)                                       |     [Watch Now]()     |
-|                          [30](#chapter-30-php-exceptions)                          |                                     [](#chapter-30-php-exceptions)                                      |     [Watch Now]()     |
-|               [31](#chapter-31-php-oop-object-oriented-programming)                |                           [](#chapter-31-php-oop-object-oriented-programming)                           |     [Watch Now]()     |
-|                     [32](#chapter-32-php-oop-access-modifiers)                     |                                [](#chapter-32-php-oop-access-modifiers)                                 |     [Watch Now]()     |
-|                       [33](#chapter-33-php-oop-inheritance)                        |                                   [](#chapter-33-php-oop-inheritance)                                   |     [Watch Now]()     |
-|                     [34](#chapter-34-php-oop-abstract-classes)                     |                                [](#chapter-34-php-oop-abstract-classes)                                 |     [Watch Now]()     |
-|        [35](#chapter-35-php-oop-interfaces-with-a-corporate-teamwork-story)        |                   [](#chapter-35-php-oop-interfaces-with-a-corporate-teamwork-story)                    |     [Watch Now]()     |
-|        [36](#chapter-36-php-oop-traits-with-a-story-of-superskills-academy)        |                                                  []()                                                   |     [Watch Now]()     |
-|                                       [37]()                                       |                                                  []()                                                   |     [Watch Now]()     |
-|                                       [38]()                                       |                                                  []()                                                   |         []()          |
-|                                        []()                                        |                                                  []()                                                   |     [Watch Now]()     |
-| [40](#chapter-40-introduction-to-php-mysql-database-with-the-story-of-foodies-hub) |                                                  []()                                                   |     [Watch Now]()     |
+|                                  **Chapter No.**                                   |                                               **Topics**                                               | **Video Explanation** |
+| :--------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------: | :-------------------: |
+|                    [00](#chapter-00-how-the-course-is-designed)                    |                  [How The Course is Designed](#chapter-00-how-the-course-is-designed)                  |       Watch Now       |
+|                     [01](#chapter-01-introduction-to-laravel)                      |                     [Introduction to Laravel](#chapter-01-introduction-to-laravel)                     |       Watch Now       |
+|              [02](#chapter-2-laravel-installation--environment-setup)              |     [Laravel Installation & Environment Setup](#chapter-2-laravel-installation--environment-setup)     |       Watch Now       |
+|                           [03](#chapter-3-configuration)                           |                               [Configuration](#chapter-3-configuration)                                |       Watch Now       |
+|                      [04](#chapter-4-ai-assisted-development)                      |                     [AI Assisted Development](#chapter-4-ai-assisted-development)                      |       Watch Now       |
+|                        [05](#chapter-5-directory-structure)                        |                         [Directory Structure](#chapter-5-directory-structure)                          |     [Watch Now]()     |
+|                             [06](#chapter-6-frontend)                              |                                    [Frontend](#chapter-6-frontend)                                     |     [Watch Now]()     |
+|                           [07](#chapter-7-starter-kits)                            |                                [Starter Kits](#chapter-7-starter-kits)                                 |     [Watch Now]()     |
+|                            [08](#chapter-8-deployment)                             |                                  [Deployment](#chapter-8-deployment)                                   |     [Watch Now]()     |
+|             [09](#chapter-9-architecture-concepts---request-lifecycle)             |    [Architecture Concepts & Request Lifecyle](#chapter-9-architecture-concepts---request-lifecycle)    |     [Watch Now]()     |
+|                        [10](#chapter-10-service-container)                         |                           [Service Container](#chapter-10-service-container)                           |     [Watch Now]()     |
+|                        [11](#chapter-11-service-providers)                         |                           [Service Providers](#chapter-11-service-providers)                           |     [Watch Now]()     |
+|                             [12](#chapter-12-facades)                              |                                     [Facades](#chapter-12-facades)                                     |     [Watch Now]()     |
+|                       [13](#chapter-13-the-basics---routing)                       |                        [The Basics - Routing](#chapter-13-the-basics---routing)                        |     [Watch Now]()     |
+|                       [14](#chapter-14-laravel-blade-syntax)                       |                        [Laravel Blade Syntax](#chapter-14-laravel-blade-syntax)                        |     [Watch Now]()     |
+|                       [15](#chapter-15-laravel-controllers)                        |                         [Laravel Controllers](#chapter-15-laravel-controllers)                         |     [Watch Now]()     |
+|                      [16](#chapter-16-laravel-request-class)                       |                       [Laravel Request Class](#chapter-16-laravel-request-class)                       |     [Watch Now]()     |
+|                   [17](#chapter-17-laravel-resource-controller)                    |                 [Laravel Resource Controller](#chapter-17-laravel-resource-controller)                 |     [Watch Now]()     |
+|        [18](#chapter-18-project----laravel-crud-project-with-tailwind-css)         | [Laravel CRUD Project with Tailwind CSS](#chapter-18-project---laravel-crud-project-with-tailwind-css) |     [Watch Now]()     |
+|                        [19](#chapter-19-laravel-migration)                         |                           [Laravel Migration](#chapter-19-laravel-migration)                           |     [Watch Now]()     |
+|                          [20](#chapter-20-laravel-model)                           |                               [Laravel Model](#chapter-20-laravel-model)                               |     [Watch Now]()     |
+|                      [21](#chapter-21-eloquent-model-queries)                      |                          [Eloquent Model](#chapter-21-eloquent-model-queries)                          |     [Watch Now]()     |
+|                       [22](#chapter-22-laravel-relationship)                       |                        [Laravel Ralationship](#chapter-22-laravel-relationship)                        |     [Watch Now]()     |
+|                                       [23]()                                       |                                                  []()                                                  |     [Watch Now]()     |
+|                        [24](#chapter-23-php-file-handling)                         |                                   [](#chapter-23-php-file-handling)                                    |     [Watch Now]()     |
+|                         [25](#chapter-24-php-file-upload)                          |                                    [](#chapter-24-php-file-upload)                                     |     [Watch Now]()     |
+|                           [26](#chapter-25-php-cookies)                            |                                      [](#chapter-25-php-cookies)                                       |     [Watch Now]()     |
+|                           [27](#chapter-26-php-sessions)                           |                                      [](#chapter-26-php-sessions)                                      |     [Watch Now]()     |
+|                           [28](#chapter-27-php-filters)                            |                                      [](#chapter-27-php-filters)                                       |     [Watch Now]()     |
+|                      [29](#chapter-28-php-callback-functions)                      |                                 [](#chapter-28-php-callback-functions)                                 |     [Watch Now]()     |
+|                           [30](#chapter-29-php-and-json)                           |                                      [](#chapter-29-php-and-json)                                      |     [Watch Now]()     |
+|                          [30](#chapter-30-php-exceptions)                          |                                     [](#chapter-30-php-exceptions)                                     |     [Watch Now]()     |
+|               [31](#chapter-31-php-oop-object-oriented-programming)                |                          [](#chapter-31-php-oop-object-oriented-programming)                           |     [Watch Now]()     |
+|                     [32](#chapter-32-php-oop-access-modifiers)                     |                                [](#chapter-32-php-oop-access-modifiers)                                |     [Watch Now]()     |
+|                       [33](#chapter-33-php-oop-inheritance)                        |                                  [](#chapter-33-php-oop-inheritance)                                   |     [Watch Now]()     |
+|                     [34](#chapter-34-php-oop-abstract-classes)                     |                                [](#chapter-34-php-oop-abstract-classes)                                |     [Watch Now]()     |
+|        [35](#chapter-35-php-oop-interfaces-with-a-corporate-teamwork-story)        |                   [](#chapter-35-php-oop-interfaces-with-a-corporate-teamwork-story)                   |     [Watch Now]()     |
+|        [36](#chapter-36-php-oop-traits-with-a-story-of-superskills-academy)        |                                                  []()                                                  |     [Watch Now]()     |
+|                                       [37]()                                       |                                                  []()                                                  |     [Watch Now]()     |
+|                                       [38]()                                       |                                                  []()                                                  |         []()          |
+|                                        []()                                        |                                                  []()                                                  |     [Watch Now]()     |
+| [40](#chapter-40-introduction-to-php-mysql-database-with-the-story-of-foodies-hub) |                                                  []()                                                  |     [Watch Now]()     |
 
 # 10 Laravel Projects for Beginners
 
@@ -11037,7 +11037,4959 @@ npm run dev
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
-# Chapter 18:
+# Chapter 19: Laravel Migration
+
+## Table of Contents
+
+1. [Laravel Migration কী](#laravel-migration-কী)
+2. [Migration কেন দরকার](#migration-কেন-দরকার)
+3. [Database schema এবং Migration-এর সম্পর্ক](#database-schema-এবং-migration-এর-সম্পর্ক)
+4. [Laravel Migration কোথায় থাকে](#laravel-migration-কোথায়-থাকে)
+5. [Migration file-এর naming convention](#migration-file-এর-naming-convention)
+6. [নতুন Migration তৈরি করা](#নতুন-migration-তৈরি-করা)
+7. [Migration file-এর structure](#migration-file-এর-structure)
+8. [`up()` এবং `down()` method](#up-এবং-down-method)
+9. [Table create করা](#table-create-করা)
+10. [Column add করা](#column-add-করা)
+11. [Column modify, rename, drop করা](#column-modify-rename-drop-করা)
+12. [Common column types](#common-column-types)
+13. [Index কী এবং Migration-এ index ব্যবহার](#index-কী-এবং-migration-এ-index-ব্যবহার)
+14. [Foreign key ব্যবহার](#foreign-key-ব্যবহার)
+15. [Migration run করার command](#migration-run-ক করার-command)
+16. [Rollback, reset, refresh, fresh](#rollback-reset-refresh-fresh)
+17. [Batch system কীভাবে কাজ করে](#batch-system-কীভাবে-কাজ-করে)
+18. [Real project example](#real-project-example)
+19. [Migration vs Seeder vs Factory](#migration-vs-seeder-vs-factory)
+20. [Laravel 11/12/13 structure নিয়ে note](#laravel-111213-structure-নিয়ে-note)
+21. [Common mistakes](#common-mistakes)
+22. [Best practices](#best-practices)
+23. [Interview questions](#interview-questions)
+24. [Mini practice tasks](#mini-practice-tasks)
+25. [Summary table](#summary-table)
+
+---
+
+## Laravel Migration কী
+
+Laravel-এ **Migration** হলো database structure manage করার একটি system।
+
+সহজভাবে বললে:
+
+- আপনার database-এ কোন table থাকবে
+- কোন table-এ কোন column থাকবে
+- column-এর data type কী হবে
+- কোন column unique হবে
+- কোন column foreign key হবে
+- পরে table/column change করতে হলে কীভাবে change হবে
+
+এসব কিছু code দিয়ে লিখে রাখার পদ্ধতিকেই Migration বলে।
+
+Laravel-এর অফিসিয়াল documentation অনুযায়ী, migration হলো database-এর জন্য এক ধরনের **version control**। অর্থাৎ code যেমন Git দিয়ে track করা যায়, তেমনি database structure-ও migration দিয়ে track করা যায়। ([Laravel][1])
+
+### খুব সহজ analogy
+
+ধরুন, আপনি একটি বাড়ি তৈরি করছেন।
+
+- **Migration** = বাড়ির নকশা
+- **Database table** = বাড়ির রুম
+- **Column** = প্রতিটি রুমের জিনিসপত্র
+- **Rollback** = আগের নকশায় ফিরে যাওয়া
+
+অর্থাৎ migration আপনাকে database “হাতে বানানো” থেকে বাঁচিয়ে “নিয়ন্ত্রিতভাবে” structure বানাতে সাহায্য করে।
+
+---
+
+## Migration কেন দরকার
+
+অনেক beginner প্রথমে ভাবে:
+
+“আমি তো phpMyAdmin খুলে table create করতে পারি, তাহলে migration কেন?”
+
+এটা ছোট project-এ ঠিক আছে। কিন্তু real project-এ সমস্যা হয়।
+
+### Migration ছাড়া সমস্যা
+
+ধরুন টিমে ৩ জন developer আছে।
+
+একজন manually database-এ `users` table বানাল।
+আরেকজন জানে না কোন column add হয়েছে।
+তৃতীয়জন production server-এ table create করতে ভুলে গেল।
+
+ফলাফল:
+
+- local environment আর production environment match করবে না
+- teammate-এর database structure আলাদা হয়ে যাবে
+- deployment-এ error হবে
+- history track করা কঠিন হবে
+
+### Migration থাকলে সুবিধা
+
+- database changes code আকারে থাকে
+- team member সবাই একই structure পায়
+- production-এ safely apply করা যায়
+- rollback করা যায়
+- project history clean থাকে
+- setup automation সহজ হয়
+
+---
+
+## Database schema এবং Migration-এর সম্পর্ক
+
+**Database schema** মানে database-এর structure।
+
+যেমন:
+
+- `users` table
+- `posts` table
+- `name`, `email`, `password`
+- indexes
+- foreign keys
+
+Laravel migration এই schema-কে code দিয়ে define করে।
+
+Laravel-এ সাধারণত migration লেখা হয় **Schema Builder** ব্যবহার করে। Laravel docs অনুযায়ী migration file সাধারণত `database/migrations` directory-তে থাকে এবং timestamp-based filename order দিয়ে Laravel migration run order নির্ধারণ করে। ([Laravel][1])
+
+---
+
+## Laravel Migration কোথায় থাকে
+
+সাধারণভাবে migration file থাকে:
+
+```bash
+database/migrations
+```
+
+এখানে প্রতিটি migration file-এর নামের শুরুতে timestamp থাকে।
+
+উদাহরণ:
+
+```bash
+2026_04_10_101010_create_users_table.php
+2026_04_10_101550_add_age_to_users_table.php
+```
+
+### timestamp কেন থাকে
+
+Laravel যেন বুঝতে পারে কোন migration আগে run হবে, কোনটা পরে run হবে।
+
+---
+
+## Migration file-এর naming convention
+
+Laravel migration naming convention খুব important।
+
+### সাধারণ pattern
+
+- `create_users_table`
+- `add_status_to_orders_table`
+- `remove_phone_from_customers_table`
+
+Laravel-এর docs অনুযায়ী, `php artisan make:migration` command migration-এর নাম থেকে table-এর নাম ও migration-এর উদ্দেশ্য guess করার চেষ্টা করে, এবং অনেক সময় file stub-ও pre-fill করে দেয়। ([Laravel][1])
+
+### Naming convention কেন জরুরি
+
+কারণ এতে migration দেখে দ্রুত বোঝা যায়:
+
+- এটা নতুন table বানাবে?
+- existing table modify করবে?
+- কোন table-এ কাজ করছে?
+
+### ভালো naming examples
+
+```bash
+php artisan make:migration create_products_table
+php artisan make:migration add_price_to_products_table
+php artisan make:migration drop_discount_from_products_table
+```
+
+### খারাপ naming examples
+
+```bash
+php artisan make:migration test
+php artisan make:migration update1
+php artisan make:migration myfile
+```
+
+এগুলা meaningful না।
+
+---
+
+## নতুন Migration তৈরি করা
+
+Laravel-এ migration তৈরি করতে Artisan command ব্যবহার করা হয়।
+
+### Basic command
+
+```bash
+php artisan make:migration create_users_table
+```
+
+Laravel docs অনুযায়ী, এই command নতুন migration file generate করে `database/migrations` folder-এ রাখে। চাইলে `--path` option দিয়ে custom path-ও দেওয়া যায়। ([Laravel][1])
+
+### Existing table modify করার জন্য
+
+```bash
+php artisan make:migration add_age_to_users_table --table=users
+```
+
+### New table create করার জন্য
+
+```bash
+php artisan make:migration create_posts_table --create=posts
+```
+
+---
+
+## Migration file-এর structure
+
+Laravel migration file সাধারণত এমন হয়:
+
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        //
+    }
+
+    public function down(): void
+    {
+        //
+    }
+};
+```
+
+### এখানে কী আছে
+
+#### `Migration`
+
+এটা base migration class।
+
+#### `Schema`
+
+Database schema নিয়ে কাজ করার facade।
+
+#### `Blueprint`
+
+Table-এর columns, indexes, constraints define করার জন্য ব্যবহৃত হয়।
+
+#### `up()`
+
+যে changes apply হবে।
+
+#### `down()`
+
+যে changes reverse হবে।
+
+---
+
+## `up()` এবং `down()` method
+
+Laravel migration বুঝতে এই দুই method সবচেয়ে গুরুত্বপূর্ণ।
+
+### `up()`
+
+এখানে আপনি লিখবেন migration run করলে কী হবে।
+
+উদাহরণ:
+
+- table create
+- column add
+- index add
+- foreign key add
+
+### `down()`
+
+এখানে লিখবেন rollback করলে কীভাবে আগের অবস্থায় ফিরে যাবে।
+
+### উদাহরণ
+
+```php
+public function up(): void
+{
+    Schema::create('categories', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->timestamps();
+    });
+}
+
+public function down(): void
+{
+    Schema::dropIfExists('categories');
+}
+```
+
+### ব্যাখ্যা
+
+- `Schema::create()` দিয়ে table তৈরি হয়েছে
+- `id()` দিয়ে primary key তৈরি হয়েছে
+- `string('name')` দিয়ে `name` column তৈরি হয়েছে
+- `timestamps()` দিয়ে `created_at` এবং `updated_at` তৈরি হয়েছে
+- rollback করলে `dropIfExists()` table delete করবে
+
+### Beginner mistake
+
+অনেকে `up()` লিখে `down()` ফাঁকা রাখে।
+এটা ভুল অভ্যাস। কারণ rollback কাজ করবে না।
+
+---
+
+## Table create করা
+
+একটি full example দেখি।
+
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('students', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->integer('age');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('students');
+    }
+};
+```
+
+### Line by line explanation
+
+#### `Schema::create('students', function (Blueprint $table) { ... })`
+
+`students` নামে একটি table create করছে।
+
+#### `$table->id();`
+
+Auto-incrementing primary key `id` তৈরি করছে।
+
+#### `$table->string('name');`
+
+`name` নামে string type column।
+
+#### `$table->string('email')->unique();`
+
+`email` string column এবং unique constraint।
+
+#### `$table->integer('age');`
+
+`age` integer column।
+
+#### `$table->timestamps();`
+
+দুটি column add হবে:
+
+- `created_at`
+- `updated_at`
+
+### Expected table structure
+
+| Column     | Type      | Extra                       |
+| ---------- | --------- | --------------------------- |
+| id         | BIGINT    | Primary Key, Auto Increment |
+| name       | VARCHAR   |                             |
+| email      | VARCHAR   | Unique                      |
+| age        | INT       |                             |
+| created_at | TIMESTAMP | Nullable                    |
+| updated_at | TIMESTAMP | Nullable                    |
+
+---
+
+## Column add করা
+
+ধরুন `students` table already আছে। এখন আপনি `phone` column add করতে চান।
+
+### Migration তৈরি
+
+```bash
+php artisan make:migration add_phone_to_students_table --table=students
+```
+
+### Migration code
+
+```php
+public function up(): void
+{
+    Schema::table('students', function (Blueprint $table) {
+        $table->string('phone')->nullable()->after('email');
+    });
+}
+
+public function down(): void
+{
+    Schema::table('students', function (Blueprint $table) {
+        $table->dropColumn('phone');
+    });
+}
+```
+
+### ব্যাখ্যা
+
+#### `Schema::table('students', ...)`
+
+Existing table modify করার জন্য।
+
+#### `$table->string('phone')`
+
+নতুন `phone` string column।
+
+#### `->nullable()`
+
+এই column-এ value না থাকলেও চলবে।
+
+#### `->after('email')`
+
+MySQL-এর মতো supported database-এ column position define করতে পারে।
+
+#### `dropColumn('phone')`
+
+Rollback করলে column remove হবে।
+
+---
+
+## Column modify, rename, drop করা
+
+### 1) Column drop
+
+```php
+public function up(): void
+{
+    Schema::table('students', function (Blueprint $table) {
+        $table->dropColumn('age');
+    });
+}
+
+public function down(): void
+{
+    Schema::table('students', function (Blueprint $table) {
+        $table->integer('age');
+    });
+}
+```
+
+### 2) Column rename
+
+```php
+public function up(): void
+{
+    Schema::table('students', function (Blueprint $table) {
+        $table->renameColumn('phone', 'mobile');
+    });
+}
+
+public function down(): void
+{
+    Schema::table('students', function (Blueprint $table) {
+        $table->renameColumn('mobile', 'phone');
+    });
+}
+```
+
+### 3) Column modify
+
+```php
+public function up(): void
+{
+    Schema::table('students', function (Blueprint $table) {
+        $table->string('name', 150)->change();
+    });
+}
+
+public function down(): void
+{
+    Schema::table('students', function (Blueprint $table) {
+        $table->string('name')->change();
+    });
+}
+```
+
+### Common issue
+
+সব database engine একইভাবে সব modification support করে না। তাই production-এ বড় schema change করার আগে test করা জরুরি।
+
+---
+
+## Common column types
+
+Laravel migration-এ অনেক ধরনের column type আছে। কিছু common type নিচে দেওয়া হলো।
+
+| Method                             | Meaning                 |
+| ---------------------------------- | ----------------------- |
+| `$table->id()`                     | Primary key ID          |
+| `$table->string('name')`           | Short text              |
+| `$table->text('description')`      | Large text              |
+| `$table->integer('age')`           | Integer number          |
+| `$table->boolean('is_active')`     | true / false            |
+| `$table->date('birth_date')`       | Date only               |
+| `$table->dateTime('published_at')` | Date + time             |
+| `$table->decimal('price', 8, 2)`   | Decimal number          |
+| `$table->timestamps()`             | created_at + updated_at |
+| `$table->softDeletes()`            | deleted_at              |
+| `$table->foreignId('user_id')`     | Foreign key type ID     |
+
+### Example
+
+```php
+Schema::create('products', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->text('description');
+    $table->decimal('price', 8, 2);
+    $table->boolean('in_stock')->default(true);
+    $table->timestamps();
+});
+```
+
+### ব্যাখ্যা
+
+- `title` = product নাম
+- `description` = বিস্তারিত বিবরণ
+- `price` = decimal price
+- `in_stock` = true/false
+- `default(true)` = default value true
+
+---
+
+## Index কী এবং Migration-এ index ব্যবহার
+
+**Index** database query fast করতে সাহায্য করে।
+
+ধরুন আপনার `users` table-এ ১০ লাখ record আছে।
+আপনি বারবার `email` দিয়ে search করছেন।
+
+যদি index না থাকে:
+
+- database অনেক row scan করবে
+
+যদি index থাকে:
+
+- database দ্রুত খুঁজে পাবে
+
+Laravel docs migration section-এ বিভিন্ন index type support করে, যেমন primary, unique, index, full-text ইত্যাদি। ([Laravel][1])
+
+### Common index examples
+
+```php
+$table->string('email')->unique();
+$table->index('name');
+$table->unique(['email', 'phone']);
+```
+
+### Full example
+
+```php
+Schema::create('employees', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->string('email');
+    $table->string('department');
+    $table->timestamps();
+
+    $table->index('name');
+    $table->unique('email');
+});
+```
+
+### কোন index কখন ব্যবহার করবেন
+
+- `primary` → main identifier
+- `unique` → duplicate আটকাতে
+- `index` → frequently searched column
+- composite index → multiple column search
+
+### Common mistake
+
+যেখানে index দরকার নেই, সবখানে index দিয়ে দেওয়া।
+এতে write operation slow হতে পারে।
+
+---
+
+## Foreign key ব্যবহার
+
+ধরুন একটি `posts` table আছে এবং প্রতিটি post একটি `user`-এর।
+
+এক্ষেত্রে `posts.user_id` → `users.id`
+
+এটাই foreign key relationship।
+
+### Example
+
+```php
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->string('title');
+    $table->text('body');
+    $table->timestamps();
+});
+```
+
+### ব্যাখ্যা
+
+#### `$table->foreignId('user_id')`
+
+`user_id` নামে unsigned big integer type column।
+
+#### `->constrained()`
+
+Laravel convention অনুযায়ী `users` table-এর `id` column reference করবে।
+
+#### `->onDelete('cascade')`
+
+যদি parent user delete হয়, তার posts-ও delete হবে।
+
+### Expanded version
+
+```php
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->unsignedBigInteger('user_id');
+    $table->string('title');
+    $table->text('body');
+    $table->timestamps();
+
+    $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+});
+```
+
+### কোনটা ভালো
+
+Beginner হিসেবে:
+
+```php
+$table->foreignId('user_id')->constrained()->onDelete('cascade');
+```
+
+এটা cleaner।
+
+### Common mistake
+
+- parent table আগে create না করে child table create করা
+- foreign key type mismatch
+- rollback order ভুল হওয়া
+
+---
+
+## Migration run করার command
+
+### সব pending migration run করতে
+
+```bash
+php artisan migrate
+```
+
+Laravel migration system executed migrations track করে রাখে, তাই pending migration-গুলোই run হয়। Docs-এ migration order timestamp দ্বারা ঠিক হয় এবং executed migrations history database-এ রাখা হয়। ([Laravel][1])
+
+### নির্দিষ্ট path থেকে migrate করতে
+
+```bash
+php artisan migrate --path=database/migrations/custom
+```
+
+### force দিয়ে production-এ চালাতে
+
+```bash
+php artisan migrate --force
+```
+
+`--force` ছাড়া production environment-এ Laravel confirmation চাইতে পারে।
+
+---
+
+## Rollback, reset, refresh, fresh
+
+এগুলো খুব important command।
+
+### 1) Last batch rollback
+
+```bash
+php artisan migrate:rollback
+```
+
+এটা সর্বশেষ batch-এর migration undo করে।
+
+### 2) নির্দিষ্ট step rollback
+
+```bash
+php artisan migrate:rollback --step=2
+```
+
+শেষের ২টি migration rollback করতে পারে।
+
+### 3) সব migration rollback
+
+```bash
+php artisan migrate:reset
+```
+
+সব migration reverse করবে।
+
+### 4) rollback + migrate again
+
+```bash
+php artisan migrate:refresh
+```
+
+এটা সাধারণত:
+
+- rollback all
+- তারপর আবার migrate
+
+### 5) সব table drop করে fresh migrate
+
+```bash
+php artisan migrate:fresh
+```
+
+এটা existing সব table drop করে তারপর নতুন করে migrate করে।
+
+### Seeder সহ
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+অথবা
+
+```bash
+php artisan migrate:refresh --seed
+```
+
+### কোন command কখন ব্যবহার করবেন
+
+| Command    | কাজ                        |
+| ---------- | -------------------------- |
+| `migrate`  | নতুন pending migration run |
+| `rollback` | last batch undo            |
+| `reset`    | সব undo                    |
+| `refresh`  | rollback + re-run          |
+| `fresh`    | সব table drop + re-run     |
+
+### Beginner warning
+
+`migrate:fresh` dangerous।
+Production-এ এটা চালালে সব table drop হয়ে যেতে পারে।
+
+---
+
+## Batch system কীভাবে কাজ করে
+
+Laravel migration একটি **batch number** maintain করে।
+
+ধরুন আপনি তিনটি migration run করলেন।
+সবগুলো batch `1` এ গেল।
+
+পরে আরও দুইটি migration run করলেন।
+ওগুলো batch `2` এ গেল।
+
+এখন:
+
+```bash
+php artisan migrate:rollback
+```
+
+শুধু batch `2` rollback করবে।
+
+### কেন এটা useful
+
+কারণ Laravel বুঝতে পারে শেষবার কোন set of migrations run হয়েছে।
+
+---
+
+## Real project example
+
+এখন একটি ছোট blog project example দেখি।
+
+আমরা ৩টি table বানাবো:
+
+1. `users`
+2. `categories`
+3. `posts`
+
+---
+
+### Step 1: categories table
+
+```bash
+php artisan make:migration create_categories_table
+```
+
+```php
+public function up(): void
+{
+    Schema::create('categories', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->timestamps();
+    });
+}
+
+public function down(): void
+{
+    Schema::dropIfExists('categories');
+}
+```
+
+---
+
+### Step 2: posts table
+
+```bash
+php artisan make:migration create_posts_table
+```
+
+```php
+public function up(): void
+{
+    Schema::create('posts', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('category_id')->constrained()->onDelete('cascade');
+        $table->string('title');
+        $table->text('body');
+        $table->boolean('is_published')->default(false);
+        $table->timestamps();
+    });
+}
+
+public function down(): void
+{
+    Schema::dropIfExists('posts');
+}
+```
+
+### এখানে কী হলো
+
+- `posts` table create হলো
+- প্রতিটি post একটি user-এর
+- প্রতিটি post একটি category-এর
+- `is_published` default `false`
+
+---
+
+### Step 3: add slug column
+
+```bash
+php artisan make:migration add_slug_to_posts_table --table=posts
+```
+
+```php
+public function up(): void
+{
+    Schema::table('posts', function (Blueprint $table) {
+        $table->string('slug')->unique()->after('title');
+    });
+}
+
+public function down(): void
+{
+    Schema::table('posts', function (Blueprint $table) {
+        $table->dropColumn('slug');
+    });
+}
+```
+
+---
+
+### Project flow diagram
+
+```text
+Migration File
+    ↓
+php artisan migrate
+    ↓
+Laravel reads timestamps
+    ↓
+Runs pending migrations in order
+    ↓
+Tables/columns/indexes created
+    ↓
+Migration history stored
+```
+
+---
+
+## Migration vs Seeder vs Factory
+
+এগুলো beginner-রা প্রায়ই confuse করে।
+
+| Feature   | কাজ                              |
+| --------- | -------------------------------- |
+| Migration | Database structure তৈরি/পরিবর্তন |
+| Seeder    | Initial/demo data insert         |
+| Factory   | Fake/test data generate          |
+
+Laravel docs অনুযায়ী seeder class-গুলো `database/seeders` directory-তে থাকে এবং `db:seed` command দিয়ে run করা হয়। `DatabaseSeeder` থেকে অন্য seeder call করা যায়। ([Laravel][2])
+
+### Example
+
+- Migration → `users` table তৈরি করবে
+- Seeder → demo user insert করবে
+- Factory → 100 fake user generate করবে
+
+### মনে রাখার টিপস
+
+```text
+Migration = table structure
+Seeder    = sample/initial data
+Factory   = fake/generated data
+```
+
+---
+
+## Laravel 11/12/13 structure নিয়ে note
+
+Laravel 11 থেকে project structure কিছু জায়গায় leaner/streamlined হয়েছে, কিন্তু migration concept একই core pattern অনুসরণ করে। Laravel 12 release notes-এ minimal breaking changes-এর কথা বলা হয়েছে, এবং migration documentation বর্তমান official docs-এ ধারাবাহিকভাবেই maintained আছে। ([Laravel][3])
+
+এটা beginner-এর জন্য গুরুত্বপূর্ণ কারণ:
+
+- পুরোনো tutorial-এ file structure একটু আলাদা হতে পারে
+- কিন্তু migration command, `up()`, `down()`, `Schema`, `Blueprint` — এগুলোর মূল ধারণা একই
+
+---
+
+## Common mistakes
+
+### 1) `down()` method না লেখা
+
+Rollback কাজ করবে না।
+
+### 2) migration order না বোঝা
+
+Parent table-এর আগে child table create করলে foreign key error হতে পারে।
+
+### 3) column type mismatch
+
+`users.id` যদি `bigint` হয়, আর `posts.user_id` যদি `int` হয়, সমস্যা হতে পারে।
+
+### 4) production-এ dangerous command চালানো
+
+```bash
+php artisan migrate:fresh
+```
+
+এটা production-এ খুবই risky।
+
+### 5) meaningless migration names
+
+পরে দেখে বোঝা যায় না migration কী করছে।
+
+### 6) manual database change করে migration না লেখা
+
+Local-এ কাজ করলেও team/production-এ mismatch হবে।
+
+### 7) rollback test না করা
+
+অনেকে শুধু migrate test করে, rollback test করে না।
+
+---
+
+## Best practices
+
+### 1) Migration name meaningful রাখুন
+
+ভালো:
+
+```bash
+create_orders_table
+add_status_to_orders_table
+```
+
+### 2) একটি migration-এ একটি পরিষ্কার কাজ করুন
+
+এক migration-এ ২০টা unrelated change দেবেন না।
+
+### 3) সবসময় `down()` লিখুন
+
+Rollback-ready migration লিখুন।
+
+### 4) foreign key thoughtfully ব্যবহার করুন
+
+সব relationship-এ cascade দরকার হয় না।
+
+### 5) production migration deploy-এর আগে backup রাখুন
+
+বিশেষ করে destructive change হলে।
+
+### 6) বড় team-এ migration review করুন
+
+কারণ schema change app performance-এ impact ফেলতে পারে।
+
+### 7) code-first approach follow করুন
+
+phpMyAdmin-এ manual edit না করে migration ব্যবহার করুন।
+
+### 8) old migrations জমে গেলে schema dump consider করতে পারেন
+
+Laravel docs অনুযায়ী `php artisan schema:dump` দিয়ে migrations squash করে schema file তৈরি করা যায়, এবং `--prune` দিয়ে পুরোনো migration prune করা যায়। বড় project-এ এটি helpful হতে পারে। ([Laravel][1])
+
+---
+
+## Common interview questions
+
+### 1) Laravel Migration কী?
+
+Database schema version control system।
+
+### 2) `up()` method কী করে?
+
+Migration apply করলে যে changes হবে তা define করে।
+
+### 3) `down()` method কী করে?
+
+Rollback-এর সময় changes reverse করে।
+
+### 4) `migrate` আর `migrate:fresh` এর পার্থক্য কী?
+
+- `migrate` শুধু pending migration run করে
+- `migrate:fresh` সব table drop করে নতুন করে migrate করে
+
+### 5) `foreignId()->constrained()` কী করে?
+
+Convention অনুসারে foreign key column এবং reference set করতে সাহায্য করে।
+
+### 6) Migration আর Seeder-এর পার্থক্য কী?
+
+- Migration = structure
+- Seeder = data
+
+### 7) rollback batch কী?
+
+সবচেয়ে শেষ batch-এর migrations একসাথে rollback হয়।
+
+---
+
+## Mini practice tasks
+
+### Task 1
+
+`books` নামে একটি table তৈরি করুন, যেখানে থাকবে:
+
+- `id`
+- `title`
+- `author`
+- `price`
+- `created_at`
+- `updated_at`
+
+### Task 2
+
+`books` table-এ `published_year` নামে integer column add করুন।
+
+### Task 3
+
+`books` table-এ `isbn` নামে unique column add করুন।
+
+### Task 4
+
+`categories` table এবং `books` table-এর মধ্যে foreign key relationship তৈরি করুন।
+
+### Task 5
+
+একটি migration লিখুন যাতে rollback করলে add করা `isbn` column remove হয়ে যায়।
+
+---
+
+## Practice task-এর sample answer
+
+### Task 1 sample
+
+```php
+Schema::create('books', function (Blueprint $table) {
+    $table->id();
+    $table->string('title');
+    $table->string('author');
+    $table->decimal('price', 8, 2);
+    $table->timestamps();
+});
+```
+
+### Explanation
+
+- `id()` → primary key
+- `string('title')` → বইয়ের নাম
+- `string('author')` → লেখকের নাম
+- `decimal('price', 8, 2)` → price
+- `timestamps()` → created/updated time
+
+---
+
+## Summary table
+
+| Topic                        | মূল কথা                                 |
+| ---------------------------- | --------------------------------------- |
+| Migration                    | Database structure code দিয়ে manage করা |
+| `make:migration`             | নতুন migration file তৈরি করে            |
+| `up()`                       | change apply করে                        |
+| `down()`                     | change reverse করে                      |
+| `Schema::create()`           | নতুন table তৈরি করে                     |
+| `Schema::table()`            | existing table modify করে               |
+| `php artisan migrate`        | pending migration run করে               |
+| `migrate:rollback`           | last batch undo করে                     |
+| `migrate:fresh`              | সব table drop করে নতুন migrate          |
+| `foreignId()->constrained()` | foreign key define সহজ করে              |
+| Seeder                       | data insert করে                         |
+| Factory                      | fake data generate করে                  |
+
+---
+
+## এক নজরে Migration workflow
+
+```text
+Step 1: Migration create
+    php artisan make:migration create_products_table
+
+Step 2: up() method-এ schema লিখুন
+    Schema::create(...)
+
+Step 3: down() method-এ reverse লিখুন
+    Schema::dropIfExists(...)
+
+Step 4: Migration run
+    php artisan migrate
+
+Step 5: প্রয়োজন হলে rollback
+    php artisan migrate:rollback
+```
+
+---
+
+## মনে রাখার জন্য super simple formula
+
+```text
+Migration = Database structure as code
+```
+
+আরও সহজভাবে:
+
+```text
+Table বানাতে = migration
+Data ঢোকাতে = seeder
+Fake data বানাতে = factory
+```
+
+---
+
+## Complete beginner checklist
+
+নিচের জিনিসগুলো আপনি বুঝে ফেললে Laravel Migration-এর strong foundation তৈরি হয়ে যাবে:
+
+- migration কী
+- `make:migration` command
+- migration file কোথায় থাকে
+- `up()` এবং `down()`
+- table create
+- column add/drop
+- unique/index
+- foreign key
+- `migrate`, `rollback`, `fresh`
+- migration vs seeder
+
+---
+
+## একটি পূর্ণ example: Users Table
+
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->boolean('is_admin')->default(false);
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('users');
+    }
+};
+```
+
+### পূর্ণ ব্যাখ্যা
+
+#### `$table->id();`
+
+Primary key তৈরি করছে।
+
+#### `$table->string('name');`
+
+User-এর নাম।
+
+#### `$table->string('email')->unique();`
+
+একই email দুইবার থাকতে পারবে না।
+
+#### `$table->string('password');`
+
+Password store করবে।
+
+#### `$table->boolean('is_admin')->default(false);`
+
+User admin কি না।
+
+#### `$table->timestamps();`
+
+Auto create time এবং update time।
+
+#### `down()`
+
+Rollback করলে পুরো `users` table delete হবে।
+
+---
+
+## Final conceptual map
+
+```text
+Laravel Migration
+├── Create migration file
+├── Write schema in up()
+├── Write reverse logic in down()
+├── Run with php artisan migrate
+├── Undo with rollback
+├── Track history by batch
+└── Keep database structure consistent across environments
+```
+
+## ছোট comparison: Manual SQL vs Laravel Migration
+
+| বিষয়                | Manual SQL | Laravel Migration |
+| ------------------- | ---------- | ----------------- |
+| Trackability        | কম         | বেশি              |
+| Team collaboration  | কঠিন       | সহজ               |
+| Rollback            | manual     | built-in          |
+| Readability         | mixed      | cleaner           |
+| Laravel integration | কম         | বেশি              |
+
+## Common error and fix
+
+### Error: Table already exists
+
+**কারণ:** একই migration বারবার চালানো হয়েছে বা table manually already create করা আছে।
+
+**সমাধান:**
+
+- migration status check করুন
+- rollback করুন
+- প্রয়োজনে `migrate:fresh` local environment-এ ব্যবহার করুন
+
+---
+
+### Error: Foreign key constraint fails
+
+**কারণ:**
+
+- parent table আগে create হয়নি
+- wrong column type
+- referenced record নেই
+
+**সমাধান:**
+
+- migration order check করুন
+- `foreignId()` ব্যবহার করুন
+- parent table আগে migrate করুন
+
+---
+
+### Error: Column not found
+
+**কারণ:** wrong column name বা rollback mismatch
+
+**সমাধান:**
+
+- migration code verify করুন
+- database schema check করুন
+- `down()` method ঠিক আছে কি না দেখুন
+
+---
+
+### Error: Duplicate entry for unique field
+
+**কারণ:** `unique()` constraint থাকা column-এ duplicate value insert হচ্ছে।
+
+**সমাধান:**
+
+- duplicate data remove করুন
+- constraint apply-এর আগে dirty data clean করুন
+
+---
+
+## শেখার natural order
+
+Laravel Migration শেখার সবচেয়ে ভালো sequence:
+
+1. migration কী
+2. `make:migration`
+3. `Schema::create()`
+4. `up()` / `down()`
+5. `migrate` / `rollback`
+6. column types
+7. index
+8. foreign key
+9. seeder
+10. factory
+
+এই order follow করলে beginner হিসেবে সবচেয়ে কম confusion হবে।
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter 20: Laravel Model
+
+## Table of Contents
+
+1. Laravel Model কী
+2. Eloquent ORM কী এবং Model-এর সাথে এর সম্পর্ক
+3. কেন Laravel Model ব্যবহার করা হয়
+4. Model কীভাবে কাজ করে
+5. একটি Model তৈরি করা
+6. Model file কোথায় থাকে
+7. Table name কীভাবে নির্ধারিত হয়
+8. Primary Key
+9. Timestamps
+10. একটি সাধারণ Model-এর structure
+11. Database থেকে data আনা
+12. নতুন data insert করা
+13. data update করা
+14. data delete করা
+15. `find()`, `first()`, `get()` এর পার্থক্য
+16. `create()` এবং Mass Assignment
+17. `$fillable` এবং `$guarded`
+18. Query Builder বনাম Eloquent Model
+19. Model relationships
+20. Accessors, Mutators, Casts
+21. Common mistakes
+22. Best practices
+23. Real-life analogy
+24. Mini practice tasks
+25. Common interview questions
+26. Summary
+
+---
+
+## 1. Laravel Model কী
+
+Laravel-এ **Model** হলো একটি PHP class, যা database table-এর সাথে কাজ করার জন্য ব্যবহার করা হয়। Laravel-এর **Eloquent ORM**-এ প্রতিটি table-এর জন্য সাধারণত একটি corresponding Model থাকে। এই Model ব্যবহার করে table থেকে data read, insert, update, delete করা যায়। ([Laravel][1])
+
+সহজভাবে বললে:
+
+- `users` table-এর জন্য `User` model
+- `posts` table-এর জন্য `Post` model
+- `products` table-এর জন্য `Product` model
+
+অর্থাৎ, database row-কে আপনি PHP object হিসেবে ব্যবহার করতে পারেন। Laravel-এর official documentation অনুযায়ী Eloquent প্রতিটি table-এর জন্য একটি corresponding model ব্যবহার করে database interaction সহজ করে। ([Laravel][1])
+
+---
+
+## 2. Eloquent ORM কী এবং Model-এর সাথে এর সম্পর্ক
+
+**ORM** = **Object Relational Mapping**
+
+এটি এমন একটি system যা relational database-এর table/row-কে programming language-এর object-এর সাথে map করে।
+
+Laravel-এ এই ORM-এর নাম **Eloquent**। Eloquent-এর মাধ্যমে:
+
+- table → model
+- row → object
+- column → object property
+
+উদাহরণ:
+
+ধরুন `users` table-এ একটি row আছে:
+
+```text
+id = 1
+name = Rahim
+email = rahim@example.com
+```
+
+Eloquent ব্যবহার করলে আপনি এটিকে এভাবে পেতে পারেন:
+
+```php
+$user = User::find(1);
+
+echo $user->name;
+```
+
+এখানে:
+
+- `User` হলো model
+- `find(1)` database থেকে row খুঁজে আনে
+- `$user->name` হলো row-এর `name` column
+
+এটাই ORM-এর সৌন্দর্য। SQL manually না লিখেও object style-এ database access করা যায়। Laravel-এর docs এটিকে “enjoyable” database interaction হিসেবে বর্ণনা করে। ([Laravel][1])
+
+---
+
+## 3. কেন Laravel Model ব্যবহার করা হয়
+
+Laravel Model ব্যবহার করার প্রধান কারণগুলো:
+
+### 3.1 Clean code
+
+raw SQL লিখতে হয় কম।
+
+### 3.2 Readability
+
+এই code:
+
+```php
+$user = User::find(1);
+```
+
+এটি অনেক সহজবোধ্য, compared to manually query লেখা।
+
+### 3.3 Reusability
+
+একই model application-এর অনেক জায়গায় reuse করা যায়।
+
+### 3.4 Relationships সহজ হয়
+
+একজন user-এর অনেক post থাকলে model-এর মাধ্যমে relation সহজে define করা যায়। Laravel relationships model class-এর method হিসেবে define করতে বলে। ([Laravel][2])
+
+### 3.5 Security
+
+Laravel Query Builder এবং Eloquent PDO parameter binding ব্যবহার করে SQL injection risk কমায়। ([Laravel][3])
+
+### 3.6 Business logic organize করা যায়
+
+যে logic একটি entity-এর সাথে সম্পর্কিত, তা model-এ রাখা যায়।
+
+---
+
+## 4. Model কীভাবে কাজ করে
+
+Laravel Model database table-এর সাথে convention-based mapping ব্যবহার করে।
+
+ধরুন model:
+
+```php
+class Product extends Model
+{
+}
+```
+
+Laravel by default ধরে নেয়:
+
+- Model name: `Product`
+- Table name: `products`
+
+অর্থাৎ singular class name থেকে plural snake_case table name guess করা হয়। এটি Eloquent-এর standard convention। ([Laravel][1])
+
+যখন আপনি লিখবেন:
+
+```php
+$products = Product::all();
+```
+
+Laravel internally `products` table থেকে সব row নিয়ে আসবে।
+
+---
+
+## 5. একটি Model তৈরি করা
+
+Laravel-এ model তৈরি করতে Artisan command ব্যবহার করা হয়।
+
+```bash
+php artisan make:model Post
+```
+
+এতে `app/Models/Post.php` নামে একটি model তৈরি হবে।
+
+Migration-সহ model বানাতে:
+
+```bash
+php artisan make:model Post -m
+```
+
+এতে:
+
+- Model file
+- Migration file
+
+দুটোই তৈরি হবে।
+
+Factory এবং Seeder-সহ বানাতে:
+
+```bash
+php artisan make:model Post -mfsc
+```
+
+এটি advanced convenience command, কিন্তু beginner হিসেবে `-m` জানলেই যথেষ্ট।
+
+---
+
+## 6. Model file কোথায় থাকে
+
+সাধারণত Laravel application-এ model files থাকে:
+
+```text
+app/Models/
+```
+
+যেমন:
+
+```text
+app/Models/User.php
+app/Models/Post.php
+app/Models/Product.php
+```
+
+---
+
+## 7. Table name কীভাবে নির্ধারিত হয়
+
+Laravel default convention অনুযায়ী:
+
+- `User` model → `users` table
+- `BlogPost` model → `blog_posts` table
+
+কিন্তু table name যদি আলাদা হয়, তাহলে manually specify করতে হবে।
+
+উদাহরণ:
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Person extends Model
+{
+    protected $table = 'people';
+}
+```
+
+### কেন দরকার হয়?
+
+কারণ সব project Laravel convention follow করে না।
+
+### কখন ব্যবহার করবেন?
+
+যখন database table-এর নাম model naming convention-এর সাথে match করে না।
+
+### Common mistake
+
+অনেকে model বানায় `Category`, কিন্তু table থাকে `category_list`। তখন query কাজ না করলে বোঝা যায় না সমস্যা কোথায়।
+
+---
+
+## 8. Primary Key
+
+Laravel default primary key হিসেবে `id` ধরে।
+
+যদি আপনার table-এ primary key অন্য কিছু হয়, যেমন `product_id`, তাহলে model-এ লিখতে হবে:
+
+```php
+class Product extends Model
+{
+    protected $primaryKey = 'product_id';
+}
+```
+
+যদি primary key auto-increment না হয়:
+
+```php
+class Product extends Model
+{
+    public $incrementing = false;
+}
+```
+
+আর যদি key type string হয়:
+
+```php
+class Product extends Model
+{
+    protected $keyType = 'string';
+}
+```
+
+### কেন দরকার?
+
+Laravel যেন জানে কোন column দিয়ে record uniquely identify করতে হবে।
+
+---
+
+## 9. Timestamps
+
+Laravel by default ধরে নেয় table-এ দুটি column আছে:
+
+- `created_at`
+- `updated_at`
+
+যদি এই দুটি column থাকে, Laravel insert/update-এর সময় এগুলো manage করতে পারে। এটি Eloquent-এর built-in behavior-এর অংশ। ([Laravel][1])
+
+যদি আপনার table-এ timestamps না থাকে:
+
+```php
+class Product extends Model
+{
+    public $timestamps = false;
+}
+```
+
+### Common mistake
+
+table-এ `created_at` / `updated_at` নেই, কিন্তু model-এ timestamps disable করা হয়নি। তখন error আসতে পারে।
+
+---
+
+## 10. একটি সাধারণ Model-এর structure
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    protected $table = 'posts';
+
+    protected $primaryKey = 'id';
+
+    public $timestamps = true;
+
+    protected $fillable = [
+        'title',
+        'content',
+        'status',
+    ];
+}
+```
+
+### ব্যাখ্যা
+
+- `namespace App\Models;`
+  এই class `App\Models` namespace-এর মধ্যে আছে।
+
+- `use Illuminate\Database\Eloquent\Model;`
+  Laravel-এর base Eloquent Model import করা হয়েছে।
+
+- `class Post extends Model`
+  `Post` class, Laravel-এর `Model` class থেকে inherit করেছে।
+
+- `protected $table = 'posts';`
+  কোন table-এর সাথে কাজ করবে।
+
+- `protected $primaryKey = 'id';`
+  primary key column।
+
+- `public $timestamps = true;`
+  timestamps active।
+
+- `protected $fillable = [...]`
+  কোন কোন field mass assignment-এর মাধ্যমে fill করা যাবে।
+
+---
+
+## 11. Database থেকে data আনা
+
+### 11.1 সব data আনা
+
+```php
+$posts = Post::all();
+```
+
+এটি `posts` table-এর সব record নিয়ে আসবে।
+
+### 11.2 নির্দিষ্ট id দিয়ে data আনা
+
+```php
+$post = Post::find(1);
+```
+
+এটি primary key `1` যেই row, সেটি দেবে।
+
+### 11.3 প্রথম record আনা
+
+```php
+$post = Post::first();
+```
+
+### 11.4 condition দিয়ে data আনা
+
+```php
+$posts = Post::where('status', 'published')->get();
+```
+
+### 11.5 একটি record condition দিয়ে আনা
+
+```php
+$post = Post::where('status', 'published')->first();
+```
+
+### ব্যাখ্যা
+
+- `all()` → সব record
+- `find(1)` → primary key দিয়ে search
+- `where()` → condition তৈরি করে
+- `get()` → multiple result
+- `first()` → first matching result
+
+Laravel relationships এবং queries method chaining support করে, কারণ relationship methods-ও query builder-এর মতো কাজ করে। ([Laravel][2])
+
+---
+
+## 12. নতুন data insert করা
+
+### 12.1 Object বানিয়ে save করা
+
+```php
+$post = new Post();
+$post->title = 'My First Post';
+$post->content = 'This is the content';
+$post->status = 'draft';
+$post->save();
+```
+
+### কী হচ্ছে?
+
+1. `new Post()` → একটি নতুন model instance তৈরি হলো
+2. property set করা হলো
+3. `save()` → database-এ insert হলো
+
+### Expected result
+
+`posts` table-এ একটি নতুন row insert হবে।
+
+---
+
+### 12.2 `create()` method দিয়ে insert
+
+```php
+Post::create([
+    'title' => 'My First Post',
+    'content' => 'This is the content',
+    'status' => 'draft',
+]);
+```
+
+এটি এক লাইনে insert করে।
+
+কিন্তু `create()` ব্যবহার করতে হলে অবশ্যই model-এ `fillable` বা `guarded` define করতে হবে, কারণ Eloquent mass-assignment protection by default enable রাখে। Laravel docs এটিকে security feature হিসেবে ব্যাখ্যা করে। ([Laravel][4])
+
+---
+
+## 13. data update করা
+
+### 13.1 Model fetch করে update
+
+```php
+$post = Post::find(1);
+$post->title = 'Updated Title';
+$post->save();
+```
+
+### ব্যাখ্যা
+
+- `find(1)` দিয়ে row আনা হলো
+- `title` change করা হলো
+- `save()` দিয়ে update হলো
+
+### 13.2 সরাসরি update
+
+```php
+Post::where('id', 1)->update([
+    'status' => 'published'
+]);
+```
+
+এটি query-এর মাধ্যমে update করে।
+
+---
+
+## 14. data delete করা
+
+### 14.1 Model fetch করে delete
+
+```php
+$post = Post::find(1);
+$post->delete();
+```
+
+### 14.2 id দিয়ে delete
+
+```php
+Post::destroy(1);
+```
+
+একাধিক id:
+
+```php
+Post::destroy([1, 2, 3]);
+```
+
+---
+
+## 15. `find()`, `first()`, `get()` এর পার্থক্য
+
+### `find()`
+
+```php
+$post = Post::find(1);
+```
+
+- primary key দিয়ে খোঁজে
+- single record দেয়
+- না পেলে `null`
+
+### `first()`
+
+```php
+$post = Post::where('status', 'draft')->first();
+```
+
+- condition অনুযায়ী প্রথম record দেয়
+- না পেলে `null`
+
+### `get()`
+
+```php
+$posts = Post::where('status', 'draft')->get();
+```
+
+- matching সব record দেয়
+- collection return করে
+
+### মনে রাখার সহজ উপায়
+
+- `find()` → id দিয়ে খোঁজো
+- `first()` → প্রথমটা দাও
+- `get()` → সবগুলো দাও
+
+---
+
+## 16. `create()` এবং Mass Assignment
+
+### Mass Assignment কী?
+
+যখন আপনি array আকারে একসাথে model attribute set করেন, তখন সেটি mass assignment।
+
+উদাহরণ:
+
+```php
+Post::create([
+    'title' => 'Laravel Model',
+    'content' => 'Learning Eloquent',
+    'status' => 'published',
+]);
+```
+
+### কেন এটি sensitive?
+
+কারণ user input-এ এমন field থাকতে পারে যা আপনি update করতে চান না।
+
+যেমন:
+
+```php
+User::create($request->all());
+```
+
+যদি request-এ `is_admin = 1` আসে, তাহলে বড় security issue হতে পারে। Laravel docs mass assignment vulnerability-র example হিসেবে এই ধরনের scenario দেখায়। ([Laravel][4])
+
+---
+
+## 17. `$fillable` এবং `$guarded`
+
+### `$fillable`
+
+যে field-গুলো allow করবেন:
+
+```php
+class Post extends Model
+{
+    protected $fillable = [
+        'title',
+        'content',
+        'status',
+    ];
+}
+```
+
+অর্থাৎ শুধুমাত্র এই field-গুলো `create()` বা `update()`-এ mass assign করা যাবে।
+
+### `$guarded`
+
+যে field-গুলো block করবেন:
+
+```php
+class User extends Model
+{
+    protected $guarded = ['id'];
+}
+```
+
+### কোনটি ভালো?
+
+Beginner এবং production code-এর জন্য বেশিরভাগ ক্ষেত্রে **`$fillable` safer**।
+
+### Common mistake
+
+```php
+protected $guarded = [];
+```
+
+এটি সব field mass assignable করে দেয়। ছোট demo project-এ দেখা যায়, কিন্তু real application-এ risky হতে পারে।
+
+---
+
+## 18. Query Builder বনাম Eloquent Model
+
+Laravel-এ data access করার দুটি common উপায়:
+
+### Eloquent Model
+
+```php
+$users = User::where('active', 1)->get();
+```
+
+### Query Builder
+
+```php
+$users = DB::table('users')->where('active', 1)->get();
+```
+
+Laravel docs অনুযায়ী Query Builder fluent interface দেয় এবং parameter binding ব্যবহার করে। ([Laravel][3])
+
+### পার্থক্য
+
+#### Eloquent
+
+- object-oriented
+- relationships support
+- model events, accessors, casts ইত্যাদি support
+- readable
+
+#### Query Builder
+
+- lightweight
+- কিছু complex aggregate query-তে useful
+- direct table query style
+
+### কখন কোনটা ব্যবহার করবেন?
+
+- application entity-centric হলে → Eloquent
+- very custom/reporting query হলে → Query Builder
+
+### Beginner advice
+
+প্রথমে Eloquent ভালোভাবে শিখুন। তারপর Query Builder।
+
+---
+
+## 19. Model relationships
+
+Laravel-এর relationship system model-এর method হিসেবে define করা হয়, এবং এটি powerful query chaining support করে। ([Laravel][2])
+
+### 19.1 One to One
+
+ধরুন একজন `User`-এর একটি `Profile` আছে।
+
+```php
+class User extends Model
+{
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+}
+```
+
+ব্যবহার:
+
+```php
+$user = User::find(1);
+$profile = $user->profile;
+```
+
+---
+
+### 19.2 One to Many
+
+একজন user-এর অনেক post থাকতে পারে।
+
+```php
+class User extends Model
+{
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+}
+```
+
+ব্যবহার:
+
+```php
+$user = User::find(1);
+$posts = $user->posts;
+```
+
+---
+
+### 19.3 Inverse relation: `belongsTo`
+
+একটি post একজন user-এর belongs to।
+
+```php
+class Post extends Model
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+```
+
+ব্যবহার:
+
+```php
+$post = Post::find(1);
+echo $post->user->name;
+```
+
+---
+
+### 19.4 Many to Many
+
+একটি post-এর অনেক tag থাকতে পারে, একটি tag অনেক post-এ থাকতে পারে।
+
+```php
+class Post extends Model
+{
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+}
+```
+
+---
+
+### কেন relationship দরকার?
+
+কারণ relational database-এ table একে অপরের সাথে connected থাকে। Laravel docs-এ blog post-comments, order-user এর মতো উদাহরণ দিয়ে এটি বোঝানো হয়েছে। ([Laravel][5])
+
+---
+
+## 20. Accessors, Mutators, Casts
+
+Laravel Eloquent model attributes transform করার জন্য mutators এবং casts দেয়। Laravel docs-এ `Attribute` class ব্যবহার করে getter/setter define করার pattern দেখানো হয়েছে। ([Laravel][6])
+
+### 20.1 Casts
+
+ধরুন `is_admin` database-এ integer, কিন্তু আপনি boolean হিসেবে চান।
+
+```php
+class User extends Model
+{
+    protected function casts(): array
+    {
+        return [
+            'is_admin' => 'boolean',
+        ];
+    }
+}
+```
+
+### লাভ কী?
+
+database value automatically PHP type-এ convert হয়।
+
+---
+
+### 20.2 Accessor idea
+
+আপনি চাইলে attribute read করার সময় transform করতে পারেন।
+
+ধরুন নাম capitalize করে দেখাতে চান।
+
+```php
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
+class User extends Model
+{
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucfirst($value),
+        );
+    }
+}
+```
+
+### 20.3 Mutator idea
+
+save করার আগে data modify করা যায়।
+
+```php
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
+class User extends Model
+{
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => strtolower($value),
+        );
+    }
+}
+```
+
+### কখন ব্যবহার করবেন?
+
+- date formatting
+- boolean conversion
+- JSON conversion
+- input clean up
+- output beautify
+
+---
+
+## 21. Common mistakes
+
+### 21.1 Table name ভুল
+
+Model name `Person`, কিন্তু table `persons` না হয়ে `people`।
+সমাধান:
+
+```php
+protected $table = 'people';
+```
+
+### 21.2 `$fillable` set না করা
+
+`create()` কাজ করছে না বা mass assignment exception আসছে।
+সমাধান:
+
+```php
+protected $fillable = ['title', 'content'];
+```
+
+### 21.3 `timestamps` mismatch
+
+table-এ `created_at`, `updated_at` নেই।
+সমাধান:
+
+```php
+public $timestamps = false;
+```
+
+### 21.4 `find()` এর পরে null check না করা
+
+```php
+$post = Post::find(999);
+echo $post->title;
+```
+
+এখানে `find(999)` `null` হতে পারে।
+
+সমাধান:
+
+```php
+$post = Post::find(999);
+
+if ($post) {
+    echo $post->title;
+}
+```
+
+### 21.5 relation method-এ return ভুলে যাওয়া
+
+ভুল:
+
+```php
+public function posts()
+{
+    $this->hasMany(Post::class);
+}
+```
+
+সঠিক:
+
+```php
+public function posts()
+{
+    return $this->hasMany(Post::class);
+}
+```
+
+---
+
+## 22. Best practices
+
+### 22.1 Model name singular রাখুন
+
+- `User`
+- `Post`
+- `Product`
+
+### 22.2 Table plural রাখুন
+
+- `users`
+- `posts`
+- `products`
+
+### 22.3 Sensitive field fillable-এ দেবেন না
+
+যেমন:
+
+- `is_admin`
+- `role`
+- `balance`
+
+### 22.4 Business logic organize করুন
+
+যা entity-specific, তা model-এ বা related service-এ রাখুন।
+
+### 22.5 relationships ব্যবহার করুন
+
+manual foreign key query কম লিখুন।
+
+### 22.6 Null handling করুন
+
+`find()` বা `first()` সবসময় result নাও দিতে পারে।
+
+---
+
+## 23. Real-life analogy
+
+ধরুন একটি স্কুল আছে।
+
+- `students` table = ছাত্রদের register book
+- `Student` model = সেই register book ব্যবহারের নিয়ম জানা staff
+- একটি row = একজন ছাত্রের তথ্য
+- `save()` = নতুন তথ্য register-এ লেখা
+- `find(1)` = roll number 1-এর ছাত্র খোঁজা
+- `delete()` = তথ্য মুছে ফেলা
+
+অর্থাৎ Model হচ্ছে database table-এর সাথে কথা বলার “ভদ্র”, “structured” interface।
+
+---
+
+## 24. Mini practice tasks
+
+### Task 1
+
+`Book` নামে একটি model তৈরি করুন।
+
+### Task 2
+
+`books` table-এর জন্য নিচের fields fillable করুন:
+
+- `title`
+- `author`
+- `price`
+
+### Task 3
+
+একটি নতুন book insert করুন:
+
+```php
+Book::create([
+    'title' => 'Laravel Basics',
+    'author' => 'Rahim',
+    'price' => 500,
+]);
+```
+
+### Task 4
+
+`id = 1` book খুঁজে title print করুন।
+
+### Task 5
+
+`price` update করুন।
+
+### Task 6
+
+book delete করুন।
+
+---
+
+## 25. Common interview questions
+
+### 1. Laravel Model কী?
+
+Laravel-এ database table represent করা একটি PHP class, যা Eloquent ORM ব্যবহার করে data interaction handle করে। ([Laravel][1])
+
+### 2. Eloquent ORM কী?
+
+Object Relational Mapping system, যা database row-কে object হিসেবে handle করতে দেয়। ([Laravel][1])
+
+### 3. `find()` এবং `first()` এর পার্থক্য কী?
+
+- `find()` primary key দিয়ে খোঁজে
+- `first()` query result-এর প্রথম row দেয়
+
+### 4. `$fillable` কেন দরকার?
+
+Mass assignment vulnerability প্রতিরোধ করার জন্য। ([Laravel][4])
+
+### 5. `hasMany()` কোথায় ব্যবহার হয়?
+
+যখন একটি model-এর অনেক related record থাকে। যেমন `User` has many `Post`। ([Laravel][2])
+
+### 6. Eloquent আর Query Builder-এর মধ্যে পার্থক্য কী?
+
+Eloquent model-based ORM; Query Builder table-based fluent query system। ([Laravel][3])
+
+---
+
+## 26. Summary
+
+### সবচেয়ে গুরুত্বপূর্ণ বিষয়গুলো
+
+1. Laravel Model হলো database table-এর PHP representation। ([Laravel][1])
+2. Eloquent ORM দিয়ে model ব্যবহার করে insert, update, delete, retrieve করা যায়। ([Laravel][1])
+3. `php artisan make:model ModelName` দিয়ে model তৈরি করা হয়।
+4. `create()` ব্যবহার করলে `$fillable` বা `$guarded` define করতে হয়, কারণ mass-assignment protection default থাকে। ([Laravel][4])
+5. Relationships model-এর method হিসেবে define করা হয়। ([Laravel][2])
+6. `find()`, `first()`, `get()`—এগুলোর return type ও কাজ আলাদা।
+7. `timestamps`, `table`, `primaryKey`, `fillable`—এগুলো beginner হিসেবে খুবই গুরুত্বপূর্ণ।
+
+---
+
+## একটি Complete Beginner Example
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    protected $fillable = [
+        'title',
+        'content',
+        'status',
+    ];
+}
+```
+
+Controller বা route-এ:
+
+```php
+use App\Models\Post;
+
+// Insert
+$post = Post::create([
+    'title' => 'Laravel Model',
+    'content' => 'This is a demo post',
+    'status' => 'draft',
+]);
+
+// Read
+$allPosts = Post::all();
+
+// Single Read
+$singlePost = Post::find(1);
+
+// Update
+if ($singlePost) {
+    $singlePost->status = 'published';
+    $singlePost->save();
+}
+
+// Delete
+$postToDelete = Post::find(2);
+
+if ($postToDelete) {
+    $postToDelete->delete();
+}
+```
+
+### Code explanation
+
+- `use App\Models\Post;`
+  `Post` model import করা হয়েছে।
+
+- `Post::create([...])`
+  নতুন row insert করছে।
+
+- `Post::all()`
+  সব post আনছে।
+
+- `Post::find(1)`
+  `id = 1` post খুঁজছে।
+
+- `$singlePost->save()`
+  update save করছে।
+
+- `$postToDelete->delete()`
+  record delete করছে।
+
+---
+
+## ছোট comparison cheat sheet
+
+### Model-related frequently used methods
+
+- `all()` → সব record
+- `find($id)` → primary key দিয়ে একটি record
+- `first()` → প্রথম record
+- `where()` → condition
+- `get()` → result collection
+- `create()` → insert
+- `save()` → insert/update
+- `update()` → update
+- `delete()` → delete
+- `destroy()` → id দিয়ে delete
+
+---
+
+## Beginner learning order
+
+Laravel Model ভালোভাবে শিখতে এই order follow করুন:
+
+1. Model create করা
+2. `all()`, `find()`, `where()`
+3. `save()` এবং `create()`
+4. `$fillable`
+5. update/delete
+6. relationships
+7. casts/accessors/mutators
+8. advanced querying
+
+---
+
+## Final mental model
+
+```text
+Database Table <-> Eloquent Model <-> Application Logic
+```
+
+আরও সহজভাবে:
+
+```text
+users table <-> User model <-> Controller / Route / Service
+posts table <-> Post model <-> Controller / Route / Service
+```
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter 21: Eloquent Model Queries
+
+## Table of Contents
+
+1. [Eloquent Model Query কী](#1-eloquent-model-query-কী)
+2. [Eloquent Query কেন দরকার](#2-eloquent-query-কেন-দরকার)
+3. [Query শুরু করার basic syntax](#3-query-শুরু-করার-basic-syntax)
+4. [সব data আনা](#4-সব-data-আনা)
+5. [একটি data আনা](#5-একটি-data-আনা)
+6. [Condition দিয়ে query করা](#6-condition-দিয়ে-query-করা)
+7. [Multiple condition ব্যবহার](#7-multiple-condition-ব্যবহার)
+8. [Comparison operators](#8-comparison-operators)
+9. [`find()`, `first()`, `get()` এর পার্থক্য](#9-find-first-get-এর-পার্থক্য)
+10. [`firstOrFail()` এবং `findOrFail()`](#10-firstorfail-এবং-findorfail)
+11. [`whereIn()`, `whereBetween()`, `whereNull()`](#11-wherein-wherebetween-wherenull)
+12. [Sorting: `orderBy()`, `latest()`, `oldest()`](#12-sorting-orderby-latest-oldest)
+13. [Limiting results: `take()`, `limit()`, `skip()`, `offset()`](#13-limiting-results-take-limit-skip-offset)
+14. [Select specific columns](#14-select-specific-columns)
+15. [Aggregate queries: `count()`, `sum()`, `max()`, `min()`, `avg()`](#15-aggregate-queries-count-sum-max-min-avg)
+16. [`pluck()` এবং `value()`](#16-pluck-এবং-value)
+17. [`exists()` এবং `doesntExist()`](#17-exists-এবং-doesntexist)
+18. [`chunk()`, `lazy()`, `cursor()`](#18-chunk-lazy-cursor)
+19. [Relationship query](#19-relationship-query)
+20. [`with()` এবং Eager Loading](#20-with-এবং-eager-loading)
+21. [`whereHas()` এবং relation filtering](#21-wherehas-এবং-relation-filtering)
+22. [`create()`, `update()`, `delete()` query flow](#22-create-update-delete-query-flow)
+23. [Common mistakes](#23-common-mistakes)
+24. [Best practices](#24-best-practices)
+25. [Mini practice tasks](#25-mini-practice-tasks)
+26. [Common interview questions](#26-common-interview-questions)
+27. [Summary](#27-summary)
+
+---
+
+## 1. Eloquent Model Query কী
+
+Eloquent Model Query হলো Laravel-এর `Model` class ব্যবহার করে database থেকে data **খোঁজা**, **ফিল্টার করা**, **sort করা**, **insert করা**, **update করা**, এবং **delete করা**।
+
+উদাহরণ:
+
+```php
+$users = User::all();
+```
+
+এখানে:
+
+- `User` হলো model
+- `all()` হলো query method
+- এটি `users` table থেকে সব row নিয়ে আসে
+
+অর্থাৎ, Eloquent query আপনাকে SQL না লিখেও database query করার সুবিধা দেয়।
+
+---
+
+## 2. Eloquent Query কেন দরকার
+
+Eloquent query দরকার কারণ এটি:
+
+- code readable করে
+- raw SQL কমায়
+- method chaining support করে
+- relationships-এর সাথে সহজে কাজ করতে দেয়
+- beginner-friendly
+- maintain করা সহজ
+
+raw SQL:
+
+```php
+SELECT * FROM users WHERE status = 'active';
+```
+
+Eloquent:
+
+```php
+$users = User::where('status', 'active')->get();
+```
+
+দুইটি একই কাজ করছে, কিন্তু Eloquent অনেক বেশি object-oriented।
+
+---
+
+## 3. Query শুরু করার basic syntax
+
+Eloquent query সাধারণত model class দিয়ে শুরু হয়।
+
+```php
+ModelName::method()
+```
+
+উদাহরণ:
+
+```php
+User::all();
+Post::find(1);
+Product::where('price', '>', 100)->get();
+```
+
+### Basic pattern
+
+```php
+Model::where(...)->orderBy(...)->get();
+```
+
+এটিকে বলে **method chaining**।
+
+---
+
+## 4. সব data আনা
+
+সব record আনতে:
+
+```php
+$users = User::all();
+```
+
+### কী return করে?
+
+এটি একটি **Collection** return করে।
+
+### Example
+
+```php
+$posts = Post::all();
+
+foreach ($posts as $post) {
+    echo $post->title;
+}
+```
+
+### ব্যাখ্যা
+
+- `Post::all()` → সব post আনছে
+- `foreach` → প্রতিটি post নিয়ে loop করছে
+- `$post->title` → প্রতিটি row-এর title দেখাচ্ছে
+
+### Common mistake
+
+অনেকে `all()` ব্যবহার করে huge table-এর সব data load করে ফেলে। খুব বড় table হলে performance সমস্যা হতে পারে।
+
+---
+
+## 5. একটি data আনা
+
+### `find()`
+
+```php
+$user = User::find(1);
+```
+
+এটি primary key `1` দিয়ে row খুঁজে আনে।
+
+### `first()`
+
+```php
+$user = User::first();
+```
+
+এটি table-এর প্রথম row দেয়।
+
+### `where(...)->first()`
+
+```php
+$user = User::where('email', 'rahim@example.com')->first();
+```
+
+এটি condition match করা প্রথম row দেয়।
+
+### Null handling
+
+```php
+$user = User::find(100);
+
+if ($user) {
+    echo $user->name;
+}
+```
+
+কারণ record না পেলে `find()` `null` return করে।
+
+---
+
+## 6. Condition দিয়ে query করা
+
+সবচেয়ে common method হলো `where()`।
+
+```php
+$users = User::where('status', 'active')->get();
+```
+
+### Syntax
+
+```php
+Model::where('column', 'value')->get();
+```
+
+Laravel এখানে `=` operator ধরে নেয়।
+
+একই query full form:
+
+```php
+$users = User::where('status', '=', 'active')->get();
+```
+
+### Example
+
+```php
+$products = Product::where('price', '>', 500)->get();
+```
+
+এটি 500-এর বেশি price যেসব product আছে সেগুলো আনে।
+
+---
+
+## 7. Multiple condition ব্যবহার
+
+একাধিক `where()` chain করা যায়।
+
+```php
+$users = User::where('status', 'active')
+             ->where('role', 'admin')
+             ->get();
+```
+
+এটি equivalent to:
+
+```sql
+SELECT * FROM users WHERE status = 'active' AND role = 'admin';
+```
+
+### Array format-এও করা যায়
+
+```php
+$users = User::where([
+    ['status', '=', 'active'],
+    ['role', '=', 'admin'],
+])->get();
+```
+
+### `orWhere()`
+
+```php
+$users = User::where('role', 'admin')
+             ->orWhere('role', 'manager')
+             ->get();
+```
+
+এটি admin অথবা manager users দেবে।
+
+---
+
+## 8. Comparison operators
+
+`where()`-এ বিভিন্ন operator ব্যবহার করা যায়।
+
+### Equal
+
+```php
+User::where('status', '=', 'active')->get();
+```
+
+### Not equal
+
+```php
+User::where('status', '!=', 'inactive')->get();
+```
+
+### Greater than
+
+```php
+Product::where('price', '>', 1000)->get();
+```
+
+### Less than
+
+```php
+Product::where('price', '<', 500)->get();
+```
+
+### Greater than or equal
+
+```php
+Product::where('stock', '>=', 10)->get();
+```
+
+### Less than or equal
+
+```php
+Product::where('stock', '<=', 5)->get();
+```
+
+### Like search
+
+```php
+User::where('name', 'like', '%rahim%')->get();
+```
+
+এখানে `%` wildcard।
+
+- `%rahim%` → মাঝখানে কোথাও rahim
+- `rahim%` → শুরুতে rahim
+- `%rahim` → শেষে rahim
+
+---
+
+## 9. `find()`, `first()`, `get()` এর পার্থক্য
+
+### `find()`
+
+```php
+$user = User::find(1);
+```
+
+- primary key দিয়ে খোঁজে
+- single model return করে
+- না পেলে `null`
+
+### `first()`
+
+```php
+$user = User::where('status', 'active')->first();
+```
+
+- query result-এর প্রথম row
+- single model return করে
+- না পেলে `null`
+
+### `get()`
+
+```php
+$users = User::where('status', 'active')->get();
+```
+
+- matching সব row return করে
+- collection return করে
+
+### সহজ comparison table
+
+| Method    | কী দিয়ে খোঁজে      | কী return করে         |
+| --------- | ------------------ | --------------------- |
+| `find(1)` | primary key        | single model / `null` |
+| `first()` | first matching row | single model / `null` |
+| `get()`   | সব matching row    | collection            |
+
+---
+
+## 10. `firstOrFail()` এবং `findOrFail()`
+
+এগুলো record না পেলে exception throw করে।
+
+### `findOrFail()`
+
+```php
+$user = User::findOrFail(1);
+```
+
+### `firstOrFail()`
+
+```php
+$user = User::where('email', 'rahim@example.com')->firstOrFail();
+```
+
+### কখন ব্যবহার করবেন?
+
+যখন record অবশ্যই থাকা উচিত।
+
+যেমন:
+
+- user profile page
+- edit page
+- admin panel detail page
+
+### সুবিধা
+
+ম্যানুয়ালি null check কম লাগে।
+
+---
+
+## 11. `whereIn()`, `whereBetween()`, `whereNull()`
+
+## `whereIn()`
+
+একাধিক possible value match করার জন্য:
+
+```php
+$users = User::whereIn('role', ['admin', 'manager'])->get();
+```
+
+### ব্যবহার
+
+যখন column-এর value list-এর মধ্যে যেকোনো একটিতে match করলে হবে।
+
+---
+
+## `whereBetween()`
+
+```php
+$products = Product::whereBetween('price', [500, 1000])->get();
+```
+
+এটি 500 থেকে 1000-এর মধ্যে price থাকা products দেবে।
+
+---
+
+## `whereNull()`
+
+```php
+$users = User::whereNull('email_verified_at')->get();
+```
+
+যাদের email verify হয়নি, তাদের আনা যেতে পারে।
+
+### `whereNotNull()`
+
+```php
+$users = User::whereNotNull('email_verified_at')->get();
+```
+
+---
+
+## 12. Sorting: `orderBy()`, `latest()`, `oldest()`
+
+### `orderBy()`
+
+```php
+$users = User::orderBy('name', 'asc')->get();
+```
+
+### Descending order
+
+```php
+$users = User::orderBy('id', 'desc')->get();
+```
+
+### `latest()`
+
+```php
+$posts = Post::latest()->get();
+```
+
+defaultভাবে `created_at` descending order-এ sort করে।
+
+### `oldest()`
+
+```php
+$posts = Post::oldest()->get();
+```
+
+defaultভাবে `created_at` ascending order-এ sort করে।
+
+### নির্দিষ্ট column দিয়ে
+
+```php
+$posts = Post::latest('published_at')->get();
+```
+
+---
+
+## 13. Limiting results: `take()`, `limit()`, `skip()`, `offset()`
+
+### `take()`
+
+```php
+$users = User::take(5)->get();
+```
+
+### `limit()`
+
+```php
+$users = User::limit(5)->get();
+```
+
+`take()` এবং `limit()` প্রায় একই কাজ করে।
+
+### `skip()`
+
+```php
+$users = User::skip(10)->take(5)->get();
+```
+
+প্রথম 10টি বাদ দিয়ে পরের 5টি আনে।
+
+### `offset()`
+
+```php
+$users = User::offset(10)->limit(5)->get();
+```
+
+এটিও একই ধরনের কাজ করে।
+
+### Pagination-like logic বোঝার জন্য useful
+
+---
+
+## 14. Select specific columns
+
+সব column না এনে নির্দিষ্ট column আনা ভালো practice হতে পারে।
+
+```php
+$users = User::select('id', 'name', 'email')->get();
+```
+
+### কেন দরকার?
+
+- কম data transfer
+- performance better
+- unnecessary data avoid করা যায়
+
+### Single column-ish example
+
+```php
+$posts = Post::select('title')->get();
+```
+
+---
+
+## 15. Aggregate queries: `count()`, `sum()`, `max()`, `min()`, `avg()`
+
+### `count()`
+
+```php
+$totalUsers = User::count();
+```
+
+### `sum()`
+
+```php
+$totalPrice = Product::sum('price');
+```
+
+### `max()`
+
+```php
+$maxPrice = Product::max('price');
+```
+
+### `min()`
+
+```php
+$minPrice = Product::min('price');
+```
+
+### `avg()`
+
+```php
+$averagePrice = Product::avg('price');
+```
+
+### Real-life use
+
+- total users
+- total sales
+- highest price
+- lowest salary
+- average marks
+
+---
+
+## 16. `pluck()` এবং `value()`
+
+## `pluck()`
+
+এক বা একাধিক row থেকে একটি column-এর values আনে।
+
+```php
+$names = User::pluck('name');
+```
+
+এতে শুধু names-এর collection পাওয়া যাবে।
+
+### Example
+
+```php
+foreach ($names as $name) {
+    echo $name;
+}
+```
+
+## `value()`
+
+একটি row থেকে একটি single column-এর single value আনে।
+
+```php
+$name = User::where('id', 1)->value('name');
+```
+
+এটি সরাসরি name string return করবে।
+
+### পার্থক্য
+
+- `pluck()` → many values
+- `value()` → one value
+
+---
+
+## 17. `exists()` এবং `doesntExist()`
+
+### `exists()`
+
+```php
+$hasAdmin = User::where('role', 'admin')->exists();
+```
+
+যদি admin user থাকে, তাহলে `true` return করবে।
+
+### `doesntExist()`
+
+```php
+$noAdmin = User::where('role', 'admin')->doesntExist();
+```
+
+যদি admin user না থাকে, তাহলে `true` return করবে।
+
+### কেন দরকার?
+
+পুরো data fetch না করে শুধু check করতে।
+
+---
+
+## 18. `chunk()`, `lazy()`, `cursor()`
+
+বড় data নিয়ে কাজ করার সময় memory issue এড়াতে এগুলো useful।
+
+## `chunk()`
+
+```php
+User::chunk(100, function ($users) {
+    foreach ($users as $user) {
+        echo $user->name;
+    }
+});
+```
+
+### কী করে?
+
+- একবারে 100 row আনে
+- process করে
+- তারপর পরের 100 আনে
+
+---
+
+## `lazy()`
+
+```php
+foreach (User::lazy() as $user) {
+    echo $user->name;
+}
+```
+
+এটি internally chunking-এর মতো কাজ করে।
+
+---
+
+## `cursor()`
+
+```php
+foreach (User::cursor() as $user) {
+    echo $user->name;
+}
+```
+
+এটি generator-based iteration দেয়।
+
+### কখন ব্যবহার করবেন?
+
+- huge dataset
+- export
+- background processing
+- migration scripts
+
+### Common mistake
+
+ছোট table-এর জন্য unnecessary optimization করতে যাওয়া।
+
+---
+
+## 19. Relationship query
+
+ধরুন `User` hasMany `Post`।
+
+### User model
+
+```php
+public function posts()
+{
+    return $this->hasMany(Post::class);
+}
+```
+
+### Query relation data
+
+```php
+$user = User::find(1);
+$posts = $user->posts;
+```
+
+### Relation query builder হিসেবে
+
+```php
+$publishedPosts = $user->posts()->where('status', 'published')->get();
+```
+
+### গুরুত্বপূর্ণ পার্থক্য
+
+- `$user->posts` → relation data
+- `$user->posts()` → relation query
+
+এটি beginner-দের খুব common confusion।
+
+---
+
+## 20. `with()` এবং Eager Loading
+
+ধরুন আপনি সব post আনছেন, এবং প্রতিটি post-এর user-ও লাগবে।
+
+### Eager loading ছাড়া
+
+```php
+$posts = Post::all();
+
+foreach ($posts as $post) {
+    echo $post->user->name;
+}
+```
+
+এখানে N+1 problem হতে পারে।
+
+### `with()` ব্যবহার করে
+
+```php
+$posts = Post::with('user')->get();
+
+foreach ($posts as $post) {
+    echo $post->user->name;
+}
+```
+
+### কেন দরকার?
+
+- কম query
+- better performance
+- cleaner loading of relationships
+
+### Multiple relation
+
+```php
+$posts = Post::with(['user', 'comments'])->get();
+```
+
+---
+
+## 21. `whereHas()` এবং relation filtering
+
+যখন relation-এর condition দিয়ে parent model filter করতে চান:
+
+```php
+$users = User::whereHas('posts', function ($query) {
+    $query->where('status', 'published');
+})->get();
+```
+
+### এর মানে
+
+যেসব user-এর published post আছে, শুধু তাদের আনো।
+
+### আরেকটি example
+
+```php
+$posts = Post::whereHas('comments', function ($query) {
+    $query->where('is_approved', true);
+})->get();
+```
+
+এখানে approved comment আছে এমন post আনা হচ্ছে।
+
+---
+
+## 22. `create()`, `update()`, `delete()` query flow
+
+## Insert with `create()`
+
+```php
+Post::create([
+    'title' => 'Laravel Eloquent',
+    'content' => 'Learning queries',
+    'status' => 'draft',
+]);
+```
+
+### প্রয়োজন
+
+model-এ `$fillable` থাকতে হবে।
+
+```php
+protected $fillable = ['title', 'content', 'status'];
+```
+
+---
+
+## Update
+
+```php
+$post = Post::find(1);
+
+if ($post) {
+    $post->update([
+        'status' => 'published'
+    ]);
+}
+```
+
+---
+
+## Delete
+
+```php
+$post = Post::find(1);
+
+if ($post) {
+    $post->delete();
+}
+```
+
+### Direct delete
+
+```php
+Post::where('status', 'draft')->delete();
+```
+
+---
+
+## 23. Common mistakes
+
+### 23.1 `get()` না দিয়ে query শেষ করা
+
+ভুল:
+
+```php
+$users = User::where('status', 'active');
+```
+
+এটি query builder stage-এ আছে, execute হয়নি।
+
+সঠিক:
+
+```php
+$users = User::where('status', 'active')->get();
+```
+
+---
+
+### 23.2 `first()` আর `get()` গুলিয়ে ফেলা
+
+ভুল:
+
+```php
+$user = User::where('id', 1)->get();
+echo $user->name;
+```
+
+`get()` collection দেয়, single model নয়।
+
+সঠিক:
+
+```php
+$user = User::where('id', 1)->first();
+echo $user->name;
+```
+
+---
+
+### 23.3 Null check না করা
+
+```php
+$user = User::find(999);
+echo $user->name;
+```
+
+এটি error দিতে পারে।
+
+---
+
+### 23.4 relation property আর method গুলিয়ে ফেলা
+
+ভুল:
+
+```php
+$user->posts->where('status', 'published');
+```
+
+এটি collection filtering করতে পারে, কিন্তু database query নয়।
+
+সঠিক:
+
+```php
+$user->posts()->where('status', 'published')->get();
+```
+
+---
+
+### 23.5 `$fillable` না দিয়ে `create()` ব্যবহার
+
+এতে MassAssignmentException আসতে পারে।
+
+---
+
+## 24. Best practices
+
+### 24.1 প্রয়োজন ছাড়া `all()` ব্যবহার করবেন না
+
+বড় table হলে filter বা pagination ব্যবহার করুন।
+
+### 24.2 specific column select করুন
+
+যেখানে সম্ভব `select()` ব্যবহার করুন।
+
+### 24.3 relation load করার সময় `with()` ব্যবহার করুন
+
+N+1 problem কমাতে।
+
+### 24.4 single result দরকার হলে `first()` বা `find()` ব্যবহার করুন
+
+`get()` নয়।
+
+### 24.5 বড় data-তে `chunk()` / `cursor()` ব্যবহার করুন
+
+memory efficient হতে।
+
+### 24.6 business meaning অনুযায়ী query scope বানানো শিখুন
+
+যদিও এটি next-level topic, future-এ খুব useful।
+
+---
+
+## 25. Mini practice tasks
+
+### Task 1
+
+সব `users` আনুন।
+
+```php
+$users = User::all();
+```
+
+### Task 2
+
+`status = active` users আনুন।
+
+```php
+$users = User::where('status', 'active')->get();
+```
+
+### Task 3
+
+`id = 5` user আনুন।
+
+```php
+$user = User::find(5);
+```
+
+### Task 4
+
+`price` 100 থেকে 500-এর মধ্যে product আনুন।
+
+```php
+$products = Product::whereBetween('price', [100, 500])->get();
+```
+
+### Task 5
+
+সবচেয়ে নতুন 3টি post আনুন।
+
+```php
+$posts = Post::latest()->take(3)->get();
+```
+
+### Task 6
+
+যেসব user-এর published post আছে, তাদের আনুন।
+
+```php
+$users = User::whereHas('posts', function ($query) {
+    $query->where('status', 'published');
+})->get();
+```
+
+---
+
+## 26. Common interview questions
+
+### 1. Eloquent query কী?
+
+Laravel model ব্যবহার করে database query করার object-oriented পদ্ধতি।
+
+### 2. `find()` আর `first()` এর difference কী?
+
+- `find()` primary key দিয়ে খোঁজে
+- `first()` query result-এর প্রথম row আনে
+
+### 3. `get()` কী return করে?
+
+একটি collection।
+
+### 4. `firstOrFail()` কখন ব্যবহার করবেন?
+
+যখন record না থাকলে exception throw করতে চান।
+
+### 5. `with()` কেন দরকার?
+
+relationship eager load করে N+1 query problem কমাতে।
+
+### 6. `pluck()` আর `value()` এর difference কী?
+
+- `pluck()` → multiple values
+- `value()` → single value
+
+### 7. `whereHas()` কী কাজে লাগে?
+
+relation-এর condition অনুযায়ী parent model filter করতে।
+
+---
+
+## 27. Summary
+
+Eloquent Model Queries Laravel-এর database interaction-এর সবচেয়ে গুরুত্বপূর্ণ অংশগুলোর একটি।
+
+সবচেয়ে দরকারি methodগুলো হলো:
+
+- `all()`
+- `find()`
+- `first()`
+- `get()`
+- `where()`
+- `orderBy()`
+- `with()`
+- `whereHas()`
+- `create()`
+- `update()`
+- `delete()`
+
+### সবচেয়ে গুরুত্বপূর্ণ mental model
+
+```text
+Model::query()->filter()->sort()->fetch()
+```
+
+আরও সহজভাবে:
+
+```text
+User::where(...)->orderBy(...)->get()
+```
+
+### Beginner learning order
+
+1. `all()`
+2. `find()`
+3. `where()`
+4. `first()` বনাম `get()`
+5. `orderBy()`
+6. `limit()`
+7. `pluck()` / `count()`
+8. relationships
+9. `with()`
+10. `whereHas()`
+
+### একটি complete example
+
+```php
+use App\Models\Post;
+
+$posts = Post::where('status', 'published')
+             ->where('views', '>', 100)
+             ->orderBy('created_at', 'desc')
+             ->take(5)
+             ->get();
+
+foreach ($posts as $post) {
+    echo $post->title;
+}
+```
+
+### Code explanation
+
+- `Post::where('status', 'published')`
+  published post filter করছে
+
+- `->where('views', '>', 100)`
+  views 100-এর বেশি post নিচ্ছে
+
+- `->orderBy('created_at', 'desc')`
+  newest আগে আনছে
+
+- `->take(5)`
+  মাত্র 5টি record নিচ্ছে
+
+- `->get()`
+  query execute করছে
+
+এই chapter ভালোভাবে বুঝতে পারলে Laravel-এর পরের topics যেমন `Scopes`, `Pagination`, `Advanced Relationships`, `Eager Loading Optimization`, এবং `API Resource Queries` অনেক সহজ হয়ে যাবে।
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter 22: Laravel Relationship
+
+## Table of Contents
+
+- [১. Relationship কী](#১-relationship-কী)
+- [২. কেন Relationship দরকার](#২-কেন-relationship-দরকার)
+- [৩. Eloquent Relationship কীভাবে কাজ করে](#৩-eloquent-relationship-কীভাবে-কাজ-করে)
+- [৪. Relationship Method বনাম Property](#৪-relationship-method-বনাম-property)
+- [৫. One to One](#৫-one-to-one)
+- [৬. One to Many](#৬-one-to-many)
+- [৭. Belongs To](#৭-belongs-to)
+- [৮. Many to Many](#৮-many-to-many)
+- [৯. Has One Through](#৯-has-one-through)
+- [১০. Has Many Through](#১০-has-many-through)
+- [১১. Polymorphic Relationship](#১১-polymorphic-relationship)
+- [১২. Many to Many Polymorphic](#১২-many-to-many-polymorphic)
+- [১৩. One of Many](#১৩-one-of-many)
+- [১৪. Custom Foreign Key এবং Local Key](#১৪-custom-foreign-key-এবং-local-key)
+- [১৫. Relationship Query করা](#১৫-relationship-query-করা)
+- [১৬. Eager Loading বনাম Lazy Loading](#১৬-eager-loading-বনাম-lazy-loading)
+- [১৭. Counting Related Data](#১৭-counting-related-data)
+- [১৮. Create / Save Related Model](#১৮-create--save-related-model)
+- [১৯. Attach, Detach, Sync](#১৯-attach-detach-sync)
+- [২০. Common Mistakes](#২০-common-mistakes)
+- [২১. Best Practices](#২১-best-practices)
+- [২২. Interview Questions](#২২-interview-questions)
+- [২৩. Mini Practice Tasks](#২৩-mini-practice-tasks)
+- [২৪. Quick Summary Table](#২৪-quick-summary-table)
+
+---
+
+## ১. Relationship কী
+
+Laravel-এর `Eloquent ORM`-এ **Relationship** হলো এক Model-এর সাথে আরেক Model-এর সংযোগ বোঝানোর উপায়। সাধারণভাবে database table গুলো আলাদা থাকে, কিন্তু বাস্তবে তারা একে অপরের সাথে যুক্ত থাকে। যেমন:
+
+- একজন `User`-এর অনেক `Post` থাকতে পারে
+- একটি `Post`-এর অনেক `Comment` থাকতে পারে
+- একটি `User`-এর একটি `Profile` থাকতে পারে
+
+Laravel এই সম্পর্কগুলোকে Model method হিসেবে define করতে দেয়, এবং সেই relationship method-গুলো query builder হিসেবেও কাজ করতে পারে। ([Laravel][1])
+
+---
+
+## ২. কেন Relationship দরকার
+
+Relationship না ব্যবহার করলে তোমাকে বারবার manual query লিখতে হতো।
+
+ধরো, তুমি `users` table থেকে user আনলে, তারপর `posts` table থেকে আলাদা query দিয়ে ওই user-এর posts আনলে, তারপর `comments` table থেকে comments আনলে। এতে code:
+
+- বড় হয়
+- repeat হয়
+- maintain করা কঠিন হয়
+- bug বাড়ে
+
+Relationship ব্যবহার করলে code অনেক expressive হয়।
+
+```php
+$user = User::find(1);
+$posts = $user->posts;
+```
+
+এখানে Laravel বুঝে যায় যে `posts` মানে `User` model-এর related `Post` records। এই সুবিধা Eloquent-এর core feature। ([Laravel][1])
+
+---
+
+## ৩. Eloquent Relationship কীভাবে কাজ করে
+
+Laravel-এ relationship সাধারণত Model class-এর ভিতরে method হিসেবে লেখা হয়।
+
+উদাহরণ:
+
+```php
+public function posts()
+{
+    return $this->hasMany(Post::class);
+}
+```
+
+এখানে:
+
+- `posts()` হলো relationship method
+- `hasMany()` Laravel-কে বলে: “এই model-এর সাথে অনেক `Post` জড়িত”
+- `Post::class` বলে কোন model-এর সাথে সম্পর্ক
+
+Laravel convention অনুযায়ী foreign key এবং local key অনুমান করতে পারে। যেমন `User` model-এর `hasMany(Post::class)` হলে Laravel ধরে নেয় `posts` table-এ `user_id` নামে foreign key আছে। অফিসিয়াল documentation-এ এই convention-based behavior দেখানো হয়েছে। ([Laravel][1])
+
+---
+
+## ৪. Relationship Method বনাম Property
+
+এটি beginner-দের খুব common confusion।
+
+### Method call
+
+```php
+$user->posts()
+```
+
+এটি relationship object / query builder return করে।
+
+এখন তুমি query chain করতে পারো:
+
+```php
+$user->posts()->where('status', 'published')->get();
+```
+
+### Property access
+
+```php
+$user->posts
+```
+
+এটি related data load করে collection return করে।
+
+### পার্থক্য
+
+| ব্যবহার          | কী return করে              | কখন ব্যবহার করবে      |
+| ---------------- | -------------------------- | --------------------- |
+| `$user->posts()` | Relationship query builder | query modify করতে     |
+| `$user->posts`   | loaded related models      | সরাসরি data দরকার হলে |
+
+Laravel docs বলছে relationship methods query builder হিসেবেও কাজ করে, তাই method call করলে extra constraints chain করা যায়। ([Laravel][1])
+
+---
+
+## ৫. One to One
+
+### কী
+
+একটি record-এর সাথে আরেকটি record-এর একটিমাত্র সম্পর্ক।
+
+উদাহরণ:
+
+- একজন `User`-এর একটি `Phone`
+- একজন `User`-এর একটি `Profile`
+
+### কেন দরকার
+
+যখন main table-এর extra information আলাদা table-এ রাখতে চাও।
+
+ধরো:
+
+- `users` table-এ basic info
+- `profiles` table-এ bio, avatar, address
+
+### Database structure
+
+#### `users` table
+
+| id  | name  |
+| --- | ----- |
+| 1   | Rahim |
+
+#### `profiles` table
+
+| id  | user_id | bio               |
+| --- | ------- | ----------------- |
+| 1   | 1       | Laravel Developer |
+
+### Model code
+
+#### User.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
+public function profile(): HasOne
+{
+    return $this->hasOne(Profile::class);
+}
+```
+
+#### Profile.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+public function user(): BelongsTo
+{
+    return $this->belongsTo(User::class);
+}
+```
+
+### কীভাবে কাজ করে
+
+`hasOne(Profile::class)` বললে Laravel ধরে নেয়:
+
+- related table: `profiles`
+- foreign key: `user_id`
+- local key: `id`
+
+### Data access
+
+```php
+$user = User::find(1);
+$profile = $user->profile;
+```
+
+### Output ধারণা
+
+এখানে `$profile` হবে `Profile` model instance।
+
+### বাস্তব জীবনের analogy
+
+একজন মানুষের একটি passport থাকে। passport অনেকগুলো না, সাধারণত একটি।
+
+### Common mistake
+
+অনেকে `profile()` method-এ `belongsTo()` লিখে ফেলে।
+মনে রাখো:
+
+- parent side → `hasOne`
+- child side → `belongsTo`
+
+Laravel docs-এ `User` ↔ `Phone` উদাহরণ দিয়ে `hasOne` pattern দেখানো হয়েছে। ([Laravel][1])
+
+---
+
+## ৬. One to Many
+
+### কী
+
+একটি model-এর সাথে অনেক related model।
+
+উদাহরণ:
+
+- একটি `Post`-এর অনেক `Comment`
+- একজন `User`-এর অনেক `Post`
+
+### কেন দরকার
+
+এটি সবচেয়ে common relationship type।
+
+### Example structure
+
+#### `users` table
+
+| id  | name  |
+| --- | ----- |
+| 1   | Rahim |
+
+#### `posts` table
+
+| id  | user_id | title       |
+| --- | ------- | ----------- |
+| 1   | 1       | First Post  |
+| 2   | 1       | Second Post |
+
+### Model code
+
+#### User.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
+public function posts(): HasMany
+{
+    return $this->hasMany(Post::class);
+}
+```
+
+#### Post.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+public function user(): BelongsTo
+{
+    return $this->belongsTo(User::class);
+}
+```
+
+### Data access
+
+```php
+$user = User::find(1);
+
+foreach ($user->posts as $post) {
+    echo $post->title . "<br>";
+}
+```
+
+### Expected output
+
+```text
+First Post
+Second Post
+```
+
+### ব্যাখ্যা
+
+- `$user->posts` একটি collection দেয়
+- প্রতিটি item একটি `Post` model
+
+### Analogy
+
+একজন teacher-এর অনেক student থাকতে পারে।
+
+### Common mistake
+
+অনেকে ভাবে `hasMany()` ব্যবহার করলে automatically data insert হবে। না।
+`hasMany()` শুধু relationship define করে।
+
+Laravel documentation-এ `Post` এবং `Comment` উদাহরণ দিয়ে one-to-many relation বোঝানো হয়েছে। ([Laravel][1])
+
+---
+
+## ৭. Belongs To
+
+### কী
+
+এটি one-to-many relationship-এর উল্টো দিক।
+
+যদি বলি:
+
+- একজন `User` has many `Post`
+  তাহলে
+- একটি `Post` belongs to `User`
+
+### কেন দরকার
+
+Child model থেকে parent model access করতে।
+
+### Example
+
+```php
+public function user(): BelongsTo
+{
+    return $this->belongsTo(User::class);
+}
+```
+
+### ব্যবহার
+
+```php
+$post = Post::find(1);
+echo $post->user->name;
+```
+
+### কীভাবে Laravel foreign key খুঁজে
+
+`belongsTo(User::class)` দিলে Laravel ধরে নেয় current table-এ `user_id` আছে।
+
+### Custom foreign key
+
+```php
+return $this->belongsTo(User::class, 'author_id');
+```
+
+এখানে Laravel `author_id` ব্যবহার করবে।
+
+### Common mistake
+
+অনেকে `Post` model-এ `hasMany(User::class)` লিখে ফেলে।
+এটি ভুল, কারণ একটি post-এর অনেক user থাকে না। post belongs to one user.
+
+`belongsTo` child-to-parent relation বোঝাতে ব্যবহৃত হয় এবং Eloquent convention অনুযায়ী foreign key current model table-এ খোঁজে। ([Laravel][1])
+
+---
+
+## ৮. Many to Many
+
+### কী
+
+দুই model-এর উভয় পাশে অনেকগুলো record থাকতে পারে।
+
+উদাহরণ:
+
+- একজন `Student` অনেক `Course`-এ ভর্তি হতে পারে
+- একটি `Course`-এ অনেক `Student` থাকতে পারে
+
+### কেন দরকার
+
+যখন relation two-way many হয়।
+
+### Pivot table
+
+Many-to-many relationship-এর জন্য মাঝখানে একটি extra table লাগে, যাকে pivot table বলে।
+
+উদাহরণ:
+
+- `students`
+- `courses`
+- `course_student`
+
+#### `course_student` table
+
+| student_id | course_id |
+| ---------- | --------- |
+| 1          | 2         |
+| 1          | 3         |
+| 2          | 2         |
+
+### Model code
+
+#### Student.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+public function courses(): BelongsToMany
+{
+    return $this->belongsToMany(Course::class);
+}
+```
+
+#### Course.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+public function students(): BelongsToMany
+{
+    return $this->belongsToMany(Student::class);
+}
+```
+
+### Data access
+
+```php
+$student = Student::find(1);
+
+foreach ($student->courses as $course) {
+    echo $course->name . "<br>";
+}
+```
+
+### Pivot data সহ
+
+যদি pivot table-এ extra column থাকে, যেমন `enrolled_at`:
+
+```php
+return $this->belongsToMany(Course::class)->withPivot('enrolled_at');
+```
+
+### Then access:
+
+```php
+foreach ($student->courses as $course) {
+    echo $course->pivot->enrolled_at;
+}
+```
+
+### Analogy
+
+একজন actor অনেক movie-তে কাজ করতে পারে, আর একটি movie-তে অনেক actor থাকতে পারে।
+
+### Common mistake
+
+অনেকে pivot table নাম ভুল দেয়। Laravel convention অনুযায়ী দুই model নাম alphabetical order-এ singular form মিলিয়ে table নাম বানায়।
+
+Many-to-many relation-এর জন্য `belongsToMany` ব্যবহৃত হয়, এবং pivot table ব্যবহার করে relation track করা হয়। ([Laravel][1])
+
+---
+
+## ৯. Has One Through
+
+### কী
+
+এক model আরেক model-এর সাথে সরাসরি যুক্ত না, কিন্তু মাঝখানে আরেকটি model দিয়ে connected।
+
+উদাহরণ:
+
+- `Mechanic`
+- `Car`
+- `Owner`
+
+একজন mechanic-এর car আছে, এবং car-এর owner আছে।
+এখন mechanic থেকে owner পেতে চাই।
+
+### Structure
+
+- Mechanic has one Car
+- Car has one Owner
+- Mechanic has one Owner through Car
+
+### Example
+
+```php
+public function carOwner()
+{
+    return $this->hasOneThrough(Owner::class, Car::class);
+}
+```
+
+### কখন ব্যবহার করবে
+
+যখন intermediate model-এর মাধ্যমে final model access করতে চাও।
+
+### Common mistake
+
+যখন direct foreign key relation আছে, তখন unnecessarily `hasOneThrough` ব্যবহার করা ঠিক না।
+
+Laravel docs `hasOneThrough`-কে intermediate relation-এর মাধ্যমে single final model access করার উপায় হিসেবে দেখায়। ([Laravel][1])
+
+---
+
+## ১০. Has Many Through
+
+### কী
+
+এক model থেকে আরেক model-এর অনেক record পাওয়া যায় intermediate model-এর মাধ্যমে।
+
+উদাহরণ:
+
+- `Country`
+- `User`
+- `Post`
+
+একটি country-এর অনেক user আছে
+একজন user-এর অনেক post আছে
+তাহলে একটি country-এর অনেক post আছে through users
+
+### Example
+
+```php
+public function posts()
+{
+    return $this->hasManyThrough(Post::class, User::class);
+}
+```
+
+### কেন দরকার
+
+Nested loop বা extra query না লিখে clean access পাওয়ার জন্য।
+
+### ব্যবহার
+
+```php
+$country = Country::find(1);
+
+foreach ($country->posts as $post) {
+    echo $post->title . "<br>";
+}
+```
+
+Laravel `hasManyThrough` intermediate model ব্যবহার করে distant relation retrieve করতে দেয়। ([Laravel][1])
+
+---
+
+## ১১. Polymorphic Relationship
+
+### কী
+
+একটি model একাধিক ভিন্ন model-এর সাথে সম্পর্ক রাখতে পারে।
+
+### খুব গুরুত্বপূর্ণ ধারণা
+
+ধরো:
+
+- `Post`-এ comment করা যায়
+- `Video`-তেও comment করা যায়
+
+এখন `comments` table আলাদা করে `post_comments`, `video_comments` বানাতে চাই না।
+একটি `comments` table দিয়েই দুই type-এর model handle করতে চাই।
+
+### Table structure
+
+#### `comments`
+
+| id  | body  | commentable_id | commentable_type |
+| --- | ----- | -------------- | ---------------- |
+| 1   | Nice  | 5              | App\Models\Post  |
+| 2   | Great | 2              | App\Models\Video |
+
+### Model code
+
+#### Comment.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+
+public function commentable(): MorphTo
+{
+    return $this->morphTo();
+}
+```
+
+#### Post.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
+public function comments(): MorphMany
+{
+    return $this->morphMany(Comment::class, 'commentable');
+}
+```
+
+#### Video.php
+
+```php
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+
+public function comments(): MorphMany
+{
+    return $this->morphMany(Comment::class, 'commentable');
+}
+```
+
+### ব্যবহার
+
+```php
+$post = Post::find(1);
+
+foreach ($post->comments as $comment) {
+    echo $comment->body;
+}
+```
+
+### `commentable` নামের মানে কী
+
+এটি morph name। এর উপর ভিত্তি করে Laravel খোঁজে:
+
+- `commentable_id`
+- `commentable_type`
+
+### Analogy
+
+একটি “Review” system আছে যেটা product, course, movie—সব কিছুর জন্য same table ব্যবহার করছে।
+
+Laravel documentation polymorphic relation-এ `*_id` এবং `*_type` pair ব্যবহার করে multiple model type handle করার pattern ব্যাখ্যা করে। ([Laravel][1])
+
+---
+
+## ১২. Many to Many Polymorphic
+
+### কী
+
+Many-to-many + polymorphic একসাথে।
+
+উদাহরণ:
+
+- `Post` tag করা যায়
+- `Video` tag করা যায়
+- একই `Tag` model উভয়ের সাথে attach করা যায়
+
+### Table structure
+
+#### `tags`
+
+#### `posts`
+
+#### `videos`
+
+#### `taggables`
+
+| tag_id | taggable_id | taggable_type    |
+| ------ | ----------- | ---------------- |
+| 1      | 5           | App\Models\Post  |
+| 2      | 1           | App\Models\Video |
+
+### Model code
+
+#### Post.php
+
+```php
+public function tags()
+{
+    return $this->morphToMany(Tag::class, 'taggable');
+}
+```
+
+#### Video.php
+
+```php
+public function tags()
+{
+    return $this->morphToMany(Tag::class, 'taggable');
+}
+```
+
+#### Tag.php
+
+```php
+public function posts()
+{
+    return $this->morphedByMany(Post::class, 'taggable');
+}
+
+public function videos()
+{
+    return $this->morphedByMany(Video::class, 'taggable');
+}
+```
+
+### কখন ব্যবহার করবে
+
+যখন shared tagging, liking, favoriting system বানাতে চাও।
+
+Laravel polymorphic many-to-many relationships-এর জন্য `morphToMany` এবং `morphedByMany` ব্যবহার করে। ([Laravel][1])
+
+---
+
+## ১৩. One of Many
+
+### কী
+
+Laravel newer Eloquent features-এর মধ্যে `has one of many` pattern আছে, যেখানে many related records-এর মধ্যে একটি specific record নেওয়া হয়।
+
+উদাহরণ:
+
+- একজন user-এর অনেক order আছে
+- কিন্তু latest order একটাই দরকার
+- বা সবচেয়ে expensive order একটাই দরকার
+
+### Example
+
+```php
+public function latestOrder()
+{
+    return $this->hasOne(Order::class)->latestOfMany();
+}
+```
+
+আরও:
+
+```php
+public function largestOrder()
+{
+    return $this->hasOne(Order::class)->ofMany('price', 'max');
+}
+```
+
+### কেন দরকার
+
+অনেক record থেকে specific “best/latest/oldest/highest” item সহজে পেতে।
+
+Laravel release/documentation-এ “has one of many” সম্পর্কের এই pattern উল্লেখ আছে। ([Laravel][2])
+
+---
+
+## ১৪. Custom Foreign Key এবং Local Key
+
+Laravel default naming convention follow করে, কিন্তু সব project-এ naming same নাও হতে পারে।
+
+### Default example
+
+```php
+return $this->hasMany(Post::class);
+```
+
+Laravel ধরে নেয়:
+
+- foreign key: `user_id`
+- local key: `id`
+
+### Custom foreign key
+
+```php
+return $this->hasMany(Post::class, 'author_id');
+```
+
+### Custom foreign key + local key
+
+```php
+return $this->hasMany(Post::class, 'author_id', 'uuid');
+```
+
+এখানে:
+
+- related table column = `author_id`
+- current model column = `uuid`
+
+### `belongsTo` custom key
+
+```php
+return $this->belongsTo(User::class, 'author_id', 'uuid');
+```
+
+### কখন দরকার
+
+- legacy database
+- old project
+- non-standard naming
+- UUID-based system
+
+Laravel relationships custom key arguments support করে যাতে convention না মানা schema-ও handle করা যায়। ([Laravel][1])
+
+---
+
+## ১৫. Relationship Query করা
+
+Relationship method query builder হিসেবেও কাজ করে।
+
+### Example 1
+
+```php
+$user = User::find(1);
+
+$publishedPosts = $user->posts()
+    ->where('status', 'published')
+    ->get();
+```
+
+### Example 2: latest comment
+
+```php
+$post = Post::find(1);
+
+$latestComment = $post->comments()
+    ->latest()
+    ->first();
+```
+
+### Example 3: condition সহ count
+
+```php
+$count = $user->posts()
+    ->where('status', 'draft')
+    ->count();
+```
+
+### কেন important
+
+কারণ `$user->posts` আর `$user->posts()` এক নয়।
+
+- `$user->posts` = collection
+- `$user->posts()` = SQL query গঠনের সুযোগ
+
+Laravel docs relationship methods-এ extra constraints chain করার উদাহরণ দেয়। ([Laravel][1])
+
+---
+
+## ১৬. Eager Loading বনাম Lazy Loading
+
+এটি performance-এর জন্য খুব important।
+
+### Lazy Loading
+
+```php
+$users = User::all();
+
+foreach ($users as $user) {
+    echo $user->posts->count();
+}
+```
+
+এখানে problem হতে পারে: **N+1 query problem**
+
+- 1 query users-এর জন্য
+- প্রতিটি user-এর জন্য আবার posts query
+
+### Eager Loading
+
+```php
+$users = User::with('posts')->get();
+
+foreach ($users as $user) {
+    echo $user->posts->count();
+}
+```
+
+এখন Laravel আগেই related `posts` load করে।
+
+### কেন দরকার
+
+- query কমে
+- performance বাড়ে
+- large data-তে app fast হয়
+
+### Nested eager loading
+
+```php
+$users = User::with('posts.comments')->get();
+```
+
+### Specific columns
+
+```php
+$users = User::with('posts:id,user_id,title')->get();
+```
+
+### Common mistake
+
+অনেকে সব জায়গায় lazy loading করে, তারপর app slow হয়ে যায়।
+
+Relationship eager loading Eloquent-এর গুরুত্বপূর্ণ querying capability, এবং related models preload করে N+1 কমাতে ব্যবহার হয়। ([Laravel][1])
+
+---
+
+## ১৭. Counting Related Data
+
+অনেক সময় related records-এর full data দরকার হয় না, শুধু count দরকার হয়।
+
+### Example
+
+```php
+$users = User::withCount('posts')->get();
+```
+
+এখন প্রতিটি user-এর সাথে `posts_count` field পাওয়া যাবে।
+
+```php
+foreach ($users as $user) {
+    echo $user->name . ' - ' . $user->posts_count;
+}
+```
+
+### Conditional count
+
+```php
+$users = User::withCount([
+    'posts',
+    'posts as published_posts_count' => function ($query) {
+        $query->where('status', 'published');
+    }
+])->get();
+```
+
+### কেন দরকার
+
+- dashboard
+- admin panel
+- analytics summary
+
+Laravel relationship queries aggregate/count pattern support করে related data efficiently retrieve করার জন্য। ([Laravel][1])
+
+---
+
+## ১৮. Create / Save Related Model
+
+Relationship define করার পর related model save করাও সহজ হয়।
+
+### `save()`
+
+```php
+$user = User::find(1);
+
+$post = new Post();
+$post->title = 'My New Post';
+
+$user->posts()->save($post);
+```
+
+### কী হয়
+
+Laravel automatically `user_id` set করে দেয়।
+
+### `create()`
+
+```php
+$user->posts()->create([
+    'title' => 'Another Post',
+    'content' => 'Post body here',
+]);
+```
+
+### শর্ত
+
+`Post` model-এ mass assignable field allow করতে হবে:
+
+```php
+protected $fillable = ['title', 'content'];
+```
+
+### One-to-one create
+
+```php
+$user->profile()->create([
+    'bio' => 'PHP Developer',
+]);
+```
+
+### Common mistake
+
+অনেকে `create()` ব্যবহার করে কিন্তু `$fillable` set করে না।
+তখন mass assignment error হয়।
+
+Eloquent relationships-এর মাধ্যমে related model create/save করা Laravel-এর relationship API-এর অংশ। ([Laravel][1])
+
+---
+
+## ১৯. Attach, Detach, Sync
+
+এগুলো many-to-many relationship-এর জন্য খুব important।
+
+ধরো `Student` ↔ `Course`
+
+### `attach()`
+
+```php
+$student->courses()->attach(3);
+```
+
+মানে student-এর সাথে course id 3 যুক্ত হলো।
+
+### multiple attach
+
+```php
+$student->courses()->attach([1, 2, 3]);
+```
+
+### `detach()`
+
+```php
+$student->courses()->detach(2);
+```
+
+### সব detach
+
+```php
+$student->courses()->detach();
+```
+
+### `sync()`
+
+```php
+$student->courses()->sync([1, 3, 5]);
+```
+
+এখন relation শুধু 1, 3, 5 থাকবে।
+আগের অন্য course relation remove হয়ে যাবে।
+
+### Pivot data সহ
+
+```php
+$student->courses()->attach(1, [
+    'enrolled_at' => now()
+]);
+```
+
+### Common mistake
+
+`attach()` repeatedly call করলে duplicate pivot row হতে পারে, যদি DB constraint না থাকে।
+
+Many-to-many relationships pivot table operations যেমন attach/detach/sync সমর্থন করে। ([Laravel][1])
+
+---
+
+## ২০. Common Mistakes
+
+### ১. `hasMany` আর `belongsTo` গুলিয়ে ফেলা
+
+ভুল:
+
+```php
+public function user()
+{
+    return $this->hasMany(User::class);
+}
+```
+
+ঠিক:
+
+```php
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+```
+
+### ২. Foreign key নাম ভুল
+
+Laravel `user_id` আশা করছে, কিন্তু table-এ `userid` আছে।
+
+সমাধান:
+
+```php
+return $this->belongsTo(User::class, 'userid');
+```
+
+### ৩. Method এর বদলে property misuse
+
+ভুল:
+
+```php
+$user->posts->where('status', 'published');
+```
+
+এখানে collection filter হচ্ছে, database query না।
+
+যদি DB level query চাও:
+
+```php
+$user->posts()->where('status', 'published')->get();
+```
+
+### ৪. N+1 problem ignore করা
+
+ভুল:
+
+```php
+$posts = Post::all();
+
+foreach ($posts as $post) {
+    echo $post->user->name;
+}
+```
+
+ভালো:
+
+```php
+$posts = Post::with('user')->get();
+```
+
+### ৫. Pivot table naming issue
+
+Laravel convention মানা না হলে explicit table name দিতে হয়।
+
+---
+
+## ২১. Best Practices
+
+### Meaningful relationship names ব্যবহার করো
+
+ভালো:
+
+```php
+public function comments()
+```
+
+খারাপ:
+
+```php
+public function data1()
+```
+
+### Singular vs plural মনে রাখো
+
+- `hasOne`, `belongsTo` → singular name
+- `hasMany`, `belongsToMany` → plural name
+
+উদাহরণ:
+
+```php
+public function profile()   // singular
+public function posts()     // plural
+```
+
+### Eager loading ব্যবহার করো
+
+যখন list page বা nested data লাগবে:
+
+```php
+User::with('posts')->get();
+```
+
+### Convention follow করো
+
+- foreign key: `user_id`
+- pivot naming standard
+- primary key: `id`
+
+### Relationship logic model-এ রাখো
+
+controller-এ raw query না লিখে model relations ব্যবহার করা cleaner।
+
+---
+
+## ২২. Interview Questions
+
+### ১. Laravel-এ Relationship কী?
+
+এক model-এর সাথে আরেক model-এর database relation define করার উপায়।
+
+### ২. `hasMany` এবং `belongsTo`-র পার্থক্য কী?
+
+- `hasMany` parent side
+- `belongsTo` child side
+
+### ৩. `$user->posts` এবং `$user->posts()` এর মধ্যে পার্থক্য কী?
+
+- `$user->posts` → related models collection
+- `$user->posts()` → relationship query builder
+
+### ৪. Eager loading কেন ব্যবহার করা হয়?
+
+N+1 query problem কমাতে এবং performance improve করতে।
+
+### ৫. Many-to-many relation-এ pivot table কী?
+
+দুই model-এর relation সংরক্ষণকারী মাঝের table।
+
+### ৬. Polymorphic relationship কখন ব্যবহার করা হয়?
+
+যখন same child model একাধিক different parent model-এর সাথে যুক্ত হয়।
+
+---
+
+## ২৩. Mini Practice Tasks
+
+### Task 1
+
+`User` এবং `Post` model বানাও যেখানে:
+
+- একজন user-এর অনেক post থাকবে
+- একটি post একটি user-এর হবে
+
+নিজে try করো:
+
+- migration
+- model relation
+- data fetch
+
+### Task 2
+
+`Post` এবং `Comment` relation বানাও
+তারপর একটি post-এর সব comments print করো।
+
+### Task 3
+
+`Student`, `Course`, `course_student` table দিয়ে many-to-many বানাও
+তারপর `attach()` এবং `sync()` ব্যবহার করো।
+
+### Task 4
+
+`Post` ও `Video` উভয়ের জন্য `Comment` polymorphic relation implement করো।
+
+---
+
+## ২৪. Quick Summary Table
+
+| Relationship Type        | Method                                         | Example                       |
+| ------------------------ | ---------------------------------------------- | ----------------------------- |
+| One to One               | `hasOne()` / `belongsTo()`                     | User → Profile                |
+| One to Many              | `hasMany()` / `belongsTo()`                    | User → Posts                  |
+| Many to Many             | `belongsToMany()`                              | Student ↔ Course              |
+| Has One Through          | `hasOneThrough()`                              | Mechanic → Owner through Car  |
+| Has Many Through         | `hasManyThrough()`                             | Country → Posts through Users |
+| Polymorphic One/Many     | `morphTo()`, `morphOne()`, `morphMany()`       | Comment on Post/Video         |
+| Polymorphic Many to Many | `morphToMany()`, `morphedByMany()`             | Tags on Post/Video            |
+| One of Many              | `latestOfMany()`, `oldestOfMany()`, `ofMany()` | User → latest Order           |
+
+---
+
+## ছোট্ট Flow Diagram
+
+```text
+User
+ ├── hasOne -> Profile
+ ├── hasMany -> Post
+ └── belongsToMany -> Role
+
+Post
+ ├── belongsTo -> User
+ ├── hasMany -> Comment
+ └── morphMany -> Comment (if polymorphic style)
+
+Comment
+ └── morphTo -> commentable
+```
+
+---
+
+## পূর্ণ Example: User এবং Post
+
+### Migration idea
+
+#### users table
+
+```php
+Schema::create('users', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+```
+
+#### posts table
+
+```php
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    $table->string('title');
+    $table->text('content')->nullable();
+    $table->timestamps();
+});
+```
+
+### User model
+
+```php
+class User extends Model
+{
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+}
+```
+
+### Post model
+
+```php
+class Post extends Model
+{
+    protected $fillable = ['title', 'content'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+```
+
+### Create related post
+
+```php
+$user = User::find(1);
+
+$user->posts()->create([
+    'title' => 'Laravel Relationship',
+    'content' => 'Learning Eloquent relationships',
+]);
+```
+
+### Fetch related posts
+
+```php
+$user = User::with('posts')->find(1);
+
+foreach ($user->posts as $post) {
+    echo $post->title . "<br>";
+}
+```
+
+### কী হচ্ছে line by line
+
+- `User::with('posts')->find(1)`
+  user id 1 আনছে এবং তার posts-ও একসাথে load করছে
+- `$user->posts`
+  ওই user-এর related সব post collection হিসেবে দিচ্ছে
+- `foreach`
+  প্রতিটি post iterate করছে
+- `echo $post->title`
+  title print করছে
+
+### Expected output
+
+```text
+Laravel Relationship
+Another Demo Post
+My Blog Post
+```
+
+---
+
+## মনে রাখার সহজ Rule
+
+```text
+Parent hasOne Child
+Parent hasMany Children
+Child belongsTo Parent
+Two sides many হলে belongsToMany
+Same child many parent type হলে Polymorphic
+```
+
+---
+
+## কখন কোনটা ব্যবহার করবে
+
+| Situation                     | Use                     |
+| ----------------------------- | ----------------------- |
+| একজন user-এর একটি profile     | `hasOne`                |
+| একজন user-এর অনেক post        | `hasMany`               |
+| একটি post একটি user-এর        | `belongsTo`             |
+| student-course relation       | `belongsToMany`         |
+| post/video উভয়ের comment     | `morphMany` + `morphTo` |
+| country → posts through users | `hasManyThrough`        |
+| latest order only             | `latestOfMany`          |
+
+---
+
+## শেষবারের মতো সবচেয়ে গুরুত্বপূর্ণ ৫টি জিনিস
+
+1. Relationship model method হিসেবে define হয়
+2. `$model->relation` আর `$model->relation()` এক নয়
+3. Foreign key convention বুঝতে হবে
+4. Performance-এর জন্য `with()` খুব গুরুত্বপূর্ণ
+5. Real project-এ `hasMany`, `belongsTo`, `belongsToMany` সবচেয়ে বেশি ব্যবহার হয়
+
+Laravel-এর অফিসিয়াল Eloquent documentation অনুযায়ী relationships model methods হিসেবে define হয়, query builder-এর মতো chain করা যায়, এবং `hasOne`, `hasMany`, `belongsTo`, `belongsToMany`, through, polymorphic ও related querying patterns সমর্থন করে।
+
+<div align="right">
+    <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter 23:
 
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
