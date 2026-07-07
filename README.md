@@ -14824,9 +14824,402 @@ $profile = $user->profile;
 - parent side → `hasOne`
 - child side → `belongsTo`
 
-Laravel docs-এ `User` ↔ `Phone` উদাহরণ দিয়ে `hasOne` pattern দেখানো হয়েছে। ([Laravel][1])
+Laravel docs-এ `User` ↔ `Phone` উদাহরণ দিয়ে `hasOne` pattern দেখানো হয়েছে।
 
 ---
+
+## 🎯 Project Goal
+
+আমরা এমন একটি সিস্টেম তৈরি করবো যেখানে—
+
+- একটি **User-এর একটি মাত্র Profile থাকবে**
+- একটি **Profile শুধুমাত্র একটি User-এর হবে**
+
+Relationship:
+
+```text
+User 1 -------- 1 Profile
+```
+
+---
+
+# Step 1: নতুন Laravel Project তৈরি করুন
+
+# Step 2: Database তৈরি করুন
+
+phpMyAdmin খুলুন।
+
+নতুন Database তৈরি করুন।
+
+```text
+one_to_one_relationship
+```
+
+---
+
+# Step 3: `.env` ফাইল পরিবর্তন করুন
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=one_to_one_relationship
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+# Step 4: Migration তৈরি করুন
+
+Laravel-এ `users` Migration আগে থেকেই থাকে।
+
+এখন শুধু `Profile` Model তৈরি করুন।
+
+```bash
+php artisan make:model Profile -m
+```
+
+এতে তৈরি হবে—
+
+```text
+app/
+└── Models
+    └── Profile.php
+
+database/
+└── migrations
+    └── create_profiles_table.php
+```
+
+---
+
+# Step 5: `profiles` Migration Edit করুন
+
+`database/migrations/create_profiles_table.php`
+
+```php
+public function up(): void
+{
+    Schema::create('profiles', function (Blueprint $table) {
+
+        $table->id();
+
+        $table->foreignId('user_id')
+              ->unique()
+              ->constrained()
+              ->cascadeOnDelete();
+
+        $table->string('phone');
+
+        $table->string('address');
+
+        $table->string('city');
+
+        $table->timestamps();
+    });
+}
+```
+
+---
+
+## 🟢 এখানে `unique()` কেন দিলাম?
+
+```php
+$table->foreignId('user_id')
+      ->unique()
+      ->constrained();
+```
+
+কারণ আমরা চাই—
+
+একজন User-এর **একটির বেশি Profile না থাকে**।
+
+যদি `unique()` না দিই তাহলে—
+
+```text
+User 1
+
+Profile 1
+Profile 2
+Profile 3
+```
+
+এগুলোও Insert হয়ে যাবে।
+
+কিন্তু One-to-One Relationship-এ এটা অনুমোদিত নয়।
+
+---
+
+# Step 6: Migration Run করুন
+
+```bash
+php artisan migrate
+```
+
+---
+
+# Step 7: phpMyAdmin-এ Database দেখুন
+
+এখন Database-এর ভিতরে থাকবে—
+
+```text
+users
+
+profiles
+
+cache
+
+jobs
+
+sessions
+
+password_reset_tokens
+```
+
+---
+
+# Step 8: User Insert করুন
+
+phpMyAdmin
+
+➡ users
+
+➡ Insert
+
+```text
+name
+Abdul Alim
+
+email
+alim@gmail.com
+
+password
+123456
+```
+
+Insert করুন।
+
+ধরি—
+
+```text
+id = 1
+```
+
+---
+
+# Step 9: Profile Insert করুন
+
+phpMyAdmin
+
+➡ profiles
+
+➡ Insert
+
+```text
+user_id
+1
+
+phone
+01711111111
+
+address
+Dhaka
+
+city
+Dhaka
+```
+
+Insert করুন।
+
+---
+
+## এখন Database হবে
+
+### users
+
+| id  | name       |
+| --- | ---------- |
+| 1   | Abdul Alim |
+
+### profiles
+
+| id  | user_id | phone       |
+| --- | ------- | ----------- |
+| 1   | 1       | 01711111111 |
+
+---
+
+# Step 10: Relationship তৈরি করুন
+
+## User Model
+
+`app/Models/User.php`
+
+```php
+use App\Models\Profile;
+
+public function profile()
+{
+    return $this->hasOne(Profile::class);
+}
+```
+
+---
+
+## Profile Model
+
+`app/Models/Profile.php`
+
+```php
+use App\Models\User;
+
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+```
+
+---
+
+# Step 11: Route Test
+
+`routes/web.php`
+
+```php
+use App\Models\User;
+
+Route::get('/user', function () {
+
+    $user = User::find(1);
+
+    return $user->profile;
+
+});
+```
+
+Browser
+
+```text
+http://localhost:8000/user
+```
+
+Output
+
+```json
+{
+  "id": 1,
+  "user_id": 1,
+  "phone": "01711111111",
+  "address": "Dhaka",
+  "city": "Dhaka"
+}
+```
+
+---
+
+# Step 12: উল্টো Relationship
+
+```php
+use App\Models\Profile;
+
+Route::get('/profile', function () {
+
+    $profile = Profile::find(1);
+
+    return $profile->user;
+
+});
+```
+
+Output
+
+```json
+{
+  "id": 1,
+  "name": "Abdul Alim",
+  "email": "alim@gmail.com"
+}
+```
+
+---
+
+# Step 13: Data Access
+
+## User থেকে Profile
+
+```php
+$user = User::find(1);
+
+echo $user->profile->phone;
+
+echo $user->profile->address;
+
+echo $user->profile->city;
+```
+
+---
+
+## Profile থেকে User
+
+```php
+$profile = Profile::find(1);
+
+echo $profile->user->name;
+
+echo $profile->user->email;
+```
+
+---
+
+# Database Diagram
+
+```text
++----------------------+
+|       users          |
++----------------------+
+| id                   |
+| name                 |
+| email                |
+| password             |
++----------+-----------+
+           |
+           | hasOne
+           |
++----------v-----------+
+|      profiles        |
++----------------------+
+| id                   |
+| user_id (FK, UNIQUE) |
+| phone                |
+| address              |
+| city                 |
++----------------------+
+           ^
+           |
+           | belongsTo
+           |
+```
+
+---
+
+# Laravel Relationship Diagram
+
+```text
+User Model
+-----------------------
+
+public function profile()
+{
+    return $this->hasOne(Profile::class);
+}
+
+              hasOne
+User -----------------------> Profile
+
+Profile <-------------------- User
+              belongsTo
+```
 
 ## ৬. One to Many
 
