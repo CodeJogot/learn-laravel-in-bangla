@@ -29,8 +29,8 @@ After completing the 30-chapters module, jump in the [Projects Section](#10-lara
 |                          [20](#chapter-20-laravel-model)                           |                               [Laravel Model](#chapter-20-laravel-model)                               |     [Watch Now]()     |
 |                      [21](#chapter-21-eloquent-model-queries)                      |                          [Eloquent Model](#chapter-21-eloquent-model-queries)                          |     [Watch Now]()     |
 |                       [22](#chapter-22-laravel-relationship)                       |                        [Laravel Ralationship](#chapter-22-laravel-relationship)                        |     [Watch Now]()     |
-|                                       [23]()                                       |                                                  []()                                                  |     [Watch Now]()     |
-|                        [24](#chapter-23-php-file-handling)                         |                                   [](#chapter-23-php-file-handling)                                    |     [Watch Now]()     |
+|                [23](#chapter-23-introduction-to-laravel-middleware)                |                                 [Introduction to Laravel Middleware]()                                 |     [Watch Now]()     |
+|                                       [24]()                                       |                                   [](#chapter-23-php-file-handling)                                    |     [Watch Now]()     |
 |                         [25](#chapter-24-php-file-upload)                          |                                    [](#chapter-24-php-file-upload)                                     |     [Watch Now]()     |
 |                           [26](#chapter-25-php-cookies)                            |                                      [](#chapter-25-php-cookies)                                       |     [Watch Now]()     |
 |                           [27](#chapter-26-php-sessions)                           |                                      [](#chapter-26-php-sessions)                                      |     [Watch Now]()     |
@@ -16382,7 +16382,519 @@ Laravel-এর অফিসিয়াল Eloquent documentation অনুয�
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
 </div>
 
-# Chapter 23:
+# Chapter 23: Introduction to Laravel Middleware
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [What is Middleware?](#what-is-middleware)
+- [Why Do We Need Middleware?](#why-do-we-need-middleware)
+- [Real-Life Example](#real-life-example)
+- [How Middleware Works](#how-middleware-works)
+- [Request Lifecycle with Middleware](#request-lifecycle-with-middleware)
+- [Types of Middleware](#types-of-middleware)
+- [Built-in Laravel Middleware](#built-in-laravel-middleware)
+- [Creating a Custom Middleware](#creating-a-custom-middleware)
+- [Middleware Structure](#middleware-structure)
+- [Registering Middleware](#registering-middleware)
+- [Applying Middleware to Routes](#applying-middleware-to-routes)
+- [Applying Multiple Middleware](#applying-multiple-middleware)
+- [Applying Middleware to Route Groups](#applying-middleware-to-route-groups)
+- [Excluding Middleware](#excluding-middleware)
+- [Passing Parameters to Middleware](#passing-parameters-to-middleware)
+- [Global Middleware vs Route Middleware](#global-middleware-vs-route-middleware)
+- [Middleware Execution Order](#middleware-execution-order)
+- [Best Practices](#best-practices)
+- [Common Use Cases](#common-use-cases)
+- [Advantages of Middleware](#advantages-of-middleware)
+- [Summary](#summary)
+
+---
+
+# Introduction
+
+Laravel-এর অন্যতম গুরুত্বপূর্ণ Feature হলো **Middleware**।
+
+Middleware এমন একটি Layer যা **HTTP Request** এবং **Controller**-এর মাঝখানে অবস্থান করে এবং Request Controller-এ যাওয়ার আগে সেটি পরীক্ষা (Inspect) ও ফিল্টার (Filter) করে।
+
+> [!NOTE]
+> Middleware মূলত Request এবং Response-এর মধ্যে একটি মধ্যবর্তী স্তর (Middle Layer) হিসেবে কাজ করে।
+
+---
+
+# What is Middleware?
+
+Middleware হলো একটি PHP Class যা Request Controller-এ যাওয়ার আগে কিছু নির্দিষ্ট Condition যাচাই করে।
+
+Middleware দিয়ে আপনি—
+
+- Authentication Check করতে পারেন
+- Authorization Check করতে পারেন
+- Admin/User Role Check করতে পারেন
+- Email Verification Check করতে পারেন
+- Request Modify করতে পারেন
+- Response Modify করতে পারেন
+- Logging করতে পারেন
+- Rate Limiting করতে পারেন
+
+---
+
+# Why Do We Need Middleware?
+
+ধরুন আপনার একটি Admin Dashboard রয়েছে।
+
+```
+https://example.com/admin
+```
+
+যদি Middleware না থাকে, তাহলে যে কেউ এই URL লিখে Dashboard Access করার চেষ্টা করতে পারবে।
+
+Middleware প্রথমে যাচাই করবে—
+
+```
+User Logged In?
+```
+
+যদি Login করা থাকে
+
+```
+✅ Allow Access
+```
+
+অন্যথায়
+
+```
+❌ Redirect to Login Page
+```
+
+> [!TIP]
+> Authentication, Authorization এবং Security-এর জন্য Middleware অত্যন্ত গুরুত্বপূর্ণ।
+
+---
+
+# Real-Life Example
+
+একটি Shopping Mall কল্পনা করুন।
+
+```
+Visitor
+    │
+    ▼
+Security Guard
+    │
+    ▼
+Shopping Mall
+```
+
+Security Guard—
+
+- ব্যাগ চেক করে
+- Ticket দেখে
+- Metal Detector ব্যবহার করে
+
+সব ঠিক থাকলে ভিতরে যেতে দেয়।
+
+Laravel Middleware-ও ঠিক একইভাবে কাজ করে।
+
+---
+
+# How Middleware Works
+
+```
+Browser
+   │
+   ▼
+Middleware
+   │
+   ▼
+Controller
+   │
+   ▼
+Database
+   │
+   ▼
+Response
+   │
+   ▼
+Browser
+```
+
+---
+
+# Request Lifecycle with Middleware
+
+Laravel-এর Request Flow সাধারণত এমন হয়—
+
+```
+User
+
+↓
+
+public/index.php
+
+↓
+
+Laravel Application
+
+↓
+
+Global Middleware
+
+↓
+
+Route Middleware
+
+↓
+
+Controller
+
+↓
+
+Business Logic
+
+↓
+
+Response
+
+↓
+
+Browser
+```
+
+> [!IMPORTANT]
+> Middleware শুধুমাত্র Request-এর সময় নয়, Response ফেরত যাওয়ার সময়ও কাজ করতে পারে।
+
+---
+
+# Types of Middleware
+
+Laravel-এ প্রধানত দুই ধরনের Middleware বেশি ব্যবহৃত হয়।
+
+## Global Middleware
+
+Application-এর প্রতিটি Request-এর জন্য Automatically Run হয়।
+
+**উদাহরণ**
+
+- TrimStrings
+- ConvertEmptyStringsToNull
+- PreventRequestsDuringMaintenance
+
+---
+
+## Route Middleware
+
+শুধুমাত্র নির্দিষ্ট Route-এ কাজ করে।
+
+```php
+Route::get('/dashboard', function () {
+    return 'Dashboard';
+})->middleware('auth');
+```
+
+---
+
+# Built-in Laravel Middleware
+
+| Middleware         | Purpose               |
+| ------------------ | --------------------- |
+| `auth`             | User Authentication   |
+| `guest`            | Guest User Check      |
+| `verified`         | Email Verification    |
+| `signed`           | Signed URL Validation |
+| `throttle`         | Rate Limiting         |
+| `password.confirm` | Password Confirmation |
+
+---
+
+# Creating a Custom Middleware
+
+নতুন Middleware তৈরি করতে—
+
+```bash
+php artisan make:middleware CheckAge
+```
+
+Directory Structure
+
+```
+app
+└── Http
+    └── Middleware
+        └── CheckAge.php
+```
+
+---
+
+# Middleware Structure
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class CheckAge
+{
+    public function handle(Request $request, Closure $next): Response
+    {
+        return $next($request);
+    }
+}
+```
+
+### `Request $request`
+
+বর্তমান HTTP Request।
+
+### `Closure $next`
+
+পরবর্তী Middleware অথবা Controller-এ Request পাঠানোর জন্য ব্যবহৃত হয়।
+
+### `$next($request)`
+
+```php
+return $next($request);
+```
+
+> [!WARNING]
+> যদি `return $next($request)` না লেখেন, তাহলে Request Controller পর্যন্ত পৌঁছাবে না।
+
+---
+
+# Registering Middleware
+
+Laravel 11 এবং Laravel 12-এ Middleware Alias `bootstrap/app.php`-এ Register করা হয়।
+
+```php
+->withMiddleware(function ($middleware) {
+    $middleware->alias([
+        'check.age' => \App\Http\Middleware\CheckAge::class,
+    ]);
+})
+```
+
+---
+
+# Applying Middleware to Routes
+
+```php
+Route::get('/dashboard', function () {
+    return 'Dashboard';
+})->middleware('auth');
+```
+
+Custom Middleware
+
+```php
+Route::get('/vote', function () {
+    return 'Vote Page';
+})->middleware('check.age');
+```
+
+---
+
+# Applying Multiple Middleware
+
+```php
+Route::get('/admin', function () {
+    return 'Admin Panel';
+})->middleware([
+    'auth',
+    'verified',
+    'check.age'
+]);
+```
+
+Execution Order
+
+```
+auth
+↓
+
+verified
+↓
+
+check.age
+↓
+
+Controller
+```
+
+---
+
+# Applying Middleware to Route Groups
+
+```php
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        //
+    });
+
+    Route::get('/profile', function () {
+        //
+    });
+
+    Route::get('/settings', function () {
+        //
+    });
+
+});
+```
+
+> [!TIP]
+> একই Middleware একাধিক Route-এ ব্যবহার করতে Route Group সবচেয়ে ভালো পদ্ধতি।
+
+---
+
+# Excluding Middleware
+
+প্রয়োজন অনুযায়ী নির্দিষ্ট Route বা Controller Action-এ Middleware বাদ দেওয়া যায়।
+
+> [!NOTE]
+> Laravel Version অনুযায়ী Excluding Middleware-এর পদ্ধতি কিছুটা ভিন্ন হতে পারে।
+
+---
+
+# Passing Parameters to Middleware
+
+Route
+
+```php
+Route::get('/admin', function () {
+    //
+})->middleware('role:admin');
+```
+
+Middleware
+
+```php
+public function handle(
+    Request $request,
+    Closure $next,
+    string $role
+) {
+    if ($request->user()?->role !== $role) {
+        abort(403);
+    }
+
+    return $next($request);
+}
+```
+
+---
+
+# Global Middleware vs Route Middleware
+
+| Global Middleware     | Route Middleware          |
+| --------------------- | ------------------------- |
+| সব Request-এ কাজ করে  | নির্দিষ্ট Route-এ কাজ করে |
+| Automatically Run হয় | Manually Apply করতে হয়   |
+| Application Level     | Route Level               |
+| সব User-এর জন্য       | নির্দিষ্ট Route-এর জন্য   |
+
+---
+
+# Middleware Execution Order
+
+```text
+Request
+
+↓
+
+auth
+
+↓
+
+verified
+
+↓
+
+check.age
+
+↓
+
+Controller
+
+↓
+
+check.age
+
+↓
+
+verified
+
+↓
+
+auth
+
+↓
+
+Response
+```
+
+---
+
+# Best Practices
+
+- একটি Middleware-এর একটি নির্দিষ্ট দায়িত্ব থাকা উচিত।
+- Business Logic Middleware-এ লিখবেন না।
+- Middleware ছোট ও Reusable রাখুন।
+- অর্থবহ Alias ব্যবহার করুন।
+- অপ্রয়োজনীয় Database Query এড়িয়ে চলুন।
+- Global Middleware শুধুমাত্র প্রয়োজন হলে ব্যবহার করুন।
+
+---
+
+# Common Use Cases
+
+- User Authentication
+- Admin Authentication
+- Role & Permission Check
+- Email Verification
+- API Authentication
+- Rate Limiting
+- Logging
+- Maintenance Mode
+- CORS Handling
+- Locale Switching
+- Request Filtering
+- IP Blocking
+
+---
+
+# Advantages of Middleware
+
+- ✅ Better Security
+- ✅ Cleaner Controllers
+- ✅ Code Reusability
+- ✅ Easy Maintenance
+- ✅ Request Filtering
+- ✅ Response Modification
+- ✅ Centralized Authentication
+- ✅ Better Code Organization
+
+---
+
+# Summary
+
+এই Documentation থেকে আপনি শিখেছেন—
+
+- Middleware কী
+- Middleware কেন ব্যবহার করা হয়
+- Middleware কীভাবে কাজ করে
+- Global ও Route Middleware-এর পার্থক্য
+- Custom Middleware তৈরি করা
+- Middleware Register করা
+- Route-এ Middleware ব্যবহার করা
+- Multiple Middleware ব্যবহার করা
+- Route Group-এ Middleware ব্যবহার করা
+- Middleware-এ Parameter পাঠানো
+- Middleware Execution Order
 
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
