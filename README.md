@@ -17527,9 +17527,1338 @@ auth Middleware
          Dashboard
 ```
 
-এটাই Laravel Middleware-এর সবচেয়ে গুরুত্বপূর্ণ ব্যবহার।
+# Laravel Custom Authentication with Middleware & Student CRUD
+
+আমরা কোনো Breeze/Jetstream ব্যবহার করব না, যাতে **Middleware কীভাবে কাজ করছে তা নিজের হাতে বুঝতে পারেন**।
 
 ---
+
+# 1. Project তৈরি
+
+```bash
+composer create-project laravel/laravel middleware-auth
+cd middleware-auth
+```
+
+Database তৈরি করুন:
+
+```text
+middleware_auth
+```
+
+`.env` ফাইলে:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=middleware_auth
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+# 2. Required Files তৈরি
+
+```bash
+php artisan make:controller AuthController
+php artisan make:controller StudentController --resource
+
+php artisan make:model Student -m
+
+php artisan make:middleware LoginMiddleware
+php artisan make:middleware GuestMiddleware
+```
+
+---
+
+# 3. Users Table
+
+Laravel-এর Default `users` migration ব্যবহার করব।
+
+`database/migrations/xxxx_xx_xx_create_users_table.php`
+
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('name');
+
+            $table->string('email')
+                ->unique();
+
+            $table->string('password');
+
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('users');
+    }
+};
+```
+
+---
+
+# 4. Students Table
+
+`database/migrations/xxxx_xx_xx_create_students_table.php`
+
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('students', function (Blueprint $table) {
+
+            $table->id();
+
+            $table->string('name');
+
+            $table->string('email')
+                ->unique();
+
+            $table->string('phone');
+
+            $table->timestamps();
+
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('students');
+    }
+};
+```
+
+Migration Run করুন:
+
+```bash
+php artisan migrate
+```
+
+---
+
+# 5. Student Model
+
+`app/Models/Student.php`
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Student extends Model
+{
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+    ];
+}
+```
+
+এখন আমরা `Student::create()` এবং `Student::update()` ব্যবহার করতে পারব।
+
+---
+
+# 6. Login Middleware
+
+এটাই আমাদের Project-এর সবচেয়ে গুরুত্বপূর্ণ অংশ।
+
+`app/Http/Middleware/LoginMiddleware.php`
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class LoginMiddleware
+{
+    public function handle(
+        Request $request,
+        Closure $next
+    ) {
+
+        if (!session()->has('user_id')) {
+
+            return redirect('/login')
+                ->with(
+                    'error',
+                    'Please login first.'
+                );
+
+        }
+
+        return $next($request);
+    }
+}
+```
+
+এখানে আমরা চেক করছি:
+
+```php
+session()->has('user_id')
+```
+
+যদি `user_id` Session-এ না থাকে, তাহলে User Login করা নেই।
+
+তাই:
+
+```php
+return redirect('/login');
+```
+
+করা হচ্ছে।
+
+আর Login করা থাকলে:
+
+```php
+return $next($request);
+```
+
+এর মাধ্যমে Request পরবর্তী ধাপে চলে যাবে।
+
+---
+
+# 7. Guest Middleware
+
+এবার এমন Middleware বানাবো যাতে Login করা User আবার Login Page-এ যেতে না পারে।
+
+`app/Http/Middleware/GuestMiddleware.php`
+
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class GuestMiddleware
+{
+    public function handle(
+        Request $request,
+        Closure $next
+    ) {
+
+        if (session()->has('user_id')) {
+
+            return redirect('/dashboard');
+
+        }
+
+        return $next($request);
+    }
+}
+```
+
+এখন User যদি Login করা অবস্থায় `/login` Visit করে:
+
+```text
+/login
+    ↓
+Guest Middleware
+    ↓
+Session আছে
+    ↓
+/dashboard
+```
+
+এতে User Login Page-এ যেতে পারবে না।
+
+---
+
+# 8. Middleware Register
+
+Laravel 11/12-এ:
+
+`bootstrap/app.php`
+
+এখানে Middleware Alias Register করুন।
+
+```php
+<?php
+
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Middleware;
+
+return Application::configure(
+    basePath: dirname(__DIR__)
+)
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        commands: __DIR__.'/../routes/console.php',
+        health: '/up',
+    )
+    ->withMiddleware(function (
+        Middleware $middleware
+    ) {
+
+        $middleware->alias([
+
+            'login' => \App\Http\Middleware\LoginMiddleware::class,
+
+            'guest' => \App\Http\Middleware\GuestMiddleware::class,
+
+        ]);
+
+    })
+    ->withExceptions(function ($exceptions) {
+
+        //
+
+    })
+    ->create();
+```
+
+এখন আমরা Route-এ লিখতে পারব:
+
+```php
+->middleware('login')
+```
+
+অথবা:
+
+```php
+->middleware('guest')
+```
+
+---
+
+# 9. AuthController
+
+`app/Http/Controllers/AuthController.php`
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+class AuthController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Register Page
+    |--------------------------------------------------------------------------
+    */
+
+    public function registerPage()
+    {
+        return view('auth.register');
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Register
+    |--------------------------------------------------------------------------
+    */
+
+    public function register(Request $request)
+    {
+        $request->validate([
+
+            'name' => 'required',
+
+            'email' => [
+                'required',
+                'email',
+                'unique:users,email'
+            ],
+
+            'password' => [
+                'required',
+                'min:6',
+                'confirmed'
+            ],
+
+        ]);
+
+
+        $user = User::create([
+
+            'name' => $request->name,
+
+            'email' => $request->email,
+
+            'password' => Hash::make(
+                $request->password
+            ),
+
+        ]);
+
+
+        session([
+            'user_id' => $user->id
+        ]);
+
+
+        return redirect('/dashboard');
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Login Page
+    |--------------------------------------------------------------------------
+    */
+
+    public function loginPage()
+    {
+        return view('auth.login');
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Login
+    |--------------------------------------------------------------------------
+    */
+
+    public function login(Request $request)
+    {
+        $request->validate([
+
+            'email' => 'required|email',
+
+            'password' => 'required',
+
+        ]);
+
+
+        $user = User::where(
+            'email',
+            $request->email
+        )->first();
+
+
+        if (
+            $user &&
+            Hash::check(
+                $request->password,
+                $user->password
+            )
+        ) {
+
+            session([
+                'user_id' => $user->id
+            ]);
+
+
+            return redirect('/dashboard');
+
+        }
+
+
+        return back()
+            ->with(
+                'error',
+                'Invalid Email or Password'
+            );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Logout
+    |--------------------------------------------------------------------------
+    */
+
+    public function logout(Request $request)
+    {
+        $request->session()->forget(
+            'user_id'
+        );
+
+
+        return redirect('/login')
+            ->with(
+                'success',
+                'Logout Successful'
+            );
+    }
+}
+```
+
+---
+
+# 10. User Model
+
+`app/Models/User.php`
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    protected $fillable = [
+
+        'name',
+
+        'email',
+
+        'password',
+
+    ];
+
+
+    protected $hidden = [
+
+        'password',
+
+    ];
+}
+```
+
+---
+
+# 11. StudentController
+
+এখন Student CRUD তৈরি করব।
+
+`app/Http/Controllers/StudentController.php`
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Student;
+use Illuminate\Http\Request;
+
+class StudentController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Show All Students
+    |--------------------------------------------------------------------------
+    */
+
+    public function index()
+    {
+        $students = Student::latest()
+            ->get();
+
+        return view(
+            'students.index',
+            compact('students')
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Create Page
+    |--------------------------------------------------------------------------
+    */
+
+    public function create()
+    {
+        return view('students.create');
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Store Student
+    |--------------------------------------------------------------------------
+    */
+
+    public function store(Request $request)
+    {
+        $request->validate([
+
+            'name' => 'required',
+
+            'email' => [
+                'required',
+                'email',
+                'unique:students,email'
+            ],
+
+            'phone' => 'required',
+
+        ]);
+
+
+        Student::create([
+
+            'name' => $request->name,
+
+            'email' => $request->email,
+
+            'phone' => $request->phone,
+
+        ]);
+
+
+        return redirect()
+            ->route('students.index')
+            ->with(
+                'success',
+                'Student Created Successfully'
+            );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Edit Page
+    |--------------------------------------------------------------------------
+    */
+
+    public function edit(Student $student)
+    {
+        return view(
+            'students.edit',
+            compact('student')
+        );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Update Student
+    |--------------------------------------------------------------------------
+    */
+
+    public function update(
+        Request $request,
+        Student $student
+    ) {
+
+        $request->validate([
+
+            'name' => 'required',
+
+            'email' => [
+                'required',
+                'email',
+                'unique:students,email,'.$student->id
+            ],
+
+            'phone' => 'required',
+
+        ]);
+
+
+        $student->update([
+
+            'name' => $request->name,
+
+            'email' => $request->email,
+
+            'phone' => $request->phone,
+
+        ]);
+
+
+        return redirect()
+            ->route('students.index')
+            ->with(
+                'success',
+                'Student Updated Successfully'
+            );
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Delete Student
+    |--------------------------------------------------------------------------
+    */
+
+    public function destroy(
+        Student $student
+    ) {
+
+        $student->delete();
+
+
+        return redirect()
+            ->route('students.index')
+            ->with(
+                'success',
+                'Student Deleted Successfully'
+            );
+    }
+}
+```
+
+---
+
+# 12. Routes
+
+এখন আসল Middleware ব্যবহার করব।
+
+`routes/web.php`
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StudentController;
+
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/', function () {
+
+    return view('home');
+
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Guest Routes
+|--------------------------------------------------------------------------
+|
+| Login করা User এই Route-এ যেতে পারবে না।
+|
+*/
+
+Route::middleware('guest')->group(function () {
+
+    // Register
+
+    Route::get(
+        '/register',
+        [AuthController::class, 'registerPage']
+    )->name('register');
+
+
+    Route::post(
+        '/register',
+        [AuthController::class, 'register']
+    );
+
+
+    // Login
+
+    Route::get(
+        '/login',
+        [AuthController::class, 'loginPage']
+    )->name('login');
+
+
+    Route::post(
+        '/login',
+        [AuthController::class, 'login']
+    );
+
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Login Protected Routes
+|--------------------------------------------------------------------------
+|
+| Login না করলে এই Route-গুলোতে প্রবেশ করা যাবে না।
+|
+*/
+
+Route::middleware('login')->group(function () {
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get(
+        '/dashboard',
+        function () {
+
+            return view('dashboard');
+
+        }
+    )->name('dashboard');
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Student CRUD
+    |--------------------------------------------------------------------------
+    */
+
+    Route::resource(
+        'students',
+        StudentController::class
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Logout
+    |--------------------------------------------------------------------------
+    */
+
+    Route::post(
+        '/logout',
+        [AuthController::class, 'logout']
+    )->name('logout');
+
+});
+```
+
+---
+
+# 13. Home Page
+
+`resources/views/home.blade.php`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+
+  <body>
+    <h1>Student Management System</h1>
+
+    <a href="/login"> Login </a>
+
+    |
+
+    <a href="/register"> Register </a>
+  </body>
+</html>
+```
+
+---
+
+# 14. Register Page
+
+`resources/views/auth/register.blade.php`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+  </head>
+
+  <body>
+    <h1>Register</h1>
+
+    @if ($errors->any()) @foreach ($errors->all() as $error)
+
+    <p style="color:red">{{ $error }}</p>
+
+    @endforeach @endif
+
+    <form action="/register" method="POST">
+      @csrf
+
+      <input type="text" name="name" placeholder="Name" />
+
+      <br /><br />
+
+      <input type="email" name="email" placeholder="Email" />
+
+      <br /><br />
+
+      <input type="password" name="password" placeholder="Password" />
+
+      <br /><br />
+
+      <input
+        type="password"
+        name="password_confirmation"
+        placeholder="Confirm Password"
+      />
+
+      <br /><br />
+
+      <button type="submit">Register</button>
+    </form>
+
+    <br />
+
+    <a href="/login"> Already have an account? Login </a>
+  </body>
+</html>
+```
+
+---
+
+# 15. Login Page
+
+`resources/views/auth/login.blade.php`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+  </head>
+
+  <body>
+    <h1>Login</h1>
+
+    @if (session('error'))
+
+    <p style="color:red">{{ session('error') }}</p>
+
+    @endif @if (session('success'))
+
+    <p style="color:green">{{ session('success') }}</p>
+
+    @endif @if ($errors->any()) @foreach ($errors->all() as $error)
+
+    <p style="color:red">{{ $error }}</p>
+
+    @endforeach @endif
+
+    <form action="/login" method="POST">
+      @csrf
+
+      <input type="email" name="email" placeholder="Email" />
+
+      <br /><br />
+
+      <input type="password" name="password" placeholder="Password" />
+
+      <br /><br />
+
+      <button type="submit">Login</button>
+    </form>
+
+    <br />
+
+    <a href="/register"> Create New Account </a>
+  </body>
+</html>
+```
+
+---
+
+# 16. Dashboard
+
+`resources/views/dashboard.blade.php`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+  </head>
+
+  <body>
+    <h1>Dashboard</h1>
+
+    <h3>Welcome, {{ \App\Models\User::find( session('user_id') )->name }}</h3>
+
+    <a href="{{ route('students.index') }}"> Manage Students </a>
+
+    <br /><br />
+
+    <form action="{{ route('logout') }}" method="POST">
+      @csrf
+
+      <button type="submit">Logout</button>
+    </form>
+  </body>
+</html>
+```
+
+---
+
+# 17. Student Index
+
+`resources/views/students/index.blade.php`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Students</title>
+  </head>
+
+  <body>
+    <h1>All Students</h1>
+
+    @if (session('success'))
+
+    <p style="color:green">{{ session('success') }}</p>
+
+    @endif
+
+    <a href="{{ route('students.create') }}"> Add New Student </a>
+
+    <br /><br />
+
+    <table border="1" cellpadding="10">
+      <tr>
+        <th>ID</th>
+
+        <th>Name</th>
+
+        <th>Email</th>
+
+        <th>Phone</th>
+
+        <th>Action</th>
+      </tr>
+
+      @foreach ($students as $student)
+
+      <tr>
+        <td>{{ $student->id }}</td>
+
+        <td>{{ $student->name }}</td>
+
+        <td>{{ $student->email }}</td>
+
+        <td>{{ $student->phone }}</td>
+
+        <td>
+          <a
+            href="{{ route(
+                        'students.edit',
+                        $student->id
+                    ) }}"
+          >
+            Edit
+          </a>
+
+          <form
+            action="{{ route(
+                        'students.destroy',
+                        $student->id
+                    ) }}"
+            method="POST"
+            style="display:inline"
+          >
+            @csrf @method('DELETE')
+
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+
+      @endforeach
+    </table>
+
+    <br />
+
+    <a href="/dashboard"> Dashboard </a>
+  </body>
+</html>
+```
+
+---
+
+# 18. Create Student
+
+`resources/views/students/create.blade.php`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Student</title>
+  </head>
+
+  <body>
+    <h1>Create Student</h1>
+
+    @if ($errors->any()) @foreach ($errors->all() as $error)
+
+    <p style="color:red">{{ $error }}</p>
+
+    @endforeach @endif
+
+    <form action="{{ route('students.store') }}" method="POST">
+      @csrf
+
+      <input type="text" name="name" placeholder="Student Name" />
+
+      <br /><br />
+
+      <input type="email" name="email" placeholder="Student Email" />
+
+      <br /><br />
+
+      <input type="text" name="phone" placeholder="Phone" />
+
+      <br /><br />
+
+      <button type="submit">Save Student</button>
+    </form>
+
+    <br />
+
+    <a href="{{ route('students.index') }}"> Back </a>
+  </body>
+</html>
+```
+
+---
+
+# 19. Edit Student
+
+`resources/views/students/edit.blade.php`
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Student</title>
+  </head>
+
+  <body>
+    <h1>Edit Student</h1>
+
+    @if ($errors->any()) @foreach ($errors->all() as $error)
+
+    <p style="color:red">{{ $error }}</p>
+
+    @endforeach @endif
+
+    <form
+      action="{{ route(
+        'students.update',
+        $student->id
+    ) }}"
+      method="POST"
+    >
+      @csrf @method('PUT')
+
+      <input type="text" name="name" value="{{ $student->name }}" />
+
+      <br /><br />
+
+      <input type="email" name="email" value="{{ $student->email }}" />
+
+      <br /><br />
+
+      <input type="text" name="phone" value="{{ $student->phone }}" />
+
+      <br /><br />
+
+      <button type="submit">Update Student</button>
+    </form>
+
+    <br />
+
+    <a href="{{ route('students.index') }}"> Back </a>
+  </body>
+</html>
+```
+
+---
+
+# 20. এখন Project Run করুন
+
+```bash
+php artisan serve
+```
+
+Browser-এ যান:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+# এখন Middleware কীভাবে কাজ করছে দেখুন
+
+### Step 1
+
+প্রথমে যান:
+
+```text
+/dashboard
+```
+
+আপনি Login করা নেই।
+
+তাই:
+
+```text
+Dashboard
+     ↓
+Login Middleware
+     ↓
+Session-এ user_id নেই
+     ↓
+Redirect /login
+```
+
+---
+
+### Step 2
+
+Register করুন:
+
+```text
+/register
+```
+
+Database-এ User তৈরি হবে।
+
+তারপর:
+
+```php
+session([
+    'user_id' => $user->id
+]);
+```
+
+Session তৈরি হবে।
+
+তারপর:
+
+```text
+/dashboard
+```
+
+এ Redirect হবে।
+
+---
+
+### Step 3
+
+Dashboard থেকে:
+
+```text
+Manage Students
+```
+
+Click করুন।
+
+এখন:
+
+```text
+/students
+```
+
+যাবেন।
+
+এই Route-এর উপরও:
+
+```php
+Route::middleware('login')->group(...)
+```
+
+লাগানো আছে।
+
+তাই Middleware আবার Check করবে:
+
+```php
+if (!session()->has('user_id'))
+```
+
+যেহেতু User Login করা আছে:
+
+```text
+true
+```
+
+তাই:
+
+```php
+return $next($request);
+```
+
+চলবে।
+
+এরপর StudentController-এর:
+
+```php
+index()
+```
+
+চলবে।
+
+---
+
+# সবচেয়ে গুরুত্বপূর্ণ বিষয়
+
+এই Project-এ আপনার Middleware Flow হচ্ছে:
+
+```text
+                   Request
+                      │
+                      ▼
+                Laravel Route
+                      │
+                      ▼
+              Login Middleware
+                      │
+             ┌────────┴────────┐
+             │                 │
+       Session আছে?        Session নেই?
+             │                 │
+            Yes                No
+             │                 │
+             ▼                 ▼
+      $next($request)      /login
+             │
+             ▼
+       Controller
+             │
+             ▼
+          Model
+             │
+             ▼
+         Database
+             │
+             ▼
+           View
+             │
+             ▼
+          Response
+```
+
+এখানে **Middleware হলো Controller-এর আগে থাকা Security Gate**।
+
+আর একটি গুরুত্বপূর্ণ বিষয় হলো, এই Project-এ আমরা **নিজস্ব Custom Middleware দিয়ে Authentication বুঝেছি**, কিন্তু Production Application-এ সাধারণত Laravel-এর built-in authentication system বা **Laravel Sanctum / Fortify / Breeze** ব্যবহার করা বেশি নিরাপদ ও maintainable। শেখার উদ্দেশ্যে এই Custom Project-টি খুব ভালো, কারণ এতে আপনি Database → Login → Session → Middleware → Controller—পুরো Flow বুঝতে পারবেন।
 
 # Best Practices
 
@@ -17560,6 +18889,1163 @@ auth Middleware
 
 <div align="right">
     <b><a href="#the-ultimate-laravel-course-in-bangla">⬆️ Go to Top</a></b>
+</div>
+
+# Chapter-24: Introduction to Rest API
+
+## 📚 Table of Contents
+
+1. [Introduction](#-introduction)
+2. [What is an API?](#-what-is-an-api)
+3. [What is REST?](#-what-is-rest)
+4. [What is REST API?](#-what-is-rest-api)
+5. [Why Do We Need REST API?](#-why-do-we-need-rest-api)
+6. [How REST API Works](#-how-rest-api-works)
+7. [Client and Server](#-client-and-server)
+8. [HTTP Methods](#-http-methods)
+9. [HTTP Status Codes](#-http-status-codes)
+10. [API Endpoint](#-api-endpoint)
+11. [Request and Response](#-request-and-response)
+12. [JSON](#-json)
+13. [CRUD and REST API](#-crud-and-rest-api)
+14. [REST API Example](#-rest-api-example)
+15. [REST API with Laravel](#-rest-api-with-laravel)
+16. [Authentication](#-authentication)
+17. [REST API Best Practices](#-rest-api-best-practices)
+18. [REST API vs Traditional Web Application](#-rest-api-vs-traditional-web-application)
+19. [REST API vs SOAP](#-rest-api-vs-soap)
+20. [Common Mistakes](#-common-mistakes)
+21. [Conclusion](#-conclusion)
+
+---
+
+## 🌱 Introduction
+
+বর্তমান Web এবং Mobile Application Development-এ **REST API** একটি অত্যন্ত গুরুত্বপূর্ণ Concept।
+
+ধরুন, আপনি একটি **Mobile App** তৈরি করেছেন এবং আপনার Server-এ কিছু User Data আছে।
+
+Mobile App থেকে আপনি Server-কে বললেন:
+
+> "আমাকে সব User-এর Data দাও।"
+
+Server Database থেকে Data সংগ্রহ করে Mobile App-কে পাঠিয়ে দিল।
+
+আবার Mobile App থেকে নতুন User তৈরি করতে চাইলে Server-কে Data পাঠানো হবে। Server সেই Data Database-এ Save করবে এবং একটি Response পাঠাবে।
+
+এই **Client এবং Server-এর মধ্যে Data আদান-প্রদানের জন্য REST API** ব্যবহার করা যায়।
+
+সহজভাবে বললে:
+
+> **REST API হলো এমন একটি Web-based communication system যার মাধ্যমে Client এবং Server HTTP Protocol ব্যবহার করে Data আদান-প্রদান করে।**
+
+---
+
+# 🔌 What is an API?
+
+**API** এর পূর্ণরূপ হলো:
+
+> **Application Programming Interface**
+
+API হলো এমন একটি Interface যার মাধ্যমে একটি Software বা Application অন্য একটি Software বা Service-এর সাথে Communication করতে পারে।
+
+সহজ একটি উদাহরণ দেখা যাক।
+
+ধরুন, আপনার একটি Food Delivery App আছে।
+
+আপনার App-এ User যখন Restaurant List দেখতে চায়, তখন App নিজে Database থেকে Data নিয়ে আসে না। বরং App Server-এ একটি Request পাঠায়।
+
+```text
+Mobile App
+    │
+    │ Request
+    ▼
+Server / API
+    │
+    │ Database Query
+    ▼
+Database
+    │
+    │ Data
+    ▼
+Server / API
+    │
+    │ Response
+    ▼
+Mobile App
+```
+
+এখানে API Client এবং Server-এর মধ্যে Communication-এর মাধ্যম হিসেবে কাজ করছে।
+
+---
+
+# 🌍 What is REST?
+
+**REST** এর পূর্ণরূপ:
+
+> **Representational State Transfer**
+
+REST হলো একটি **Architectural Style**।
+
+এটি কোনো Programming Language নয়।
+
+এটি কোনো Framework নয়।
+
+এটি কোনো Library-ও নয়।
+
+REST মূলত কিছু Principle এবং Constraint অনুসরণ করে Web Service তৈরি করার একটি পদ্ধতি।
+
+REST Architecture অনুসরণ করে তৈরি করা API-কে বলা হয়:
+
+> **REST API** অথবা **RESTful API**
+
+---
+
+# 🚀 What is REST API?
+
+REST API হলো এমন একটি API যা **REST Architectural Style** অনুসরণ করে তৈরি করা হয় এবং সাধারণত **HTTP Protocol** ব্যবহার করে Client এবং Server-এর মধ্যে Communication করে।
+
+ধরুন, আপনার একটি Blog Application আছে।
+
+আপনার Database-এ `posts` নামে একটি Table আছে।
+
+আপনি REST API তৈরি করলেন:
+
+```text
+GET    /api/posts
+GET    /api/posts/10
+POST   /api/posts
+PUT    /api/posts/10
+DELETE /api/posts/10
+```
+
+এখানে প্রতিটি URL একটি নির্দিষ্ট Resource নির্দেশ করছে।
+
+```text
+/posts
+```
+
+এখানে `posts` হলো একটি Resource।
+
+---
+
+# 🤔 Why Do We Need REST API?
+
+REST API ব্যবহার করার অনেক কারণ রয়েছে।
+
+### 1️⃣ Mobile App Development
+
+আপনার Server যদি Laravel দিয়ে তৈরি হয় এবং Mobile App যদি React Native দিয়ে তৈরি হয়, তাহলে Mobile App এবং Laravel Backend-এর মধ্যে Communication-এর জন্য REST API ব্যবহার করতে পারেন।
+
+```text
+React Native App
+       │
+       │ REST API
+       ▼
+Laravel Backend
+       │
+       ▼
+MySQL Database
+```
+
+---
+
+### 2️⃣ Frontend এবং Backend আলাদা রাখা
+
+Modern Application-এ Frontend এবং Backend আলাদা হতে পারে।
+
+উদাহরণ:
+
+```text
+Frontend
+React / Vue / Angular
+        │
+        │ REST API
+        ▼
+Backend
+Laravel / Node.js / Django
+        │
+        ▼
+Database
+MySQL / PostgreSQL
+```
+
+---
+
+### 3️⃣ Multiple Clients
+
+একটি Backend API ব্যবহার করে একাধিক Platform তৈরি করা যায়।
+
+যেমন:
+
+```text
+                 REST API
+                    │
+       ┌────────────┼────────────┐
+       │            │            │
+       ▼            ▼            ▼
+   Web App      Mobile App    Desktop App
+```
+
+একটি API ব্যবহার করে:
+
+- Website
+- Android App
+- iOS App
+- React App
+- React Native App
+
+সবগুলো Application Server-এর সাথে Communication করতে পারে।
+
+---
+
+# 🔄 How REST API Works
+
+একটি REST API সাধারণত এই Flow অনুসরণ করে:
+
+```text
+Client
+   │
+   │ HTTP Request
+   ▼
+REST API
+   │
+   │ Process Request
+   ▼
+Database
+   │
+   │ Return Data
+   ▼
+REST API
+   │
+   │ HTTP Response
+   ▼
+Client
+```
+
+উদাহরণ:
+
+User Browser-এ একটি Blog Website খুললো।
+
+Browser Request পাঠাবে:
+
+```http
+GET /api/posts
+```
+
+Server Database থেকে সব Post নিয়ে Response পাঠাবে:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "title": "Learn Laravel"
+    },
+    {
+      "id": 2,
+      "title": "Learn REST API"
+    }
+  ]
+}
+```
+
+---
+
+# 💻 Client and Server
+
+REST API বুঝতে হলে **Client** এবং **Server** সম্পর্কে ধারণা থাকা জরুরি।
+
+### Client
+
+যে Application API ব্যবহার করে তাকে Client বলা হয়।
+
+যেমন:
+
+- Web Browser
+- React Application
+- Vue Application
+- Android Application
+- iOS Application
+- React Native Application
+
+### Server
+
+যেখানে API তৈরি করা থাকে এবং যেখানে Database-এর সাথে কাজ করা হয় সেটি Server।
+
+যেমন:
+
+- Laravel
+- Node.js
+- Django
+- ASP.NET
+
+উদাহরণ:
+
+```text
+React App
+   │
+   │ Request
+   ▼
+Laravel REST API
+   │
+   │ Query
+   ▼
+MySQL
+```
+
+এখানে:
+
+```text
+React App = Client
+Laravel = Server / Backend
+MySQL = Database
+```
+
+---
+
+# 🌐 HTTP Methods
+
+REST API-তে বিভিন্ন ধরনের Operation সম্পন্ন করার জন্য HTTP Methods ব্যবহার করা হয়।
+
+সবচেয়ে গুরুত্বপূর্ণ Method হলো:
+
+| Method | Purpose                        |
+| ------ | ------------------------------ |
+| GET    | Data Read করার জন্য            |
+| POST   | নতুন Data Create করার জন্য     |
+| PUT    | সম্পূর্ণ Data Update করার জন্য |
+| PATCH  | আংশিক Data Update করার জন্য    |
+| DELETE | Data Delete করার জন্য          |
+
+---
+
+## 📥 GET
+
+Server থেকে Data নেওয়ার জন্য `GET` ব্যবহার করা হয়।
+
+```http
+GET /api/posts
+```
+
+এর অর্থ:
+
+> সব Post নিয়ে আসো।
+
+একটি নির্দিষ্ট Post:
+
+```http
+GET /api/posts/10
+```
+
+এর অর্থ:
+
+> ID 10-এর Post নিয়ে আসো।
+
+---
+
+## 📤 POST
+
+নতুন Data Create করার জন্য `POST` ব্যবহার করা হয়।
+
+```http
+POST /api/posts
+```
+
+Request Body:
+
+```json
+{
+  "title": "Learn REST API",
+  "description": "REST API is very useful."
+}
+```
+
+Server এই Data Database-এ Insert করবে।
+
+---
+
+## 🔄 PUT
+
+একটি Resource-এর সম্পূর্ণ Data Update করার জন্য `PUT` ব্যবহার করা হয়।
+
+```http
+PUT /api/posts/10
+```
+
+Request:
+
+```json
+{
+  "title": "Learn Laravel REST API",
+  "description": "Learn REST API with Laravel."
+}
+```
+
+---
+
+## ✏️ PATCH
+
+একটি Resource-এর নির্দিষ্ট কিছু Field Update করতে `PATCH` ব্যবহার করা হয়।
+
+```http
+PATCH /api/posts/10
+```
+
+Request:
+
+```json
+{
+  "title": "Updated Title"
+}
+```
+
+এখানে শুধু `title` Update হবে।
+
+---
+
+## 🗑️ DELETE
+
+Data Delete করার জন্য `DELETE` ব্যবহার করা হয়।
+
+```http
+DELETE /api/posts/10
+```
+
+এর অর্থ:
+
+> ID 10-এর Post Delete করো।
+
+---
+
+# 📊 HTTP Status Codes
+
+API Response-এর সাথে Server সাধারণত একটি **HTTP Status Code** পাঠায়।
+
+গুরুত্বপূর্ণ Status Code:
+
+| Status Code | Meaning               |
+| ----------- | --------------------- |
+| 200         | OK                    |
+| 201         | Created               |
+| 204         | No Content            |
+| 400         | Bad Request           |
+| 401         | Unauthorized          |
+| 403         | Forbidden             |
+| 404         | Not Found             |
+| 422         | Validation Error      |
+| 500         | Internal Server Error |
+
+### Example
+
+সফলভাবে Data পাওয়া গেলে:
+
+```http
+200 OK
+```
+
+নতুন Data Create হলে:
+
+```http
+201 Created
+```
+
+Data পাওয়া না গেলে:
+
+```http
+404 Not Found
+```
+
+User Login না করলে:
+
+```http
+401 Unauthorized
+```
+
+Server-এর Internal Error হলে:
+
+```http
+500 Internal Server Error
+```
+
+---
+
+# 🔗 API Endpoint
+
+REST API-তে প্রতিটি Resource Access করার জন্য একটি URL থাকে। এটিকে সাধারণভাবে **Endpoint** বলা হয়।
+
+উদাহরণ:
+
+```text
+https://example.com/api/users
+```
+
+এখানে:
+
+```text
+https://example.com
+```
+
+হলো Base URL।
+
+```text
+/api
+```
+
+হলো API Prefix।
+
+```text
+/users
+```
+
+হলো Resource।
+
+সম্পূর্ণ Endpoint:
+
+```text
+https://example.com/api/users
+```
+
+একটি নির্দিষ্ট User:
+
+```text
+https://example.com/api/users/10
+```
+
+এখানে `10` হলো User ID।
+
+---
+
+# 📦 Request and Response
+
+REST API-তে Client Server-এ **Request** পাঠায় এবং Server Client-কে **Response** দেয়।
+
+## Request
+
+একটি Request-এর মধ্যে থাকতে পারে:
+
+- URL
+- HTTP Method
+- Headers
+- Query Parameters
+- Path Parameters
+- Request Body
+
+উদাহরণ:
+
+```http
+POST /api/users
+Content-Type: application/json
+```
+
+Body:
+
+```json
+{
+  "name": "Abdul Alim",
+  "email": "alim@example.com"
+}
+```
+
+---
+
+## Response
+
+Server Response পাঠাবে:
+
+```json
+{
+  "success": true,
+  "message": "User created successfully",
+  "data": {
+    "id": 1,
+    "name": "Abdul Alim",
+    "email": "alim@example.com"
+  }
+}
+```
+
+---
+
+# 🧾 JSON
+
+REST API-তে Data আদান-প্রদানের জন্য **JSON** সবচেয়ে বেশি ব্যবহৃত Format।
+
+JSON এর পূর্ণরূপ:
+
+> **JavaScript Object Notation**
+
+উদাহরণ:
+
+```json
+{
+  "id": 1,
+  "name": "Abdul Alim",
+  "email": "alim@example.com"
+}
+```
+
+একাধিক Data:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Abdul Alim"
+  },
+  {
+    "id": 2,
+    "name": "Rahim"
+  }
+]
+```
+
+JSON সহজে:
+
+- JavaScript
+- PHP
+- Laravel
+- Python
+- Java
+- C#
+- Kotlin
+
+সহ প্রায় সব Programming Language-এ ব্যবহার করা যায়।
+
+---
+
+# 🗃️ CRUD and REST API
+
+REST API এবং CRUD-এর মধ্যে একটি খুব সুন্দর সম্পর্ক রয়েছে।
+
+CRUD:
+
+- **C = Create**
+- **R = Read**
+- **U = Update**
+- **D = Delete**
+
+REST API-তে সাধারণত:
+
+| CRUD     | HTTP Method | Endpoint        |
+| -------- | ----------- | --------------- |
+| Create   | POST        | `/api/posts`    |
+| Read All | GET         | `/api/posts`    |
+| Read One | GET         | `/api/posts/10` |
+| Update   | PUT/PATCH   | `/api/posts/10` |
+| Delete   | DELETE      | `/api/posts/10` |
+
+একটি সম্পূর্ণ CRUD API:
+
+```text
+GET     /api/posts
+GET     /api/posts/{id}
+POST    /api/posts
+PUT     /api/posts/{id}
+DELETE  /api/posts/{id}
+```
+
+এটাই REST API-এর সবচেয়ে Common Pattern।
+
+---
+
+# 🧪 REST API Example
+
+ধরুন আমরা একটি **Product API** তৈরি করছি।
+
+## Get All Products
+
+```http
+GET /api/products
+```
+
+Response:
+
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Laptop",
+      "price": 80000
+    },
+    {
+      "id": 2,
+      "name": "Mobile",
+      "price": 30000
+    }
+  ]
+}
+```
+
+---
+
+## Get Single Product
+
+```http
+GET /api/products/1
+```
+
+Response:
+
+```json
+{
+  "id": 1,
+  "name": "Laptop",
+  "price": 80000
+}
+```
+
+---
+
+## Create Product
+
+```http
+POST /api/products
+```
+
+Request:
+
+```json
+{
+  "name": "Keyboard",
+  "price": 2000
+}
+```
+
+Response:
+
+```json
+{
+  "message": "Product created successfully"
+}
+```
+
+---
+
+## Update Product
+
+```http
+PUT /api/products/1
+```
+
+Request:
+
+```json
+{
+  "name": "Gaming Laptop",
+  "price": 100000
+}
+```
+
+---
+
+## Delete Product
+
+```http
+DELETE /api/products/1
+```
+
+Response:
+
+```json
+{
+  "message": "Product deleted successfully"
+}
+```
+
+---
+
+# 🛠️ REST API with Laravel
+
+Laravel দিয়ে REST API তৈরি করা খুব সহজ।
+
+ধরুন আমরা `Product` API তৈরি করব।
+
+প্রথমে Model তৈরি:
+
+```bash
+php artisan make:model Product -m
+```
+
+Controller তৈরি:
+
+```bash
+php artisan make:controller ProductController --api
+```
+
+API Route:
+
+```php
+use App\Http\Controllers\ProductController;
+
+Route::apiResource('products', ProductController::class);
+```
+
+এটি Automatically এই Route তৈরি করবে:
+
+```text
+GET       /api/products
+POST      /api/products
+GET       /api/products/{product}
+PUT       /api/products/{product}
+PATCH     /api/products/{product}
+DELETE    /api/products/{product}
+```
+
+Controller:
+
+```php
+class ProductController extends Controller
+{
+    public function index()
+    {
+        return Product::all();
+    }
+
+    public function store(Request $request)
+    {
+        $product = Product::create($request->all());
+
+        return response()->json($product, 201);
+    }
+
+    public function show(Product $product)
+    {
+        return $product;
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $product->update($request->all());
+
+        return response()->json($product);
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+
+        return response()->json([
+            'message' => 'Product deleted successfully'
+        ]);
+    }
+}
+```
+
+এখানে Laravel API-এর মাধ্যমে আমরা সম্পূর্ণ CRUD Operation করতে পারছি।
+
+API Test করার জন্য ব্যবহার করতে পারেন:
+
+- Postman
+- Insomnia
+- Thunder Client
+- Laravel HTTP Client
+- Browser (শুধু GET Request-এর জন্য)
+
+---
+
+# 🔐 Authentication
+
+অনেক REST API Public নয়।
+
+যেমন:
+
+```text
+GET /api/products
+```
+
+যে কেউ ব্যবহার করতে পারে।
+
+কিন্তু:
+
+```text
+POST /api/products
+```
+
+শুধুমাত্র Login করা Admin ব্যবহার করতে পারবে।
+
+এই ক্ষেত্রে API Authentication ব্যবহার করা হয়।
+
+সাধারণ Authentication Method:
+
+- API Token
+- Bearer Token
+- Laravel Sanctum
+- Laravel Passport
+- JWT
+
+উদাহরণ:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+Server Token Verify করবে।
+
+Token Valid হলে:
+
+```text
+Request Accepted
+```
+
+Token Invalid হলে:
+
+```http
+401 Unauthorized
+```
+
+---
+
+# 🏗️ REST API Best Practices
+
+ভালো REST API তৈরি করার জন্য কিছু Best Practice অনুসরণ করা উচিত।
+
+## 1️⃣ Noun ব্যবহার করুন
+
+ভালো:
+
+```text
+GET /api/users
+```
+
+খারাপ:
+
+```text
+GET /api/getUsers
+```
+
+---
+
+## 2️⃣ HTTP Method সঠিকভাবে ব্যবহার করুন
+
+ভালো:
+
+```text
+GET /api/users
+POST /api/users
+DELETE /api/users/10
+```
+
+---
+
+## 3️⃣ Consistent Response রাখুন
+
+সব Response-এর Structure একই ধরনের রাখা ভালো।
+
+```json
+{
+  "success": true,
+  "message": "Users retrieved successfully",
+  "data": []
+}
+```
+
+---
+
+## 4️⃣ Versioning ব্যবহার করুন
+
+বড় Application-এর ক্ষেত্রে API Versioning ব্যবহার করা ভালো।
+
+```text
+/api/v1/users
+```
+
+পরবর্তীতে:
+
+```text
+/api/v2/users
+```
+
+এতে পুরনো Client এবং নতুন Client আলাদাভাবে API ব্যবহার করতে পারে।
+
+---
+
+## 5️⃣ Proper Status Code ব্যবহার করুন
+
+সফল Request-এর জন্য:
+
+```text
+200
+```
+
+নতুন Resource তৈরি হলে:
+
+```text
+201
+```
+
+Resource না পাওয়া গেলে:
+
+```text
+404
+```
+
+Authentication সমস্যা হলে:
+
+```text
+401
+```
+
+---
+
+# ⚖️ REST API vs Traditional Web Application
+
+| বিষয়          | Traditional Web App                 | REST API                   |
+| ------------- | ----------------------------------- | -------------------------- |
+| Response      | HTML                                | JSON                       |
+| Main Consumer | Browser                             | Web/Mobile/Other Apps      |
+| Frontend      | Backend-এর সাথে Integrated হতে পারে | আলাদা হতে পারে             |
+| Data Format   | HTML                                | JSON                       |
+| Mobile App    | সরাসরি ব্যবহার কঠিন                 | সহজে ব্যবহারযোগ্য          |
+| Architecture  | Monolithic হতে পারে                 | Client-Server Architecture |
+
+উদাহরণ:
+
+Traditional Laravel App:
+
+```text
+Browser
+   ↓
+Laravel
+   ↓
+Blade View
+   ↓
+HTML
+```
+
+REST API:
+
+```text
+React / Mobile App
+        ↓
+Laravel REST API
+        ↓
+JSON
+```
+
+---
+
+# 🆚 REST API vs SOAP
+
+| বিষয়            | REST API            | SOAP                   |
+| --------------- | ------------------- | ---------------------- |
+| Type            | Architectural Style | Protocol               |
+| Data Format     | সাধারণত JSON        | সাধারণত XML            |
+| Complexity      | তুলনামূলক সহজ       | তুলনামূলক বেশি         |
+| Performance     | সাধারণত Fast        | তুলনামূলক Heavy        |
+| Mobile Apps     | খুব জনপ্রিয়        | তুলনামূলক কম           |
+| Modern Web Apps | বেশি ব্যবহৃত        | বিশেষ ক্ষেত্রে ব্যবহৃত |
+
+বর্তমানে সাধারণ Web এবং Mobile Application-এর জন্য REST API খুব জনপ্রিয়।
+
+---
+
+# ⚠️ Common Mistakes
+
+Beginner-রা REST API শেখার সময় কিছু Common Mistake করে থাকে।
+
+### ❌ ভুল Endpoint
+
+```text
+/api/getAllProducts
+```
+
+### ✅ ভালো Endpoint
+
+```text
+/api/products
+```
+
+---
+
+### ❌ সব Request-এ POST ব্যবহার করা
+
+```text
+POST /api/products
+POST /api/products/1
+POST /api/deleteProduct/1
+```
+
+### ✅ HTTP Method অনুযায়ী কাজ করা
+
+```text
+GET    /api/products
+POST   /api/products
+PUT    /api/products/1
+DELETE /api/products/1
+```
+
+---
+
+### ❌ সবসময় Status Code 200 দেওয়া
+
+Error হলেও:
+
+```http
+200 OK
+```
+
+দেওয়া উচিত নয়।
+
+বরং Error অনুযায়ী উপযুক্ত Status Code ব্যবহার করা উচিত।
+
+---
+
+# 🎯 Conclusion
+
+REST API হলো Modern Web এবং Mobile Application Development-এর একটি অত্যন্ত গুরুত্বপূর্ণ Concept।
+
+সহজভাবে পুরো বিষয়টি মনে রাখার জন্য:
+
+```text
+Client
+   │
+   │ HTTP Request
+   ▼
+REST API
+   │
+   │ Business Logic
+   ▼
+Database
+   │
+   │ Data
+   ▼
+REST API
+   │
+   │ JSON Response
+   ▼
+Client
+```
+
+আর REST API-এর সবচেয়ে গুরুত্বপূর্ণ অংশগুলো হলো:
+
+```text
+REST
+  │
+  ├── Resource
+  ├── Endpoint
+  ├── HTTP Methods
+  │     ├── GET
+  │     ├── POST
+  │     ├── PUT
+  │     ├── PATCH
+  │     └── DELETE
+  │
+  ├── HTTP Status Codes
+  ├── Request
+  ├── Response
+  ├── JSON
+  ├── Authentication
+  └── CRUD
+```
+
+**Laravel Developer** হিসেবে REST API শেখা আপনার জন্য অত্যন্ত গুরুত্বপূর্ণ। বিশেষ করে আপনি যদি **React, React Native, Flutter, Android, iOS বা অন্য কোনো Frontend/Mobile Technology**-এর সাথে Laravel Backend ব্যবহার করতে চান, তাহলে REST API সম্পর্কে ভালো ধারণা থাকা প্রয়োজন।
+
+<div align="right">
+    <b><a href="#10-laravel-projects-for-beginners">⬆️ Go to Top</a></b>
 </div>
 
 # Project 01: Laravel CRUD Operation
